@@ -1,0 +1,31 @@
+<mat-toolbar color="primary" class="mat-elevation-z4">
+  <mat-toolbar-row>
+    <span><a class="mat-button" routerLink="#firstPage">Reef Moonshiner's</a></span>
+    <span class="spacer"></span>
+    <nav>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <a mat-menu-item routerLink="#secondPage">Base Elems</a>
+        <a mat-menu-item routerLink="#thirdPage">Major Elems</a>
+        <a mat-menu-item routerLink="#fourthPage">Minor Elems</a>
+        <a mat-menu-item routerLink="#fifthPage">System</a>
+      </mat-menu>
+    </nav>
+    <span class="spacer"></span>
+    <nav>
+      <button mat-icon-button [matMenuTriggerFor]="resources">
+        Resources
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+      <mat-menu #resources="matMenu">
+        <a mat-menu-item href="#">Articles</a>
+        <a mat-menu-item href="#">Handbook</a>
+        <a mat-menu-item href="#">Additional FAQ</a>
+        <mat-divider></mat-divider>
+        <a mat-menu-item href="#">Forum</a>
+      </mat-menu>
+    </nav>
+  </mat-toolbar-row>
+</mat-toolbar>

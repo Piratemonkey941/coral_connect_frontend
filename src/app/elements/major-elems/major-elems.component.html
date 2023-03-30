@@ -1,0 +1,152 @@
+<div class="body">
+  <div class="content-section">
+    <h2 class="content-section-title">Major Elements</h2>
+    <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="center center">
+
+      <!-- ========== Boron  ============-->
+
+      <mat-card class="app-card">
+        <mat-card-content>
+          <span>
+            <div class="chemImg">
+              <img src="../../../assets/SoCl.png" alt="" />
+            </div>
+            Boron
+            <button mat-icon-button (click)="selectedElement = 'Boron'" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+          </span>
+          <div class="app-card__subtext">{{ boronStart }}</div>
+          <mat-form-field class="app-card-buttons">
+            <input
+              matInput
+              placeholder="Bromide/Bromine in ppm"
+              [(ngModel)]="boron"
+            />
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="onAddBoron()"
+            >
+              Submit
+            </button>
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
+
+<!-- ========== Bromide  ============-->
+
+      <mat-card class="apps-card">
+        <div class="app-card">
+
+          <span>
+            <div class="chemImg">
+
+              <img src="../../../assets/SoCl.png" alt="" >
+            </div>
+            Bromide/Bromine
+
+            <div (click)="selectedElement = 'Bromide'" class="" matTooltip="More options" matTooltipPosition="above">
+              <mat-icon class="btn text-white">more_vert</mat-icon>
+            </div>
+
+        </span>
+          <div class="menu"></div>
+          <div class="app-card__subtext">{{bromideStart}}</div>
+
+
+          <div class="app-card-buttons input-group">
+            <mat-form-field appearance="outline">
+              <mat-label>Bromide/Bromine in ppm</mat-label>
+              <input matInput type="text" placeholder="" [(ngModel)]="bromide">
+            </mat-form-field>
+
+            <button class="btn btn-primary" type="button" (click)="onAddBromide()" mat-raised-button>Submit</button>
+          </div>
+        </div>
+      </mat-card>
+
+<!-- ========== Potassium  ============-->
+
+      <mat-card class="app-card g-col-3">
+        <span>
+          <div class="chemImg">
+            <img src="../../../assets/sodium bicarb.png" alt="">
+          </div>
+          Potassium
+          <div (click)="selectedElement = 'Potassium'" matTooltip="More options" matTooltipPosition="above">
+            <mat-icon class="btn text-white">more_vert</mat-icon>
+          </div>
+        </span>
+
+        <div class="app-card__subtext">{{potassiumStart}}</div>
+
+        <div class="app-card-buttons input-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Potassium in DKH</mat-label>
+            <input matInput type="text" placeholder="" [(ngModel)]="potassium">
+          </mat-form-field>
+
+          <button class="btn btn-primary" type="button" (click)="onAddPotassium()" mat-raised-button>Submit</button>
+        </div>
+      </mat-card>
+
+<!-- ========== Strontium  ============-->
+
+      <mat-card class="app-card g-col-3">
+        <span>
+          <div class="chemImg">
+            <img src="../../../assets/CaCl.png" alt="">
+          </div>
+          Strontium
+          <div (click)="selectedElement = 'Strontium'" matTooltip="More options" matTooltipPosition="above">
+            <mat-icon class="btn text-white">more_vert</mat-icon>
+          </div>
+        </span>
+
+        <div class="app-card__subtext">{{strontiumStart}}</div>
+
+        <div class="app-card-buttons input-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Strontium in ppm</mat-label>
+            <input matInput type="text" placeholder="" [(ngModel)]="strontium">
+          </mat-form-field>
+
+          <button class="btn btn-primary" type="button" (click)="onAddStrontium()" mat-raised-button>Submit</button>
+        </div>
+      </mat-card>
+
+<!-- ========== Sulfate  ============-->
+
+      <mat-card class="app-card g-col-3">
+        <span>
+          <div class="chemImg">
+            <img src="../../../assets/MgCl.png" alt="">
+          </div>
+          Sulfate
+          <div (click)="selectedElement = 'Sulfate'" matTooltip="More options" matTooltipPosition="above">
+            <mat-icon class="btn text-white">more_vert</mat-icon>
+          </div>
+        </span>
+
+        <div class="menu Sulfate"></div>
+        <div class="app-card__subtext">{{sulfateStart}} </div>
+
+        <div class="app-card-buttons input-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Sulfate in ppm</mat-label>
+            <input matInput type="text" placeholder="" [(ngModel)]="sulfate">
+          </mat-form-field>
+
+          <button class="btn btn-primary" type="button" (click)="onAddSulfate()" mat-raised-button>Submit</button>
+        </div>
+      </mat-card>
+
+
+
+      <div>
+        <!-- <app-modal [elementName]="selectedElement" [volume]="volume"></app-modal> -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,223 @@
+<div class="body">
+  <div class="content-section">
+    <div class="content-section-title">Minor Elements A-L</div>
+
+    <div class="apps-card" fxLayout="row" fxLayoutGap="16px" fxLayoutWrap>
+      <!-- ========== Barium  ============-->
+
+<div class="app-card mat-elevation-z3">
+  <span>
+    <div class="chemImg">
+      <img src="../../../assets/SoCl.png" alt="" />
+    </div>
+    Barium
+
+    <button
+      mat-icon-button
+      (click)="selectedElement = 'Barium'"
+      class="text-white"
+      aria-label="Barium Options"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </span>
+
+  <div class="menu"></div>
+
+  <div class="app-card__subtext">{{ bariumStart }}</div>
+
+  <div class="app-card-buttons input-group">
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Barium in ppm"
+        [(ngModel)]="barium"
+      />
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="onAddBarium()"
+    >
+      Submit
+    </button>
+  </div>
+</div>
+
+<ng-template #exampleModal>
+  <app-dialog></app-dialog>
+</ng-template>
+
+
+     <!-- ========== Chromium  ============-->
+
+<div class="app-card mat-elevation-z3 g-col-3">
+  <span>
+    <div class="chemImg">
+      <img src="../../../assets/sodium bicarb.png" alt="" />
+    </div>
+
+    Chromium
+
+    <button
+      mat-icon-button
+      (click)="selectedElement = 'Chromium'"
+      class="text-white"
+      aria-label="Chromium Options"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </span>
+
+  <div class="app-card__subtext">{{ chromiumStart }}</div>
+
+  <div class="app-card-buttons input-group">
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Chromium in ppm"
+        [(ngModel)]="chromium"
+      />
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="onAddChromium()"
+    >
+      Submit
+    </button>
+  </div>
+</div>
+
+<ng-template #exampleModal>
+  <app-dialog></app-dialog>
+</ng-template>
+
+
+<mat-card class="app-card" fxFlex="25">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div>
+      <div class="chemImg">
+        <img src="../../../assets/CaCl.png" alt="" />
+      </div>
+      Cobalt
+    </div>
+
+    <button
+      mat-icon-button
+      (click)="selectedElement = 'Cobalt'"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </div>
+
+  <mat-card-subtitle>{{ cobaltStart }}</mat-card-subtitle>
+
+  <mat-form-field class="app-card-buttons">
+    <input
+      matInput
+      placeholder="Cobalt in ppm"
+      [(ngModel)]="cobalt"
+    />
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="onAddCobalt()"
+    >
+      Submit
+    </button>
+  </mat-form-field>
+</mat-card>
+
+<!-- ========== Copper  ============-->
+
+<mat-card class="app-card" fxFlex="25">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div>
+      <div class="chemImg">
+        <img src="../../../assets/MgCl.png" alt="" />
+      </div>
+      Copper
+    </div>
+
+    <button mat-icon-button (click)="selectedElement = 'Copper'">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </div>
+
+  <mat-card-subtitle>{{ copperStart }}</mat-card-subtitle>
+
+  <mat-form-field class="app-card-buttons">
+    <input matInput placeholder="Copper in ppm" [(ngModel)]="copper" />
+    <button mat-raised-button color="primary" (click)="onAddCopper()">Submit</button>
+  </mat-form-field>
+</mat-card>
+
+      <!-- ========== Flouride  ============-->
+
+<mat-card class="app-card">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div>
+      <div class="chemImg">
+        <img src="../../../assets/SoCl.png" alt="" />
+      </div>
+      Flouride/Flourine
+    </div>
+    <button mat-icon-button (click)="selectedElement = 'Flouride'">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </div>
+
+  <mat-card-subtitle>{{ flourideStart }}</mat-card-subtitle>
+
+  <mat-form-field class="app-card-buttons">
+    <input matInput placeholder="Flouride in ppm" [(ngModel)]="flouride" />
+    <button mat-raised-button color="primary" (click)="onAddFlouride()">
+      Submit
+    </button>
+  </mat-form-field>
+</mat-card>
+
+
+      <!-- ========== Iodine  ============-->
+      <mat-card class="app-card" fxFlex="25">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <div>
+            <div class="chemImg">
+              <img src="../../../assets/sodium bicarb.png" alt="" />
+            </div>
+            Iodine
+          </div>
+
+          <button mat-icon-button (click)="selectedElement = 'Iodine'">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+        </div>
+
+        <mat-card-subtitle>{{ iodineStart }}</mat-card-subtitle>
+
+        <mat-form-field class="app-card-buttons">
+          <input matInput placeholder="Iodine in ppm" [(ngModel)]="iodine" />
+          <button mat-raised-button color="primary" (click)="onAddIodine()">
+            Submit
+          </button>
+        </mat-form-field>
+      </mat-card>
+
+    </div>
+
+    <!-- Modal -->
+    <ng-template #exampleModal let-dialogRef="dialogRef">
+      <mat-dialog-content>
+        <app-modal [elementName]="selectedElement" [volume]="volume"></app-modal>
+      </mat-dialog-content>
+      <mat-dialog-actions>
+        <button mat-button (click)="dialogRef.close()">Close</button>
+      </mat-dialog-actions>
+    </ng-template>
+  </div>
+</div>

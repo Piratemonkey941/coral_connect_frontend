@@ -1,0 +1,43 @@
+<p>signup works!</p>
+
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+  <div fxLayout="row" fxLayoutGap="16px">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput type="text" formControlName="email" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Phone Number</mat-label>
+      <input matInput type="text" formControlName="phone" />
+    </mat-form-field>
+  </div>
+
+  <div fxLayout="row" fxLayoutGap="16px">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input matInput type="text" formControlName="first_name" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Last Name</mat-label>
+      <input matInput type="text" formControlName="last_name" />
+    </mat-form-field>
+  </div>
+
+  <div fxLayout="row" fxLayoutGap="16px">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" />
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Confirm Password</mat-label>
+      <input matInput type="password" formControlName="password_confirmation" />
+    </mat-form-field>
+  </div>
+
+  <div class="text-center">
+    <button mat-raised-button color="primary" type="submit">Sign Up</button>
+  </div>
+</form>

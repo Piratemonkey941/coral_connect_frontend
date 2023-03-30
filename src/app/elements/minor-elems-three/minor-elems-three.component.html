@@ -1,0 +1,179 @@
+<div class="body">
+  <div class="content-section">
+    <h2 class="content-section-title">Major Elements</h2>
+    <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="center center">
+
+          <!-- ========== Rubidium  ============-->
+
+          <div class="app-card g-col-3">
+            <span>
+              <div class="chemImg">
+                <img src="../../../assets/MgCl.png" alt="" />
+              </div>
+              Rubidium
+              <div
+              (click)="selectedElement = 'Rubidium'"
+              class=""
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              <i class="bi bi-three-dots-vertical btn text-white"></i>
+            </div>
+          </span>
+          <div class="menu rubidium"></div>
+          <div class="app-card__subtext">{{ rubidiumStart }}</div>
+          <div class="app-card-buttons input-group">
+            <mat-form-field>
+              <input matInput
+                placeholder="Rubidium in ppm"
+                [(ngModel)]="rubidium"
+              >
+            </mat-form-field>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="onAddRubidium()"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+
+        <!-- ==========  Selenium ============-->
+
+        <div class="apps-card">
+          <div class="app-card">
+            <span>
+              <div class="chemImg">
+                <img src="../../../assets/SoCl.png" alt="" />
+              </div>
+              Selenium
+              <div
+              (click)="selectedElement = 'Selenium'"
+              class=""
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            ></div>
+          </span>
+          <div class="menu"></div>
+          <div class="app-card__subtext">{{ seleniumStart }}</div>
+
+          <div class="app-card-buttons input-group">
+            <mat-form-field>
+              <input matInput
+                placeholder="Selenium in ppm"
+                [(ngModel)]="selenium"
+              >
+            </mat-form-field>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="onAddSelenium()"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==========  Tin ============-->
+      <div class="app-card g-col-3">
+        <span>
+          <div class="chemImg">
+            <img src="../../../assets/CaCl.png" alt="" />
+          </div>
+          Tin/Stannum
+          <div
+          (click)="selectedElement = 'Tin'"
+          class=""
+
+        >
+          <i class="bi bi-three-dots-vertical btn text-white"></i>
+        </div>
+      </span>
+      <div class="menu"></div>
+      <div class="app-card__subtext">{{ tinStart }}</div>
+      <div class="app-card-buttons input-group">
+        <mat-form-field appearance="outline" class="form-control">
+          <mat-label>Tin/Stannum in ppm</mat-label>
+          <input matInput placeholder="Tin/Stannum in ppm" [(ngModel)]="tin" />
+        </mat-form-field>
+        <button class="btn btn-primary" mat-raised-button (click)="onAddTin()">
+          Submit
+        </button>
+      </div>
+    </div>
+    <!-- ========== Zinc  ============-->
+    <div class="app-card g-col-3">
+      <span>
+        <div class="chemImg">
+          <img src="../../../assets/MgCl.png" alt="" />
+        </div>
+        Zinc
+        <div
+        (click)="selectedElement = 'Zinc'"
+        class=""
+
+      >
+        <i class="bi bi-three-dots-vertical btn text-white"></i>
+      </div>
+    </span>
+    <div class="menu zinc"></div>
+    <div class="app-card__subtext">{{ zincStart }}</div>
+    <div class="app-card-buttons input-group">
+      <mat-form-field appearance="outline" class="form-control">
+        <mat-label>Zinc in ppm</mat-label>
+        <input matInput placeholder="Zinc in ppm" [(ngModel)]="zinc" />
+      </mat-form-field>
+      <button class="btn btn-primary" mat-raised-button (click)="onAddZinc()">
+        Submit
+      </button>
+    </div>
+  </div>
+
+
+    </div>
+  </div>
+</div>
+
+<!-- COOL GPT IDEA
+<div class="body">
+  <div class="content-section">
+    <h2 class="content-section-title">Major Elements</h2>
+    <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="center center">
+      <ng-container *ngFor="let element of elements">
+        <mat-card class="app-card">
+          <div class="element-info">
+            <div class="chemImg">
+              <img [src]="element.imagePath" [alt]="element.name" />
+            </div>
+            {{ element.name }}
+            <button
+              mat-icon-button
+              class="options-btn"
+              (click)="selectedElement = element.name"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              <mat-icon>more_vert</mat-icon>
+            </button>
+          </div>
+          <mat-card-subtitle>{{ element.start }}</mat-card-subtitle>
+          <mat-card-actions>
+            <mat-form-field appearance="outline">
+              <mat-label>{{ element.name }} in ppm</mat-label>
+              <input matInput [(ngModel)]="element.value" />
+            </mat-form-field>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="onAddElement(element.name)"
+            >
+              Submit
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </ng-container>
+    </div>
+  </div>
+</div> -->

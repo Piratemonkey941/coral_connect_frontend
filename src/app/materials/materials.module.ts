@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import {MatButtonModule, } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
@@ -24,26 +24,23 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MatTooltipModule  } from '@angular/material/tooltip';
-import { MatSnackBarModule  } from '@angular/material/snack-bar';
-import { MatDialogModule  } from '@angular/material/dialog';
-import { MatTableModule  } from '@angular/material/table';
-import { MatSortModule  } from '@angular/material/sort';
-import { MatPaginatorModule  } from '@angular/material/paginator';
-import { ScrollingModule  } from '@angular/cdk/scrolling';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog'; // Import MatDialogModule here
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
-// import {  } from '';
-
-const MaterialComponants =
-[
+const MaterialComponents = [
   MatButtonModule,
   MatButtonToggleModule,
   MatIconModule,
   MatBadgeModule,
   MatProgressSpinnerModule,
   MatToolbarModule,
-  MatSidenavModule ,
-  FormsModule ,
+  MatSidenavModule,
+  FormsModule,
   MatMenuModule,
   MatListModule,
   MatDividerModule,
@@ -63,22 +60,20 @@ const MaterialComponants =
   MatNativeDateModule,
   MatTooltipModule,
   MatSnackBarModule,
-  MatDialogModule,
+  MatDialogModule, // Add MatDialogModule to the array
   MatTableModule,
   MatSortModule,
   MatPaginatorModule,
   ScrollingModule
-]
+];
 
 @NgModule({
-  exports:
-    [
-      MaterialComponants,
-
-    ],
-    imports:
-    [
-      MaterialComponants,
-    ]
+  imports: [
+    CommonModule,
+    MaterialComponents
+  ],
+  exports: [
+    MaterialComponents
+  ]
 })
 export class MaterialModule { }

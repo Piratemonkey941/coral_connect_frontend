@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild, Input, Output } from '@angular/core';
-// import { ElementCalculatorService } from 'src/app/shared/element-calculator.service';
-import { VolumeService } from 'src/app/shared/volume.service';
+import { ElementCalculatorService } from '../../shared/element-calculator.service';
+import { VolumeService } from '../../shared/volume.service';
+
 declare var window: any;
 
 @Component({

@@ -1,0 +1,18 @@
+<div class="signin-container">
+  <h2>Sign In</h2>
+  <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput id="email" type="email" formControlName="email" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput id="password" type="password" formControlName="password" />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="!signInForm.valid">
+      Sign In
+    </button>
+  </form>
+</div>
