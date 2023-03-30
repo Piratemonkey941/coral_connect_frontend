@@ -1,0 +1,99 @@
+<h1>TEST</h1>
+<div class="body">
+
+  <div class="content-section">
+    <div class="content-section-title">Base Elements</div>
+
+    <mat-card class="center-card">
+      <div class="mat-card-header">
+        <div class="chemImg">
+          <img src="../../../assets/h2o.png" alt="">
+        </div>
+        <mat-card-title>Volume</mat-card-title>
+      </div>
+
+      <div class="mat-card-subtitle">
+        Must be submitted before proceeding
+      </div>
+
+      <mat-card-content>
+        <mat-form-field>
+          <mat-label>Volume In Gallons.</mat-label>
+          <input matInput type="text" [(ngModel)]="this.volumeService.volume">
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-button color="primary" (click)="this.volumeService.onAddVolume()">
+          Submit
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <mat-card class="apps-card">
+    <mat-card-content>
+
+      <div class="app-card">
+        <div class="chemImg">
+          <img src="../../../assets/SoCl.png" alt="">
+        </div>
+        <span>Salinity</span>
+        <div (click)="selectedElement = 'alkilinity'" data-bs-toggle="modal" data-bs-target="#exampleModal"></div>
+        <div class="app-card__subtext">{{salinityStart}}</div>
+        <mat-form-field class="app-card-buttons">
+          <input matInput type="text" placeholder="Salinity in ppm" [(ngModel)]="salinity">
+          <button mat-raised-button color="primary" (click)="onAddSalinity()">Submit</button>
+        </mat-form-field>
+      </div>
+
+      <div class="app-card g-col-3 ">
+        <div class="chemImg">
+          <img src="../../../assets/sodium bicarb.png" alt="">
+        </div>
+        <span>Alkilinity</span>
+        <div (click)="selectedElement = 'Alkilinity'" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <i class="bi bi-three-dots-vertical btn text-white"></i>
+        </div>
+        <div class="app-card__subtext">{{alkilinityStart}}</div>
+        <mat-form-field class="app-card-buttons">
+          <input matInput type="text" placeholder="Alkilinity in DKH" [(ngModel)]="alkilinity">
+          <button mat-raised-button color="primary" (click)="onAddAlkilinity()">Submit</button>
+        </mat-form-field>
+      </div>
+
+      <div class="app-card g-col-3 ">
+        <div class="chemImg">
+          <img src="../../../assets/CaCl.png" alt="">
+        </div>
+        <span>Calcium</span>
+        <div (click)="selectedElement = 'Calcium'" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <i class="bi bi-three-dots-vertical btn text-white"></i>
+        </div>
+        <div class="app-card__subtext">{{calciumStart}}</div>
+        <mat-form-field class="app-card-buttons">
+          <input matInput type="text" placeholder="Calcium in ppm" [(ngModel)]="calcium">
+          <button mat-raised-button color="primary" (click)="onAddCalcium()">Submit</button>
+        </mat-form-field>
+      </div>
+
+      <div class="app-card g-col-3 ">
+        <div class="chemImg">
+          <img src="../../../assets/MgCl.png" alt="">
+        </div>
+        <span>Magnesium</span>
+        <div (click)="selectedElement = 'Magnesium'" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <i class="bi bi-three-dots-vertical btn text-white"></i>
+        </div>
+        <div class="app-card__subtext">{{magnesiumStart}}</div>
+        <mat-form-field class="app-card-buttons">
+          <input matInput type="text" placeholder="Magnesium in ppm" [(ngModel)]="magnesium">
+          <button mat-raised-button color="primary" (click)="onAddMagnesium()">Submit</button>
+        </mat-form-field>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+
+  <!-- <app-modal [elementName]="selectedElement" [volume]="this.volumeService.volume"></app-modal> -->
+
