@@ -15,6 +15,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { GraphsComponent } from './graphs/graphs.component';
 import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -28,17 +29,19 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
     NavbarComponent,
     GraphsComponent,
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    // FlexLayoutModule
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    MatDialogModule
+    MatDialogModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-export class MinorElemsOneModule { }
+// export class MinorElemsOneModule { }

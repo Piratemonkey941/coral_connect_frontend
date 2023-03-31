@@ -32,6 +32,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
+
 const MaterialComponents = [
   MatButtonModule,
   MatButtonToggleModule,
@@ -71,6 +72,7 @@ const MaterialComponents = [
   imports: [
     CommonModule,
     MaterialComponents
+   
   ],
   exports: [
     MaterialComponents
