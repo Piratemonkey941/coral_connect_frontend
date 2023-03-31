@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  isSmallScreen: boolean;
 
   ngOnInit(): void {
   }
 
+  constructor(private breakpointObserver: BreakpointObserver) {
+    this.checkScreenSize();
+  }
+
+  checkScreenSize() {
+    this.breakpointObserver
+      .observe([Breakpoints.XSmall, Breakpoints.Small])
+      .subscribe((result) => {
+        this.isSmallScreen = result.matches;
+      });
+  }
 }
