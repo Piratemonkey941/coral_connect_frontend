@@ -181,7 +181,7 @@ export class MinorElemsThreeComponent implements OnInit {
 
 
           // ==================================================== Tin ====================================================
-  tinStart: string = 'Tired of using lame sad Metal? Introducing Bronze, made with Special Ingredient Tin. From the far lands of Tinland, idk my tin guy wont tell me where he gets it.'
+  tinStart: string = 'From the far lands of Tinland, IDK my tin guy wont tell me where he gets it.'
   tin: number
 
   onAddTin(){

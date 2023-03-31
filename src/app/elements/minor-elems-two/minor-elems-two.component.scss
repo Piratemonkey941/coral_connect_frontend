@@ -1,0 +1,18 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* Adjust the space between cards */
+}
+
+.mat-card {
+  width: 300px; /* Adjust the width of the cards */
+  height: 200px; /* Adjust the height of the cards */
+}
+
+.minortwo-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 2rem;
+}

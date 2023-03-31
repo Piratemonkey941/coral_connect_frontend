@@ -1,151 +1,120 @@
-<div class="body">
-  <div class="content-section">
-    <h2 class="content-section-title">Major Elements</h2>
-    <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="center center">
-
+<mat-card-title class="minortwo-head">Minor Elements I-N</mat-card-title>
+<div class="card-container">
+  <div class="content">
+    <div fxLayout="row wrap" >
+      
       <!-- ==========  Iron ============-->
 
-      <mat-card class="apps-card center-card">
-        <div class="app-card g-col-3">
-          <span fxLayout="row" fxLayoutAlign="space-between center">
-            <div>
-              <div class="chemImg">
-                <img src="../../../assets/CaCl.png" alt="">
-              </div>
-              Iron
-            </div>
-            <button mat-icon-button (click)="selectedElement = 'Iron'" >
-              <mat-icon>more_vert</mat-icon>
-            </button>
-          </span>
-          <mat-card-subtitle>{{ ironStart }}</mat-card-subtitle>
-          <div class="app-card-buttons input-group">
-            <mat-form-field appearance="fill">
-              <mat-label>Iron in ppm</mat-label>
-              <input matInput [(ngModel)]="iron" placeholder="Iron in ppm" aria-label="Iron in ppm" type="text">
-            </mat-form-field>
-            <button mat-raised-button color="primary" (click)="onAddIron()">Submit</button>
-          </div>
+      <mat-card class="mat-elevation-z4">
+        <div class="chemImg">
+          <img mat-card-image src="../../../assets/CaCl.png" alt="">
         </div>
-      </mat-card>
-
-      <!-- ========== Lithium  ============-->
-
-      <mat-card class="apps-card">
-        <div class="app-card g-col-3">
-          <span fxLayout="row" fxLayoutAlign="space-between center">
-            <div>
-              <div class="chemImg">
-                <img src="../../../assets/MgCl.png" alt="">
-              </div>
-              Lithium
-            </div>
-            <button mat-icon-button (click)="selectedElement = 'Lithium'" >
-              <mat-icon>more_vert</mat-icon>
-            </button>
-          </span>
-          <mat-card-subtitle>{{ lithiumStart }}</mat-card-subtitle>
-          <div class="app-card-buttons input-group">
-            <mat-form-field appearance="fill">
-              <mat-label>Lithium in ppm</mat-label>
-              <input matInput [(ngModel)]="lithium" placeholder="Lithium in ppm" aria-label="Lithium in ppm" type="text">
-            </mat-form-field>
-            <button mat-raised-button color="primary" (click)="onAddLithium()">Submit</button>
+        <mat-card-title>Iron</mat-card-title>
+        <mat-card-subtitle>{{ironStart}}</mat-card-subtitle>
+        <mat-card-content>
+          <div (click)="selectedElement = 'Iron'" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="bi bi-three-dots-vertical btn text-white"></i>
           </div>
-        </div>
-      </mat-card>
-
-      <!-- ========== Manganese ============-->
-
-      <mat-card class="app-card">
-        <span>
-          <div class="chemImg">
-            <img src="../../../assets/SoCl.png" alt="" />
-          </div>
-          Manganese
-
-          <div
-            (click)="selectedElement = 'manganese'"
-            mat-icon-button
-
-          ></div>
-        </span>
-        <div class="menu"></div>
-        <mat-card-subtitle>{{ manganeseStart }}</mat-card-subtitle>
-
-        <div class="app-card-buttons input-group">
-          <mat-form-field class="form-control">
-            <input
-              matInput
-              placeholder="Manganese in ppm"
-              [(ngModel)]="manganese"
-            />
+          <mat-form-field class="app-card-buttons">
+            <input matInput placeholder="Iron in ppm" [(ngModel)]="iron">
           </mat-form-field>
-          <button mat-raised-button color="primary" (click)="onAddManganese()">
-            Submit
-          </button>
-        </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="onAddIron()">Submit</button>
+        </mat-card-actions>
       </mat-card>
 
-      <!-- ========== Molybdenum ============-->
+      <!--COOL INPUT BOX ========== Lithium  ============-->
 
-      <mat-card class="app-card g-col-3">
-        <span>
-          <div class="chemImg">
-            <img src="../../../assets/sodium bicarb.png" alt="" />
+      <mat-card class="mat-elevation-z4">
+        <div class="chemImg">
+          <img mat-card-image src="../../../assets/MgCl.png" alt="">
+        </div>
+        <mat-card-title>Lithium</mat-card-title>
+        <mat-card-subtitle>{{lithiumStart}}</mat-card-subtitle>
+        <mat-card-content>
+          <div (click)="selectedElement = 'Lithium'" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="bi bi-three-dots-vertical btn text-white"></i>
           </div>
-
-          Molybdenum
-
-          <div
-            (click)="selectedElement = 'Molybdenum'"
-            mat-icon-button
-
-          >
-            <mat-icon>more_vert</mat-icon>
-          </div>
-        </span>
-
-        <mat-card-subtitle>{{ molybdenumStart }}</mat-card-subtitle>
-
-        <div class="app-card-buttons input-group">
-          <mat-form-field class="form-control">
-            <input
-              matInput
-              placeholder="Molybdenum in ppm"
-              [(ngModel)]="molybdenum"
-            />
+          <mat-form-field class="app-card-buttons" appearance="fill">
+            <input matInput placeholder="Lithium in ppm" [(ngModel)]="lithium">
           </mat-form-field>
-          <button mat-raised-button color="primary" (click)="onAddMolybdenum()">
-            Submit
-          </button>
-        </div>
-      </mat-card>
-
-      <mat-card class="app-card" fxFlex="25">
-        <div fxLayout="row" fxLayoutAlign="space-between center">
-          <div>
-            <div class="chemImg">
-              <img src="../../../assets/CaCl.png" alt="" />
-            </div>
-            Nickle
-          </div>
-
-          <button mat-icon-button (click)="selectedElement = 'Nickle'">
-            <mat-icon>more_vert</mat-icon>
-          </button>
-        </div>
-
-        <mat-card-subtitle>{{ nickelStart }}</mat-card-subtitle>
-
-        <mat-form-field class="app-card-buttons">
-          <input matInput placeholder="Nickle in ppm" [(ngModel)]="nickel" />
-          <button mat-raised-button color="primary" (click)="onAddNickel()">
-            Submit
-          </button>
-        </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="onAddLithium()">Submit</button>
+        </mat-card-actions>
       </mat-card>
 
     </div>
   </div>
+  <div class="content">
+    <div fxLayout="row wrap" >
+
+      <!-- ========== Manganese ============-->
+
+      <mat-card class="mat-elevation-z4">
+        <div class="chemImg">
+          <img mat-card-image src="../../../assets/SoCl.png" alt="">
+        </div>
+        <mat-card-title>Manganese</mat-card-title>
+        <mat-card-subtitle>{{manganeseStart}}</mat-card-subtitle>
+        <mat-card-content>
+          <div (click)="selectedElement = 'manganese'" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="bi bi-three-dots-vertical btn text-white"></i>
+          </div>
+          <mat-form-field class="app-card-buttons" appearance="fill">
+            <input matInput placeholder="Manganese in ppm" [(ngModel)]="manganese">
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="onAddManganese()">Submit</button>
+        </mat-card-actions>
+      </mat-card>
+
+      <!-- ========== Molybdenum ============-->
+
+      <mat-card class="mat-elevation-z4">
+        <div class="chemImg">
+          <img mat-card-image src="../../../assets/sodium bicarb.png" alt="">
+        </div>
+        <mat-card-title>Molybdenum</mat-card-title>
+        <mat-card-subtitle>{{molybdenumStart}}</mat-card-subtitle>
+        <mat-card-content>
+          <div (click)="selectedElement = 'Molybdenum'" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="bi bi-three-dots-vertical btn text-white"></i>
+          </div>
+          <mat-form-field class="app-card-buttons" appearance="fill">
+            <input matInput placeholder="Molybdenum in ppm" [(ngModel)]="molybdenum">
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="onAddMolybdenum()">Submit</button>
+        </mat-card-actions>
+      </mat-card>
+
+  <!-- ========== Nickel ============-->
+
+      <mat-card class="mat-elevation-z4">
+        <div class="chemImg">
+          <img mat-card-image src="../../../assets/CaCl.png" alt="">
+        </div>
+        <mat-card-title>Nickel</mat-card-title>
+        <mat-card-subtitle>{{nickelStart}}</mat-card-subtitle>
+        <mat-card-content>
+          <div (click)="selectedElement = 'Nickle'" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="bi bi-three-dots-vertical btn text-white"></i>
+          </div>
+          <mat-form-field class="app-card-buttons" appearance="fill">
+            <input matInput placeholder="Nickel in ppm" [(ngModel)]="nickel">
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="onAddNickel()">Submit</button>
+        </mat-card-actions>
+      </mat-card>
+
+
+    </div>
+  </div>
 </div>
+

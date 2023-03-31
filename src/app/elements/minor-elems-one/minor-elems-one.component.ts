@@ -190,49 +190,49 @@ onAddCopper(){
       }
     }
 
-    // ==================================================== Flouride ====================================================
-flourideStart: string = "Fluoride, coral's undercover dentist, keeping their skeletons strong and sturdy beneath the waves!"
-flouride: number
-flourideAdjustmentTotal: number
-flourideDays: number
+    // ==================================================== fluoride ====================================================
+fluorideStart: string = "Fluoride, coral's undercover dentist, keeping their skeletons strong beneath the waves!"
+fluoride: number
+fluorideAdjustmentTotal: number
+fluorideDays: number
 
 
-onAddFlouride(){
+onAddFluoride(){
 
     // general boron calculation
-    this.flourideDays = (1.5 - this.flouride)*10  // 2
-    this.flourideAdjustmentTotal = (0.37854 * this.volumeService.volume)
+    this.fluorideDays = (1.5 - this.fluoride)*10  // 2
+    this.fluorideAdjustmentTotal = (0.37854 * this.volumeService.volume)
 
 
 
-      if (this.flouride == 1.5){
-          this.flourideStart = 'Ideal  for most reefs'
+      if (this.fluoride == 1.5){
+          this.fluorideStart = 'Ideal  for most reefs'
       }
     //low start  .37854ml at 1 g for 0.1 ppm increase
 
-      else if ( this.flouride <= 0.5 && this.flouride >= 0 ){
-        this.flourideStart = `Depleted flouride Level, Correct immedietly ${this.flourideAdjustmentTotal}ml per day for ${this.flourideDays} days.  `
+      else if ( this.fluoride <= 0.5 && this.fluoride >= 0 ){
+        this.fluorideStart = `Depleted fluoride Level, Correct immedietly ${this.fluorideAdjustmentTotal}ml per day for ${this.fluorideDays} days.  `
       }
-      else if ( this.flouride <= 1.4 && this.flouride >= 0.6 ){
-        this.flourideStart = `Below target level for flouride, adjust ${this.flourideAdjustmentTotal}ml per day for ${this.flourideDays} days.`
+      else if ( this.fluoride <= 1.4 && this.fluoride >= 0.6 ){
+        this.fluorideStart = `Below target level for fluoride, adjust ${this.fluorideAdjustmentTotal}ml per day for ${this.fluorideDays} days.`
         }
 
       //high start
-      else if ( this.flouride <= 1.8  && this.flouride >= 1.6){
-        this.flourideStart = 'Flouride slightly elevated recomendation is to allow level to settle down and watch ICP.'
+      else if ( this.fluoride <= 1.8  && this.fluoride >= 1.6){
+        this.fluorideStart = 'Fluoride slightly elevated recomendation is to allow level to settle down and watch ICP.'
       }
-      else if ( this.flouride <= 2  && this.flouride >= 1.9 ){
-        this.flourideStart = 'Flouride critically elevated recomendation is to allow level to settle down and watch ICP.'
+      else if ( this.fluoride <= 2  && this.fluoride >= 1.9 ){
+        this.fluorideStart = 'Fluoride critically elevated recomendation is to allow level to settle down and watch ICP.'
       }
-      else if ( this.flouride <= 3 && this.flouride >= 2.1 ){
-        this.flourideStart = 'Flouride level critical! Recomendation is preform several small water changes. May be entering through RODI'
+      else if ( this.fluoride <= 3 && this.fluoride >= 2.1 ){
+        this.fluorideStart = 'Fluoride level critical! Recomendation is preform several small water changes. May be entering through RODI'
       }
       else {
-        this.flourideStart = 'Retest parameter'
+        this.fluorideStart = 'Retest parameter'
       }
     }
 
-    // ==================================================== iodine ====================================================
+    // ==================================================== Iodine ====================================================
 iodineStart: string = 'Iodine the secret agent, keeping harmful oxidization at bay to maintain a healthy alliance!'
 iodine: number
 iodineAdjustment: any
