@@ -1,6 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild, Input, Output } from '@angular/core';
 import { ElementCalculatorService } from '../../shared/element-calculator.service';
 import { VolumeService } from '../../shared/volume.service';
+import { AuthService } from '../../shared/auth.service'; // Import the authentication service
+
+import { ElementMeasurement, User, CreateElementMeasurement  } from '../../model';
+import { ElementMeasurementsService } from '../../shared/element-measurements.service';
+
 
 declare var window: any;
 
@@ -15,13 +20,15 @@ export class BigFourComponent implements OnInit {
 
   @Input() receivedValue: String;
 
-  constructor(public volumeService: VolumeService) { }
+  constructor(
+    public volumeService: VolumeService,
+    private elementMeasurementsService: ElementMeasurementsService,
+    private authService: AuthService
+    ) { }
 
 
   ngOnInit(): void {
-
   // WILL NEED MODAL
-
   }
 
 // MODAL CODE
@@ -32,6 +39,17 @@ export class BigFourComponent implements OnInit {
 
     closeModal(){
       this.formModal.hide();
+    }
+
+    sendAlkilinityMeasurement(alkilinity: number): void {
+      if (this.authService.isLoggedIn()) { // Check if the user is signed in
+        const elementMeasurement: CreateElementMeasurement = {
+          qt: alkilinity,
+          reef_water_element_id: 2,
+          user_id: this.authService.getCurrentUserId() // Get the current user ID from the authentication service
+        };
+        this.elementMeasurementsService.createElementMeasurement(elementMeasurement);
+      }
     }
 
 
