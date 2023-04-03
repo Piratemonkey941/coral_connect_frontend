@@ -9,7 +9,8 @@ import { Injectable } from '@angular/core';
 export class VolumeService {
 
 
-  volume: number = 100
+  volume: number
+  // = 100
   // volume: number
   volumeStart: string = 'Does Size Matter?'
 
