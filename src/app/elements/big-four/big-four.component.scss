@@ -8,11 +8,28 @@
 .mat-card {
   width: 300px; /* Adjust the width of the cards */
   height: 200px; /* Adjust the height of the cards */
-  margin-top: .5rem;
 }
+
+.major-elems-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 2rem;
+}
+.card-margin{
+  margin: 1rem;
+}
+.mat-card-subtitle{
+  height: 40px ;
+}
+
 .big-four-head {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin: 2rem;
 }
+// .chemImg{
+//   height: 30px;
+//   width: 30px;
+// }

@@ -1,52 +1,61 @@
 
 <mat-card-title class="major-elems-head">Major Elements</mat-card-title>
 <div class="card-container">
-<div class="content">
-  <div fxLayout="row wrap" >
-    <!-- ========== Boron  ============-->
+  <div class="content">
+    <div fxLayout="row wrap" >
+      <!-- ========== Boron  ============-->
 
-    <mat-card class="mat-elevation-z4">
-      <div class="chemImg">
-        <img mat-card-image src="../../../assets/SoCl.png" alt="">
-      </div>
-      <mat-card-title>Boron</mat-card-title>
-      <mat-card-subtitle>{{boronStart}}</mat-card-subtitle>
-      <mat-card-content>
-        <div (click)="selectedElement = 'Boron'" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          <i class="bi bi-three-dots-vertical btn text-white"></i>
+
+      <mat-card class="mat-elevation-z4 card-margin">
+        <div class="mat-card-header">
+          <div class="chemImg">
+            <img mat-card-image src="../../../assets/SoCl.png" alt="">
+          </div>
+          <mat-card-title>Boron</mat-card-title>
         </div>
-        <mat-form-field class="app-card-buttons" appearance="fill">
-          <input matInput placeholder="Bromide/Bromine in ppm" [(ngModel)]="boron">
-        </mat-form-field>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="onAddBoron()">Submit</button>
-      </mat-card-actions>
-    </mat-card>
+        
+        <mat-card-subtitle>{{boronStart}}</mat-card-subtitle>
+        <mat-card-content>
+          <div (click)="selectedElement = 'Boron'" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="bi bi-three-dots-vertical btn text-white"></i>
+          </div>
+          <mat-form-field class="app-card-buttons" appearance="fill">
+            <input matInput placeholder="Bromide/Bromine in ppm" [(ngModel)]="boron">
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="onAddBoron()">Submit</button>
+        </mat-card-actions>
+      </mat-card>
 
-    <!-- ========== Bromide  ============-->
-    <mat-card class="mat-elevation-z4">
-      <div class="chemImg">
-        <img mat-card-image src="../../../assets/SoCl.png" alt="">
-      </div>
-      <mat-card-title>Bromide/Bromine</mat-card-title>
-      <mat-card-subtitle>{{bromideStart}}</mat-card-subtitle>
-      <mat-card-content>
-        <div (click)="selectedElement = 'Bromide/Bromine'" data-bs-toggle="modal" data-bs-target="#exampleModal">
-          <i class="bi bi-three-dots-vertical btn text-white"></i>
+      <!-- ========== Bromide  ============-->
+      <mat-card class="mat-elevation-z4 card-margin">
+        <div class="mat-card-header">
+        <div class="chemImg">
+          <img mat-card-image src="../../../assets/SoCl.png" alt="">
         </div>
-        <mat-form-field class="app-card-buttons" appearance="fill">
-          <input matInput placeholder="Bromide/Bromine in ppm" [(ngModel)]="bromide">
-        </mat-form-field>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="onAddBromide()">Submit</button>
-      </mat-card-actions>
-    </mat-card>
+         <mat-card-title>Bromide/Bromine</mat-card-title>
+      </div>
 
+        <mat-card-subtitle>{{bromideStart}}</mat-card-subtitle>
+        <mat-card-content>
+          <div (click)="selectedElement = 'Bromide/Bromine'" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="bi bi-three-dots-vertical btn text-white"></i>
+          </div>
+          <mat-form-field class="app-card-buttons" appearance="fill">
+            <input matInput placeholder="Bromide/Bromine in ppm" [(ngModel)]="bromide">
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="onAddBromide()">Submit</button>
+        </mat-card-actions>
+      </mat-card>
+
+    </div>
   </div>
 </div>
 
+<div class="card-container">
 <div class="content">
   <div fxLayout="row wrap" >
 
@@ -54,11 +63,14 @@
 
     <!-- ========== Potassium  ============-->
 
-    <mat-card class="mat-elevation-z4">
+    <mat-card class="mat-elevation-z4 card-margin">
+      <div class="mat-card-header">
       <div class="chemImg">
         <img mat-card-image src="../../../assets/sodium bicarb.png" alt="">
       </div>
-      <mat-card-title>Potassium</mat-card-title>
+       <mat-card-title>Potassium</mat-card-title>
+      </div>
+
       <mat-card-subtitle>{{potassiumStart}}</mat-card-subtitle>
       <mat-card-content>
         <div (click)="selectedElement = 'Potassium'" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -75,11 +87,14 @@
 
     <!-- ========== Strontium  ============-->
 
-    <mat-card class="mat-elevation-z4">
+    <mat-card class="mat-elevation-z4 card-margin">
+      <div class="mat-card-header">
       <div class="chemImg">
         <img mat-card-image src="../../../assets/CaCl.png" alt="">
       </div>
-      <mat-card-title>Strontium</mat-card-title>
+       <mat-card-title>Strontium</mat-card-title>
+      </div>
+
       <mat-card-subtitle>{{strontiumStart}}</mat-card-subtitle>
       <mat-card-content>
         <div (click)="selectedElement = 'Strontium'" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -96,11 +111,14 @@
 
     <!-- ========== Sulfate  ============-->
 
-      <mat-card class="mat-elevation-z4">
+      <mat-card class="mat-elevation-z4 card-margin">
+        <div class="mat-card-header">
         <div class="chemImg">
           <img mat-card-image src="../../../assets/MgCl.png" alt="">
         </div>
-        <mat-card-title>Sulfate</mat-card-title>
+         <mat-card-title>Sulfate</mat-card-title>
+      </div>
+
         <mat-card-subtitle>{{sulfateStart}}</mat-card-subtitle>
         <mat-card-content>
           <div (click)="selectedElement = 'Sulfate'" data-bs-toggle="modal" data-bs-target="#exampleModal">

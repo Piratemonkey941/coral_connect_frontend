@@ -5,11 +5,14 @@
 
       <!-- ========== Rubidium  ============-->
 
-      <mat-card class="mat-elevation-z4">
-        <div class="chemImg">
-          <img mat-card-image src="../../../assets/MgCl.png" alt="">
+      <mat-card class="mat-elevation-z4 card-margin">
+        <div class="mat-card-header">
+          <div class="chemImg">
+            <img mat-card-image src="../../../assets/MgCl.png" alt="">
+          </div>
+            <mat-card-title>Rubidium</mat-card-title>
         </div>
-        <mat-card-title>Rubidium</mat-card-title>
+
         <mat-card-subtitle>{{rubidiumStart}}</mat-card-subtitle>
         <mat-card-content>
           <div (click)="selectedElement = 'Rubidium'" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -27,11 +30,14 @@
 
       <!-- ==========  Selenium ============-->
 
-      <mat-card class="mat-elevation-z4">
-        <div class="chemImg">
-          <img mat-card-image src="../../../assets/SoCl.png" alt="">
+      <mat-card class="mat-elevation-z4 card-margin">
+        <div class="mat-card-header">
+          <div class="chemImg">
+            <img mat-card-image src="../../../assets/SoCl.png" alt="">
+          </div>
+            <mat-card-title>Selenium</mat-card-title>
         </div>
-        <mat-card-title>Selenium</mat-card-title>
+
         <mat-card-subtitle>{{seleniumStart}}</mat-card-subtitle>
         <mat-card-content>
           <div (click)="selectedElement = 'Selenium'" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -45,15 +51,23 @@
           <button mat-raised-button color="primary" (click)="onAddSelenium()">Submit</button>
         </mat-card-actions>
       </mat-card>
+    </div>
+  </div>
+</div>
 
-
+<div class="card-container">
+  <div class="content">
+    <div fxLayout="row wrap" >
       <!-- ==========  Tin ============-->
 
-      <mat-card class="mat-elevation-z4">
-        <div class="chemImg">
-          <img mat-card-image src="../../../assets/CaCl.png" alt="">
+      <mat-card class="mat-elevation-z4 card-margin">
+        <div class="mat-card-header">
+          <div class="chemImg">
+            <img mat-card-image src="../../../assets/CaCl.png" alt="">
+          </div>
+            <mat-card-title>Tin/Stannum</mat-card-title>
         </div>
-        <mat-card-title>Tin/Stannum</mat-card-title>
+
         <mat-card-subtitle>{{tinStart}}</mat-card-subtitle>
         <mat-card-content>
           <div (click)="selectedElement = 'Tin'">
@@ -68,17 +82,17 @@
           <button mat-raised-button color="primary" (click)="onAddTin()">Submit</button>
         </mat-card-actions>
       </mat-card>
-    </div>
-  </div>
-  <div class="content">
-    <div fxLayout="row wrap" >
+
 
       <!-- ========== Zinc  ============-->
-      <mat-card class="mat-elevation-z4">
-        <div class="chemImg">
-          <img mat-card-image src="../../../assets/MgCl.png" alt="">
+      <mat-card class="mat-elevation-z4 card-margin">
+        <div class="mat-card-header">
+          <div class="chemImg">
+            <img mat-card-image src="../../../assets/MgCl.png" alt="">
+          </div>
+            <mat-card-title>Zinc</mat-card-title>
         </div>
-        <mat-card-title>Zinc</mat-card-title>
+
         <mat-card-subtitle>{{zincStart}}</mat-card-subtitle>
         <mat-card-content>
           <div (click)="selectedElement = 'Zinc'">

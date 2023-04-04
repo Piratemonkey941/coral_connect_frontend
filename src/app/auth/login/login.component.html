@@ -1,19 +1,19 @@
 <div class="container">
   <h2>Login</h2>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <div class="row">
-      <div class="col-6">
-        <label class="form-label">Email</label>
-        <input type="text" class="form-control" formControlName="email">
-      </div>
-      <div class="col-6">
-        <label class="form-label">Password</label>
-        <input type="password" class="form-control" formControlName="password">
-      </div>
+    <div fxLayout="row" fxLayoutGap="16px">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="text" formControlName="email">
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password">
+      </mat-form-field>
     </div>
 
     <div class="text-center">
-      <button type="submit" class="btn btn-primary">Login</button>
+      <button mat-raised-button color="primary" type="submit">Login</button>
     </div>
   </form>
 </div>
