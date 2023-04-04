@@ -1,0 +1,19 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../angular_material"
+		},
+		{
+			"path": "D:/tester"
+		},
+		{
+			"path": "../../../reef-moonshiner-app_main/reef_moonshiner_app"
+		}
+	],
+	"settings": {
+		"angular.enable-strict-mode-prompt": false
+	}
+}
