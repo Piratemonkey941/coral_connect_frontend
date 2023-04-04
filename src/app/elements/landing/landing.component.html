@@ -1,25 +1,34 @@
-<mat-card class="title">
-  <mat-card-title>Welcome</mat-card-title>
-  <mat-card-subtitle>Reef Moonshiner's</mat-card-subtitle>
-  <mat-card-content>More then just suppliments</mat-card-content>
-</mat-card>
+<div class="title">
+  <h1 *ngIf="!isSmallViewport && !isMediumViewport" class="mat-display-3">Welcome To</h1>
+  <h1 *ngIf="isMediumViewport" class="mat-display-1">Welcome To</h1>
+  <h1 *ngIf="isSmallViewport" class="mat-title">Welcome To</h1>
+
+  <h1 *ngIf="!isSmallViewport && !isMediumViewport" class="mat-display-4">Coral Connect</h1>
+  <h1 *ngIf="isMediumViewport" class="mat-display-2">Coral Connect</h1>
+  <h1 *ngIf="isSmallViewport" class="mat-display-1">Coral Connect</h1>
+
+  <p *ngIf="!isSmallViewport && !isMediumViewport" class="mat-display-1">Your hub for reef exploration</p>
+  <p *ngIf="isMediumViewport" class="mat-title">Your hub for reef exploration</p>
+  <p *ngIf="isSmallViewport" class="mat-subheading-1">Your hub for reef exploration</p>
+</div>
+
 
 <div class="landing-image text-center">
   <img src=".././assets/home_image.png" mat-card-image class="rounded">
 </div>
-
-
-
-  <!-- <nav>
-    <a routerLink="/signup">Sign Up</a>
-    <a routerLink="/signin">Sign In</a>
-    <a routerLink="/graphs">Graphs</a>
-  </nav> -->
-
-  <!-- <router-outlet></router-outlet> -->
 
   <app-big-four></app-big-four>
   <app-major-elems></app-major-elems>
   <app-minor-elems-one></app-minor-elems-one>
   <app-minor-elems-two></app-minor-elems-two>
   <app-minor-elems-three></app-minor-elems-three>
+
+
+
+    <!-- <nav>
+    <a routerLink="/signup">Sign Up</a>
+    <a routerLink="/signin">Sign In</a>
+    <a routerLink="/graphs">Graphs</a>
+  </nav> -->
+
+  <!-- <router-outlet></router-outlet> -->

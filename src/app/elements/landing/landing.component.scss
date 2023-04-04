@@ -10,8 +10,15 @@ div{
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%)
+  transform: translate(-50%, -50%);
 
+  @media (max-width: 1500px) {
+    top: 30%;
+  }
+
+  @media (max-width: 650px) {
+    top: 20%;
+  }
 }
 
 // h1,h2 {
@@ -23,4 +30,11 @@ div{
   justify-content: center ;
   padding-top: 2em;
 
+}
+
+.mat-display-1{
+  margin-bottom: 16px;
+}
+.mat-display-2{
+  margin-bottom: 16px;
 }
