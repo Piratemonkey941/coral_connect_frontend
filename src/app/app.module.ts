@@ -13,9 +13,11 @@ import { LandingComponent } from './Elements/landing/landing.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { GraphsComponent } from './graphs/graphs.component';
-import { SignInComponent } from './auth/sign-in/sign-in.component';
+import { HttpClientModule } from '@angular/common/http';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { LoginComponent } from './auth/login/login.component';
+
 
 @NgModule({
   declarations: [
@@ -28,9 +30,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     LandingComponent,
     NavbarComponent,
     GraphsComponent,
-    SignInComponent,
     SignUpComponent,
-    // FlexLayoutModule
+    LoginComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     BrowserAnimationsModule,
     MaterialModule,
     MatDialogModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

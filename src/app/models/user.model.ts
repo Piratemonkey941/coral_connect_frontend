@@ -1,15 +1,16 @@
-export class User
- {
-
+export class User {
   constructor(
-    id: string,
-    first_name: string,
-    last_name: string,
-    email: string,
-    phone: string,
-    token: any
-
+    public id: number,
+    public email: string,
+    public first_name: string,
+    public last_name: string,
+    public phone: string,
+    public password_digest: string,
+    public invitation_accepted: boolean,
+    public invitation_token: string,
+    public invitation_expiration: Date,
+    public created_at: Date,
+    public updated_at: Date,
+    public token?: any,
   ) {}
-
-
- }
+}

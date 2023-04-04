@@ -3,15 +3,30 @@ import { HttpClient } from '@angular/common/http';
 import { UserService } from './user.service';
 import { Router } from '@angular/router';
 import { User } from '../models/user.model';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
+  private currentUserSubject: BehaviorSubject<User>;
+  public currentUser: Observable<User>;
   private baseUrl = 'http://localhost:3000/api/v1/users/'
 
-  constructor(private http: HttpClient, private userService: UserService, private route: Router,) { }
+  public get currentUserValue(): User {
+    return this.currentUserSubject.value;
+  }
+
+  constructor(
+    private http: HttpClient,
+    private userService: UserService,
+    private route: Router,
+    )
+    {
+      this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+      this.currentUser = this.currentUserSubject.asObservable();
+    }
 
   signup(user: any) {
     return this.http.post(this.baseUrl + 'create', user);
@@ -68,5 +83,13 @@ export class AuthService {
     } else {
       return null;
     }
+  }
+
+  isLoggedIn(): boolean {
+    return !!this.currentUserValue; // Returns true if there's a user object, false otherwise
+  }
+
+  getCurrentUserId(): number | null {
+    return this.currentUserValue ? this.currentUserValue.id : null; // Returns the user ID if there's a user object, null otherwise
   }
 }

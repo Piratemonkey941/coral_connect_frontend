@@ -2,11 +2,11 @@ import { Component, ElementRef, OnInit, ViewChild, Input, Output } from '@angula
 import { ElementCalculatorService } from '../../shared/element-calculator.service';
 import { VolumeService } from '../../shared/volume.service';
 import { AuthService } from '../../shared/auth.service'; // Import the authentication service
-
+// import { MaterialModule } from '../../materials/materials.module'
 import { ElementMeasurement, User, CreateElementMeasurement  } from '../../model';
 import { ElementMeasurementsService } from '../../shared/element-measurements.service';
-
-
+import { MatCardModule } from '@angular/material/card';
+// import { MatButtonModule } from '@angular/material/button';
 declare var window: any;
 
 @Component({

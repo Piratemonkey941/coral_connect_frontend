@@ -13,25 +13,16 @@ import { AuthService } from '../../shared/auth.service';
 })
 export class SignUpComponent implements OnInit {
 
-  private authService: AuthService
-  private route: Router
+  signUpForm = new FormGroup({
+    email: new FormControl(''),
+    phone: new FormControl(''),
+    first_name: new FormControl(''),
+    last_name: new FormControl(''),
+    password: new FormControl(''),
+    password_confirmation: new FormControl('')
+  });
 
-  signUpForm: FormGroup;
-
-  constructor(private fb: FormBuilder) {
-    this.signUpForm = this.fb.group({
-      first_name: ['', Validators.required],
-      last_name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required],
-      password: ['', Validators.required],
-      password_confirmation: ['', Validators.required]
-
-    });
-  }
-
-  ngOnInit(): void {
-  }
+  constructor(private authService: AuthService, private route: Router) {}
 
   onSubmit() {
     this.authService.signup(this.signUpForm.value).subscribe((res: any) => {
@@ -39,5 +30,9 @@ export class SignUpComponent implements OnInit {
         this.route.navigate(['/home']);
       }
     })
+  }
+
+
+  ngOnInit(): void {
   }
 }
