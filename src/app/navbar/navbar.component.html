@@ -1,6 +1,6 @@
 <mat-toolbar color="primary" class="mat-elevation-z4">
   <mat-toolbar-row>
-    <span><a class="mat-button" routerLink="#firstPage">Reef Moonshiner's</a></span>
+    <span><a class="mat-button" routerLink="/landing">Reef Moonshiner's</a></span>
     <span class="spacer"></span>
 
     <ng-container *ngIf="!isSmallScreen">
@@ -9,7 +9,7 @@
       <a mat-button routerLink="#fourthPage">Minor Elems</a>
       <a mat-button routerLink="#fourthPage">Minor Elems</a>
       <a mat-button routerLink="#fourthPage">Minor Elems</a>
-      <a mat-button routerLink="#fifthPage">System</a>
+      <a mat-button routerLink="#fifthPage">Store</a>
     </ng-container>
 
     <nav *ngIf="isSmallScreen">
@@ -23,7 +23,7 @@
         <a mat-menu-item routerLink="#fourthPage">Minor Elems</a>
         <a mat-menu-item routerLink="#fourthPage">Minor Elems</a>
         <a mat-menu-item routerLink="#fourthPage">Minor Elems</a>
-        <a mat-menu-item routerLink="#fifthPage">System</a>
+        <a mat-menu-item routerLink="#fifthPage">Store</a>
       </mat-menu>
     </nav>
 
@@ -41,7 +41,7 @@
         <a mat-menu-item routerLink="/graphs">Graphs</a>
 
         <a mat-menu-item href="#">Articles</a>
-        <a mat-menu-item href="#">Handbook</a>
+        <a mat-menu-item routerLink="/system">CC-System</a>
         <a mat-menu-item href="#">Additional FAQ</a>
 
         <mat-divider></mat-divider>

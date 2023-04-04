@@ -17,6 +17,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from './auth/login/login.component';
+import { CcSystemComponent } from './main/cc-system/cc-system.component';
+import { FiltersComponent } from './shop/componants/filters/filters.component';
+import { ProductBoxComponent } from './shop/componants/product-box/product-box.component';
+import { ProductsHeaderComponent } from './shop/componants/products-header/products-header.component';
+import { HeaderComponent } from './shop/componants/header/header.component';
+import { CartComponent } from './shop/componants/cart/cart.component';
+import { HomeComponent } from './shop/componants/home.component';
 
 
 @NgModule({
@@ -32,6 +39,13 @@ import { LoginComponent } from './auth/login/login.component';
     GraphsComponent,
     SignUpComponent,
     LoginComponent,
+    CcSystemComponent,
+    FiltersComponent,
+    ProductBoxComponent,
+    ProductsHeaderComponent,
+    HeaderComponent,
+    CartComponent,
+    HomeComponent,
 
   ],
   imports: [

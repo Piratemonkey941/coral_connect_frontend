@@ -4,6 +4,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { GraphsComponent } from './graphs/graphs.component';
 import { LandingComponent } from './Elements/landing/landing.component';
+import { CcSystemComponent } from './main/cc-system/cc-system.component';
+
 
 const routes: Routes = [
 
@@ -11,6 +13,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent },
   { path: 'graphs', component: GraphsComponent },
+  { path: 'system', component: CcSystemComponent },
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
 
 ];
