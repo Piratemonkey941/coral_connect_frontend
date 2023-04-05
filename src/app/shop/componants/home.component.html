@@ -1,3 +1,4 @@
+<app-header></app-header>
 <mat-drawer-container
 [autosize]="true"
 class="min-h-full max-w-7xl mx-auto border-x bg-white"
@@ -7,7 +8,11 @@ class="min-h-full max-w-7xl mx-auto border-x bg-white"
   </mat-drawer>
 
   <mat-drawer-content class="p-6 ">
-      <app-products-header (columnsCountChange)="onColumnsCountChange($event)" class="text-slate-900"></app-products-header>
+      <app-products-header
+        (columnsCountChange)="onColumnsCountChange($event)"
+        class="text-slate-900"
+      >
+          </app-products-header>
           <mat-grid-list
           gutterSize="16"
           [cols]="cols"
