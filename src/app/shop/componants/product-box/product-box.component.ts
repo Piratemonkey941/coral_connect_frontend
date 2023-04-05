@@ -9,17 +9,17 @@ import {Product} from '../../../models/product.modal'
 export class ProductBoxComponent implements OnInit {
 
   @Input() fullWidthMode = false;
+  @Input() product: Product | undefined;
+  @Output() addToCart = new EventEmitter();
 
-  product: Product | undefined = {
-    id : 1,
-    title : 'Sneakers',
-    price : 50,
-    category : 'shoes',
-    description : 'Shoes Description',
-    image : "https://via.placeholder.com/150"
-  };
-
-@Output() addToCart = new EventEmitter();
+  // product: Product | undefined = {
+  //   id : 1,
+  //   title : 'Sneakers',
+  //   price : 50,
+  //   category : 'shoes',
+  //   description : 'Shoes Description',
+  //   image : "https://via.placeholder.com/150"
+  // };
 
   constructor() { }
 
