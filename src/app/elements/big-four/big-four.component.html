@@ -1,14 +1,15 @@
 
 
 <mat-card-title class="big-four-head">Base Elements</mat-card-title>
+
 <div class="card-container">
   <div class="content">
-    <div fxLayout="row wrap" >
-
+    <mat-grid-list cols="3" rowHeight="1:1" gutterSize="8px">
+        <!-- <div fxLayout="row wrap" > -->
 
 
       <!-- =====================VOLUME =================== -->
-
+      <mat-grid-tile>
           <mat-card class="mat-elevation-z4 card-margin" >
             <div class="mat-card-header">
               <div class="chemImg">
@@ -35,8 +36,11 @@
               </button>
             </mat-card-actions>
           </mat-card>
+        </mat-grid-tile>
+
         <!-- =====================SALINITY =================== -->
 
+        <mat-grid-tile>
         <mat-card class="mat-elevation-z4 card-margin">
           <div class="mat-card-header">
             <div class="chemImg">
@@ -57,16 +61,20 @@
             <button mat-raised-button color="primary" (click)="onAddSalinity()">Submit</button>
           </mat-card-actions>
         </mat-card>
-    </div>
-  </div>
-</div>
+      </mat-grid-tile>
 
-<div class="card-container">
+      <!-- </mat-grid-list> -->
+    <!-- </div>
+  </div> -->
+<!-- </div> -->
+
+<!-- <div class="card-container">
   <div class="content">
-    <div fxLayout="row wrap" fxLayoutGap="16px">
+    <div fxLayout="row wrap" fxLayoutGap="16px"> -->
 
       <!-- =====================ALKILINITY =================== -->
 
+      <mat-grid-tile>
       <mat-card class="mat-elevation-z4 card-margin">
         <div class="mat-card-header">
           <div class="chemImg">
@@ -88,9 +96,11 @@
           <button mat-raised-button color="primary" (click)="onAddAlkilinity()">Submit</button>
         </mat-card-actions>
       </mat-card>
+    </mat-grid-tile>
 
       <!-- =====================CALCIUM =================== -->
 
+      <mat-grid-tile>
       <mat-card class="mat-elevation-z4 card-margin">
       <div class="mat-card-header">
         <div class="chemImg">
@@ -112,8 +122,11 @@
           <button mat-raised-button color="primary" (click)="onAddCalcium()">Submit</button>
         </mat-card-actions>
       </mat-card>
+    </mat-grid-tile>
 
       <!-- =====================MAGNESIUM =================== -->
+
+      <mat-grid-tile>
       <mat-card class="mat-elevation-z4 card-margin">
       <div class="mat-card-header">
         <div class="chemImg">
@@ -136,10 +149,12 @@
           <button mat-raised-button color="primary" (click)="onAddMagnesium()">Submit</button>
         </mat-card-actions>
       </mat-card>
+    </mat-grid-tile>
 
-    </div>
+    </mat-grid-list>
   </div>
 </div>
+<!-- </div> -->
 
 
   <!-- <mat-card class="apps-card">
