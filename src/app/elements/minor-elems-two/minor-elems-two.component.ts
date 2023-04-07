@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild, Input, Output } from '@angular/core';
-// import { ElementCalculatorService } from 'src/app/shared/element-calculator.service';
 import { VolumeService } from 'src/app/shared/volume.service';
+import { BreakpointService } from '../../shared/breakpoint.service';
+
 declare var window: any;
 
 @Component({
@@ -10,18 +11,23 @@ declare var window: any;
 })
 export class MinorElemsTwoComponent implements OnInit {
 
-
+  numCols: number;
   formModal:any;                              // something for modal
   selectedElement: string = ''
 
   @Input() receivedValue: String;
 
   @Input() volume: number
-  constructor(public volumeService: VolumeService) { }
+  constructor(
+    public volumeService: VolumeService,
+    private breakpointService: BreakpointService
+    ) { }
 
 
   ngOnInit(): void {
-
+    this.breakpointService.numCols$.subscribe((numCols) => {
+      this.numCols = numCols;
+    });
 
 
   }

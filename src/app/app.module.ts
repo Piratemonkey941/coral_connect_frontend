@@ -24,6 +24,7 @@ import { ProductsHeaderComponent } from './shop/componants/products-header/produ
 import { HeaderComponent } from './shop/componants/header/header.component';
 import { CartComponent } from './shop/componants/cart/cart.component';
 import { HomeComponent } from './shop/componants/home.component';
+import { NgChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { HomeComponent } from './shop/componants/home.component';
     MatDialogModule,
     FlexLayoutModule,
     HttpClientModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

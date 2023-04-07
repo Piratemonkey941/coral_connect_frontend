@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Chart } from 'chart.js';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Chart, ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
+import { BaseChartDirective } from 'ng2-charts';
+
+import { default as Annotation } from 'chartjs-plugin-annotation';
 
 @Component({
   selector: 'app-graphs',
@@ -7,40 +10,157 @@ import { Chart } from 'chart.js';
   styleUrls: ['./graphs.component.scss']
 })
 export class GraphsComponent implements OnInit {
-  public chart: any;
+  private newLabel? = 'New label';
 
-  constructor() { }
+  constructor() {
+    Chart.register(Annotation)
+  }
 
   ngOnInit(): void {
-    this.createChart();
-  }
-  createChart(){
+    // WILL NEED MODAL
+    }
 
-    this.chart = new Chart("MyChart", {
-      type: 'line', //this denotes tha type of chart
-
-      data: {// values on X-Axis
-        labels: ['2022-05-10', '2022-05-11', '2022-05-12','2022-05-13',
-								 '2022-05-14', '2022-05-15', '2022-05-16','2022-05-17', ],
-	       datasets: [
-          {
-            label: "Sales",
-            data: ['467','576', '572', '79', '92',
-								 '574', '573', '576'],
-            backgroundColor: 'blue'
-          },
-          {
-            label: "Profit",
-            data: ['542', '542', '536', '327', '17',
-									 '0.00', '538', '541'],
-            backgroundColor: 'limegreen'
-          }
-        ]
+  public lineChartData: ChartConfiguration['data'] = {
+    datasets: [
+      {
+        data: [ 65, 59, 80, 81, 56, 55, 40 ],
+        label: 'Series A',
+        backgroundColor: 'rgba(148,159,177,0.2)',
+        borderColor: 'rgba(148,159,177,1)',
+        pointBackgroundColor: 'rgba(148,159,177,1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
+        fill: 'origin',
       },
-      options: {
-        aspectRatio:2.5
+      {
+        data: [ 28, 48, 40, 19, 86, 27, 90 ],
+        label: 'Series B',
+        backgroundColor: 'rgba(77,83,96,0.2)',
+        borderColor: 'rgba(77,83,96,1)',
+        pointBackgroundColor: 'rgba(77,83,96,1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(77,83,96,1)',
+        fill: 'origin',
+      },
+      {
+        data: [ 180, 480, 770, 90, 1000, 270, 400 ],
+        label: 'Series C',
+        yAxisID: 'y1',
+        backgroundColor: 'rgba(255,0,0,0.3)',
+        borderColor: 'red',
+        pointBackgroundColor: 'rgba(148,159,177,1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
+        fill: 'origin',
       }
+    ],
+    labels: [ 'January', 'February', 'March', 'April', 'May', 'June', 'July' ]
+  };
 
+  public lineChartOptions: ChartConfiguration['options'] = {
+    elements: {
+      line: {
+        tension: 0.5
+      }
+    },
+    scales: {
+      // We use this empty structure as a placeholder for dynamic theming.
+      y:
+        {
+          position: 'left',
+        },
+      y1: {
+        position: 'right',
+        grid: {
+          color: 'rgba(255,0,0,0.3)',
+        },
+        ticks: {
+          color: 'red'
+        }
+      }
+    },
+
+    plugins: {
+      legend: { display: true },
+      annotation: {
+        annotations: [
+          {
+            type: 'line',
+            scaleID: 'x',
+            value: 'March',
+            borderColor: 'orange',
+            borderWidth: 2,
+            label: {
+              display: true,
+              position: 'center',
+              color: 'orange',
+              content: 'LineAnno',
+              font: {
+                weight: 'bold'
+              }
+            }
+          },
+        ],
+      }
+    }
+  };
+
+  public lineChartType: ChartType = 'line';
+
+  @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
+
+  private static generateNumber(i: number): number {
+    return Math.floor((Math.random() * (i < 2 ? 100 : 1000)) + 1);
+  }
+
+  public randomize(): void {
+    for (let i = 0; i < this.lineChartData.datasets.length; i++) {
+      for (let j = 0; j < this.lineChartData.datasets[i].data.length; j++) {
+        this.lineChartData.datasets[i].data[j] = GraphsComponent.generateNumber(i);
+      }
+    }
+    this.chart?.update();
+  }
+
+  // events
+  public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
+    console.log(event, active);
+  }
+
+  public chartHovered({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
+    console.log(event, active);
+  }
+
+  public hideOne(): void {
+    const isHidden = this.chart?.isDatasetHidden(1);
+    this.chart?.hideDataset(1, !isHidden);
+  }
+
+  public pushOne(): void {
+    this.lineChartData.datasets.forEach((x, i) => {
+      const num = GraphsComponent.generateNumber(i);
+      x.data.push(num);
     });
+    this.lineChartData?.labels?.push(`Label ${ this.lineChartData.labels.length }`);
+
+    this.chart?.update();
+  }
+
+  public changeColor(): void {
+    this.lineChartData.datasets[2].borderColor = 'green';
+    this.lineChartData.datasets[2].backgroundColor = `rgba(0, 255, 0, 0.3)`;
+
+    this.chart?.update();
+  }
+
+  public changeLabel(): void {
+    const tmp = this.newLabel;
+    this.newLabel = this.lineChartData.datasets[2].label;
+    this.lineChartData.datasets[2].label = tmp;
+
+    this.chart?.update();
   }
 }
