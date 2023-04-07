@@ -23,7 +23,7 @@ export class LoginComponent {
       if (res.success) {
         this.userService.setCurrentUser(res.payload.user);
         this.authService.setToken(res.payload.token);
-        this.route.navigate(['/home']);
+        this.route.navigate(['/landing']);
       }
      });
   }

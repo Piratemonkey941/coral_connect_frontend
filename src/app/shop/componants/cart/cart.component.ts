@@ -13,23 +13,7 @@ import { Subscription } from 'rxjs';
 })
 export class CartComponent implements OnInit {
 
-  cart: Cart = { items: [
-  // {
-  //   product : 'https://via.placeholder.com/150',
-  //   name : 'sneakers',
-  //   price : 150,
-  //   quantity : 1,
-  //   id : 1
-  // },
-  // {
-  //   product : 'https://via.placeholder.com/150',
-  //   name : 'sneakers',
-  //   price : 150,
-  //   quantity : 2,
-  //   id : 1
-  // }
-
-]
+  cart: Cart = { items: []
 };
 
 dataSource: Array<CartItem> = []

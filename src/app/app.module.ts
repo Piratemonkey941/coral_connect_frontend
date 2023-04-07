@@ -31,6 +31,7 @@ import { ChartsMinorElemsOneComponent } from './graphs/charts-minor-elems-one/ch
 import { ChartsMinorElemsTwoComponent } from './graphs/charts-minor-elems-two/charts-minor-elems-two.component';
 import { ChartsMinorElemsThreeComponent } from './graphs/charts-minor-elems-three/charts-minor-elems-three.component';
 import { ChartsBigFourComponent } from './graphs/charts-big-four/charts-big-four.component';
+import { ApiTesterComponent } from './api-tester/api-tester.component';
 
 
 
@@ -60,6 +61,7 @@ import { ChartsBigFourComponent } from './graphs/charts-big-four/charts-big-four
     ChartsMinorElemsTwoComponent,
     ChartsMinorElemsThreeComponent,
     ChartsBigFourComponent,
+    ApiTesterComponent,
 
 
   ],

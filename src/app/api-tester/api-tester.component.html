@@ -1,0 +1,21 @@
+<div *ngIf="elementMeasurements">
+  <h2>Element Measurements</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Quantity</th>
+        <th>Reef Water Element ID</th>
+        <th>User ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let measurement of elementMeasurements">
+        <td>{{ measurement.id }}</td>
+        <td>{{ measurement.qt }}</td>
+        <td>{{ measurement.reef_water_element_id }}</td>
+        <td>{{ measurement.user_id }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
