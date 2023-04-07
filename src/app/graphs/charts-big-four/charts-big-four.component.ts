@@ -147,9 +147,11 @@ export class ChartsBigFourComponent implements OnInit {
 
 //Hides acording to index value
   public hideOne(): void {
+    console.log(this.chart)
     const isHidden = this.chart?.isDatasetHidden(1);
     this.chart?.hideDataset(1, !isHidden);
     this.chart?.hideDataset(3, !isHidden);
+    console.log(this.chart)
   }
 
 

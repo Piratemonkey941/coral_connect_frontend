@@ -157,30 +157,7 @@ export class GraphsComponent implements OnInit {
 }
 
 
- // public pushOne(): void {
-  //   this.lineChartData.datasets.forEach((x, i) => {
-  //     const num = GraphsComponent.generateNumber(i);
-  //     x.data.push(num);
-  //   });
-  //   this.lineChartData?.labels?.push(`Label ${ this.lineChartData.labels.length }`);
 
-  //   this.chart?.update();
-  // }
-
-  // public changeColor(): void {
-  //   this.lineChartData.datasets[2].borderColor = 'green';
-  //   this.lineChartData.datasets[2].backgroundColor = `rgba(0, 255, 0, 0.3)`;
-
-  //   this.chart?.update();
-  // }
-
-  // public changeLabel(): void {
-  //   const tmp = this.newLabel;
-  //   this.newLabel = this.lineChartData.datasets[2].label;
-  //   this.lineChartData.datasets[2].label = tmp;
-
-  //   this.chart?.update();
-  // }
 
 // {
 //   data: [ 1350, 1400, 1380, 1360, 1400, 1350, 1390 ],
