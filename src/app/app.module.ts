@@ -9,6 +9,7 @@ import { MajorElemsComponent } from './Elements/major-elems/major-elems.componen
 import { MinorElemsOneComponent } from './Elements/minor-elems-one/minor-elems-one.component';
 import { MinorElemsTwoComponent } from './Elements/minor-elems-two/minor-elems-two.component';
 import { MinorElemsThreeComponent } from './Elements/minor-elems-three/minor-elems-three.component';
+
 import { LandingComponent } from './Elements/landing/landing.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -25,6 +26,12 @@ import { HeaderComponent } from './shop/componants/header/header.component';
 import { CartComponent } from './shop/componants/cart/cart.component';
 import { HomeComponent } from './shop/componants/home.component';
 import { NgChartsModule } from 'ng2-charts';
+import { ChartsMajorElemsComponent } from './graphs/charts-major-elems/charts-major-elems.component';
+import { ChartsMinorElemsOneComponent } from './graphs/charts-minor-elems-one/charts-minor-elems-one.component';
+import { ChartsMinorElemsTwoComponent } from './graphs/charts-minor-elems-two/charts-minor-elems-two.component';
+import { ChartsMinorElemsThreeComponent } from './graphs/charts-minor-elems-three/charts-minor-elems-three.component';
+import { ChartsBigFourComponent } from './graphs/charts-big-four/charts-big-four.component';
+
 
 
 @NgModule({
@@ -47,6 +54,13 @@ import { NgChartsModule } from 'ng2-charts';
     HeaderComponent,
     CartComponent,
     HomeComponent,
+
+    ChartsMajorElemsComponent,
+    ChartsMinorElemsOneComponent,
+    ChartsMinorElemsTwoComponent,
+    ChartsMinorElemsThreeComponent,
+    ChartsBigFourComponent,
+
 
   ],
   imports: [

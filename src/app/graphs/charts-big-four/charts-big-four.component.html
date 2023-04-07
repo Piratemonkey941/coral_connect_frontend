@@ -1,0 +1,16 @@
+<div class="chart-container mt-6 mx-4">
+  <canvas
+
+      baseChart class="chart"
+      [data]="lineChartData"
+      [options]="lineChartOptions"
+      [type]="lineChartType"
+      (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)"
+  >
+  </canvas>
+</div>
+
+<div class="button-row flex justify-center items-center">
+  <button mat-button mat-raised-button color="primary" (click)="hideOne()" class="mt-4 mx-2">Toggle CA/MG</button>
+</div>

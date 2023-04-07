@@ -1,15 +1,14 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Chart, ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-
 import { default as Annotation } from 'chartjs-plugin-annotation';
 
 @Component({
-  selector: 'app-graphs',
-  templateUrl: './graphs.component.html',
-  styleUrls: ['./graphs.component.scss']
+  selector: 'app-charts-big-four',
+  templateUrl: './charts-big-four.component.html',
+  styleUrls: ['./charts-big-four.component.scss']
 })
-export class GraphsComponent implements OnInit {
+export class ChartsBigFourComponent implements OnInit {
   private newLabel? = 'New label';
 
   constructor() {
@@ -155,51 +154,3 @@ export class GraphsComponent implements OnInit {
 
 
 }
-
-
- // public pushOne(): void {
-  //   this.lineChartData.datasets.forEach((x, i) => {
-  //     const num = GraphsComponent.generateNumber(i);
-  //     x.data.push(num);
-  //   });
-  //   this.lineChartData?.labels?.push(`Label ${ this.lineChartData.labels.length }`);
-
-  //   this.chart?.update();
-  // }
-
-  // public changeColor(): void {
-  //   this.lineChartData.datasets[2].borderColor = 'green';
-  //   this.lineChartData.datasets[2].backgroundColor = `rgba(0, 255, 0, 0.3)`;
-
-  //   this.chart?.update();
-  // }
-
-  // public changeLabel(): void {
-  //   const tmp = this.newLabel;
-  //   this.newLabel = this.lineChartData.datasets[2].label;
-  //   this.lineChartData.datasets[2].label = tmp;
-
-  //   this.chart?.update();
-  // }
-
-// {
-//   data: [ 1350, 1400, 1380, 1360, 1400, 1350, 1390 ],
-//   label: 'Magnesium',
-//   yAxisID: 'y1',
-//   // backgroundColor: 'rgba(64, 224, 208, 0.8)',
-//   borderColor: 'blue',
-//   pointBackgroundColor: 'rgba(148,159,177,1)',
-//   pointBorderColor: '#fff',
-//   pointHoverBackgroundColor: '#fff',
-//   pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-//   // fill: 'origin',
-// },
-
-  // public randomize(): void {
-  //   for (let i = 0; i < this.lineChartData.datasets.length; i++) {
-  //     for (let j = 0; j < this.lineChartData.datasets[i].data.length; j++) {
-  //       this.lineChartData.datasets[i].data[j] = GraphsComponent.generateNumber(i);
-  //     }
-  //   }
-  //   this.chart?.update();
-  // }
