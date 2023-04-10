@@ -90,7 +90,8 @@
           </mat-form-field>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="primary" (click)="onAddAlkilinity()">Submit</button>
+          <button mat-raised-button color="primary" (click)="onAddAlkilinity(); sendAlkilinityMeasurement(alkilinity)">Submit</button>
+
         </mat-card-actions>
       </mat-card>
 
@@ -116,7 +117,7 @@
           </mat-form-field>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="primary" (click)="onAddCalcium()">Submit</button>
+          <button mat-raised-button color="primary" (click)="onAddCalcium(); sendCalciumMeasurement(calcium)">Submit</button>
         </mat-card-actions>
       </mat-card>
 
@@ -143,7 +144,7 @@
           </mat-form-field>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="primary" (click)="onAddMagnesium()">Submit</button>
+          <button mat-raised-button color="primary" (click)="onAddMagnesium(); sendMagnesiumMeasurement(magnesium)">Submit</button>
         </mat-card-actions>
       </mat-card>
 
