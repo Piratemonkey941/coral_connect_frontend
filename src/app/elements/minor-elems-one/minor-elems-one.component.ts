@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild, Input, Output } from '@angular/core';
 import { VolumeService } from 'src/app/shared/volume.service';
 import { BreakpointService } from '../../shared/breakpoint.service';
-
+import { ElementMeasurementSenderService } from '../../shared/element-measurement-sender.service';
 declare var window: any;
 
 
@@ -21,7 +21,8 @@ export class MinorElemsOneComponent implements OnInit {
   @Input() volume: number
   constructor(
     public volumeService: VolumeService,
-    private breakpointService: BreakpointService
+    private breakpointService: BreakpointService,
+    private elementMeasurementSenderService: ElementMeasurementSenderService,
     ) { }
 
 
@@ -98,6 +99,10 @@ onAddBarium(){
       }
     }
 
+    sendBariumMeasurement(barium: number) {
+      this.elementMeasurementSenderService.sendMeasurement(barium, 10);
+    }
+
   // parseFloat(().toFixed(2));
     // ==================================================== Chromium ====================================================
 chromiumStart: string = 'Chromium, call me the ultimate makeover artist, turning ordinary corals into glamorous divas!'
@@ -135,6 +140,10 @@ onAddChromium(){
     }
   }
 
+  sendChromiumMeasurement(chromium: number) {
+    this.elementMeasurementSenderService.sendMeasurement(chromium, 11);
+  }
+
     // ==================================================== Cobalt ====================================================
     cobaltStart: string = "Cobalt the vibrant virtuoso, jazzing up corals with my show-stopping shades of blue!"
     cobalt: number
@@ -170,6 +179,11 @@ onAddChromium(){
           this.cobaltStart = 'Retest parameter'
         }
       }
+
+      sendCobaltMeasurement(cobalt: number) {
+        this.elementMeasurementSenderService.sendMeasurement(cobalt, 12);
+      }
+
     // ==================================================== Copper ====================================================
 copperStart: string = "Copper the life of the party, until I overdo it and become the third wheel that just won't leave!"
 copper: number
@@ -177,7 +191,7 @@ copper: number
 
 onAddCopper(){
 
-      if (this.copper <= 0.7 && this. copper >= 0 ){
+      if (this.copper <= 0.7 && this.copper >= 0 ){
         this. copperStart =
         `Ideal, should remain at or near undetectable.`
       }
@@ -194,6 +208,10 @@ onAddCopper(){
       else {
         this.copperStart = 'Retest parameter'
       }
+    }
+
+    sendCopperMeasurement(copper: number) {
+      this.elementMeasurementSenderService.sendMeasurement(copper, 13);
     }
 
     // ==================================================== fluoride ====================================================
@@ -236,6 +254,10 @@ onAddFluoride(){
       else {
         this.fluorideStart = 'Retest parameter'
       }
+    }
+
+    sendFluorideMeasurement(fluoride: number) {
+      this.elementMeasurementSenderService.sendMeasurement(fluoride, 14);
     }
 
     // ==================================================== Iodine ====================================================
@@ -282,6 +304,10 @@ onAddIodine(){
       else {
         this.iodineStart = 'Retest parameter'
       }
+    }
+
+    sendIodineMeasurement(iodine: number) {
+      this.elementMeasurementSenderService.sendMeasurement(iodine, 15);
     }
 
 }

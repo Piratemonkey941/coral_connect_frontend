@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild, Input, Output } from '@angular/core';
 import { VolumeService } from 'src/app/shared/volume.service';
 import { BreakpointService } from '../../shared/breakpoint.service';
+import { ElementMeasurementSenderService } from '../../shared/element-measurement-sender.service';
 declare var window: any;
 
 @Component({
@@ -20,7 +21,8 @@ export class MinorElemsThreeComponent implements OnInit {
 
   constructor(
     public volumeService: VolumeService,
-    private breakpointService: BreakpointService
+    private breakpointService: BreakpointService,
+    private elementMeasurementSenderService: ElementMeasurementSenderService,
     ) { }
 
 
@@ -77,13 +79,10 @@ export class MinorElemsThreeComponent implements OnInit {
       this.rubidiumAdjustmentTotal = (0.3785 * this.volumeService.volume) * this.rubidiumQuantityDivisor
       this.rubidiumAdjustment = Number((this.rubidiumAdjustmentTotal / this.rubidiumDaysCalc).toFixed(2))
 
-
         if (this.rubidium == 300){
             this.rubidiumStart = 'Ideal  for most reefs'
         }
       //low start
-
-
         else if ( this.rubidium <= 150 && this.rubidium >= 0 ){
           this.rubidiumStart = `Rubidium extremely low, adjust  ${this.rubidiumAdjustment}ml per day for ${this.rubidiumDays} days.  `
         }
@@ -93,9 +92,7 @@ export class MinorElemsThreeComponent implements OnInit {
         else if ( this.rubidium <= 299 && this.rubidium >= 251 ){
           this.rubidiumStart = `Acceptable Range, rubidium, adjust ${this.rubidiumAdjustment}ml per day for ${this.rubidiumDays} days.`
           }
-
         //high start
-
         else if ( this.rubidium <= 450  && this.rubidium >= 301 ){
           this.rubidiumStart = 'Rubidium slightly elevated recomendation is to allow level to settle down and watch ICP '
         }
@@ -108,6 +105,10 @@ export class MinorElemsThreeComponent implements OnInit {
         else {
           this.rubidiumStart = 'Retest parameter'
         }
+      }
+
+      sendRubidiumMeasurement(rubidium: number) {
+        this.elementMeasurementSenderService.sendMeasurement(rubidium, 21);
       }
 
   // ==================================================== Selenium ====================================================
@@ -128,8 +129,13 @@ export class MinorElemsThreeComponent implements OnInit {
             this.seleniumStart = 'Selenium Detected Stop Dosing'
           }
   }
+
+  sendSeleniumMeasurement(selenium: number) {
+    this.elementMeasurementSenderService.sendMeasurement(selenium, 22);
+  }
+
 // element has additional instructions for modal
-          // ==================================================== Vanadium ====================================================
+// ==================================================== Vanadium ====================================================
   vanadiumStart: string = "Strengthening steel and fortifying coral skeletons, just another day in my element!"
   vanadium: number
 
@@ -164,7 +170,6 @@ export class MinorElemsThreeComponent implements OnInit {
 
     this.vanadiumDropsCalculator = (this.volume / 100);
     this.vanadiumTwoDropsCalculator = (this.volume / 100) * 2;
-
     this.vanadiumDropsToMilliliters = this.vanadiumDropsCalculator / 20;
     this.vanadiumDropsToMillilitersTwoDrops = this.vanadiumTwoDropsCalculator / 20;
 
@@ -183,6 +188,10 @@ export class MinorElemsThreeComponent implements OnInit {
     } else {
       this.vanadiumStart = 'Retest parameter';
     }
+  }
+
+  sendVanadiumMeasurement(vanadium: number) {
+    this.elementMeasurementSenderService.sendMeasurement(vanadium, 23);
   }
 
 
@@ -210,6 +219,10 @@ export class MinorElemsThreeComponent implements OnInit {
     else {
       this.tinStart = 'Retest parameter'
     }
+  }
+
+  sendTinMeasurement(tin: number) {
+    this.elementMeasurementSenderService.sendMeasurement(tin, 24);
   }
 
           // ==================================================== Zinc ====================================================
@@ -280,50 +293,14 @@ calculateZincDays(zinc: number): number {
   }
 }
 
+  // Calculate the amount of zinc adjustment needed based on its current value and the volume of the aquarium.
+  calculateZincAdjustment(zinc: number, volumeService: VolumeService): number {
+  const zincQuantityDivisor = 5 - zinc;
+  const zincAdjustmentTotal = (0.003785 * volumeService.volume) * zincQuantityDivisor;
+  return zincAdjustmentTotal / this.zincDays;
+  }
 
-
-
-// Calculate the amount of zinc adjustment needed based on its current value and the volume of the aquarium.
-
-
-calculateZincAdjustment(zinc: number, volumeService: VolumeService): number {
- const zincQuantityDivisor = 5 - zinc;
- const zincAdjustmentTotal = (0.003785 * volumeService.volume) * zincQuantityDivisor;
- return zincAdjustmentTotal / this.zincDays;
-}
-
-// elements = [
-//   {
-//     name: 'Rubidium',
-//     imagePath: '../../../assets/MgCl.png',
-//     start: 'rubidiumStart',
-//     value: null,
-//   },
-//   {
-//     name: 'Selenium',
-//     imagePath: '../../../assets/SoCl.png',
-//     start: 'seleniumStart',
-//     value: null,
-//   },
-//   {
-//     name: 'Tin/Stannum',
-//     imagePath: '../../../assets/CaCl.png',
-//     start: 'tinStart',
-//     value: null,
-//   },
-//   {
-//     name: 'Zinc',
-//     imagePath: '../../../assets/MgCl.png',
-//     start: 'zincStart',
-//     value: null,
-//   },
-// ];
-// Also, create a single method onAddElement that takes the element name as a parameter:
-
-// typescript
-// Copy code
-// onAddElement(elementName: string) {
-//   // Your logic for adding elements based on their name
-// }
-
+  sendZincMeasurement(zinc: number) {
+    this.elementMeasurementSenderService.sendMeasurement(zinc, 25);
+  }
 }

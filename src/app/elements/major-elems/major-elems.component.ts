@@ -3,7 +3,7 @@
 import { Component, ElementRef, OnInit, ViewChild, Input, Output } from '@angular/core';
 import { VolumeService } from 'src/app/shared/volume.service';
 import { BreakpointService } from '../../shared/breakpoint.service';
-
+import { ElementMeasurementSenderService } from '../../shared/element-measurement-sender.service';
 declare var window: any;
 
 @Component({
@@ -22,7 +22,8 @@ export class MajorElemsComponent implements OnInit {
 
   constructor(
     public volumeService: VolumeService,
-    private breakpointService: BreakpointService
+    private breakpointService: BreakpointService,
+    private elementMeasurementSenderService: ElementMeasurementSenderService,
     ) { }
 
 
@@ -95,6 +96,9 @@ this.boronAdjustment = parseFloat((this.boronAdjustmentTotal / this.boronDays).t
     this.boronStart = 'Retest parameter'
   }
 }
+sendBoronMeasurement(boron: number) {
+  this.elementMeasurementSenderService.sendMeasurement(boron, 5);
+}
 
 // ==================================================== BROMIDE ====================================================!
 
@@ -141,6 +145,10 @@ bromideQuantityDivisor: number
         else {
           this.bromideStart = 'Retest parameter'
         }
+      }
+
+      sendBromideMeasurement(bromide: number) {
+        this.elementMeasurementSenderService.sendMeasurement(bromide, 6);
       }
 
   // ==================================================== POTASSIUM ====================================================!
@@ -195,6 +203,10 @@ bromideQuantityDivisor: number
         }
       }
 
+      sendPotassiumMeasurement(potassium: number) {
+        this.elementMeasurementSenderService.sendMeasurement(potassium, 7);
+      }
+
 // ==================================================== STRONTIUM ==================================================== !
 strontiumStart: string = 'Instead of becoming fireworks, Im going to make your corals glow!'
 strontium: number
@@ -245,6 +257,10 @@ onAddStrontium(){
       }
     }
 
+    sendStrontiumMeasurement(strontium: number) {
+      this.elementMeasurementSenderService.sendMeasurement(strontium, 8);
+    }
+
 // ==================================================== SULFATE ====================================================!
 
 sulfateStart: string = 'Instead of becoming fireworks, Im going to make your corals glow!'
@@ -275,6 +291,10 @@ onAddSulfate(){
       else {
         this.sulfateStart = 'Retest parameter'
       }
+    }
+
+    sendSulfateMeasurement(sulfate: number) {
+      this.elementMeasurementSenderService.sendMeasurement(sulfate, 9);
     }
 
   }

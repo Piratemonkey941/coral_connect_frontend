@@ -23,7 +23,7 @@
           </mat-form-field>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="primary" (click)="onAddIron()">Submit</button>
+          <button mat-raised-button color="primary" (click)="onAddIron(); sendIronMeasurement(iron)">Submit</button>
         </mat-card-actions>
       </mat-card>
 
@@ -47,7 +47,7 @@
           </mat-form-field>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="primary" (click)="onAddLithium()">Submit</button>
+          <button mat-raised-button color="primary" (click)="onAddLithium(); sendLithiumMeasurement(lithium)">Submit</button>
         </mat-card-actions>
       </mat-card>
 
@@ -79,7 +79,7 @@
           </mat-form-field>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="primary" (click)="onAddManganese()">Submit</button>
+          <button mat-raised-button color="primary" (click)="onAddManganese(); sendManganeseMeasurement(manganese)">Submit</button>
         </mat-card-actions>
       </mat-card>
 
@@ -103,7 +103,7 @@
           </mat-form-field>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="primary" (click)="onAddMolybdenum()">Submit</button>
+          <button mat-raised-button color="primary" (click)="onAddMolybdenum(); sendMolybdenumMeasurement(molybdenum)">Submit</button>
         </mat-card-actions>
       </mat-card>
 
@@ -127,7 +127,7 @@
           </mat-form-field>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-raised-button color="primary" (click)="onAddNickel()">Submit</button>
+          <button mat-raised-button color="primary" (click)="onAddNickel(); sendNickelMeasurement(nickel)">Submit</button>
         </mat-card-actions>
       </mat-card>
 

@@ -1,7 +1,12 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Chart, ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
-import { BaseChartDirective } from 'ng2-charts';
+import { BaseChartDirective,  } from 'ng2-charts';
 import { default as Annotation } from 'chartjs-plugin-annotation';
+import { HttpClient } from '@angular/common/http';
+import { catchError, map } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { CreateElementMeasurement  } from '../../model';
+import { ElementMeasurementsService } from '../../shared/element-measurements.service';
 
 @Component({
   selector: 'app-charts-big-four',
@@ -11,18 +16,54 @@ import { default as Annotation } from 'chartjs-plugin-annotation';
 export class ChartsBigFourComponent implements OnInit {
   private newLabel? = 'New label';
 
-  constructor() {
+  constructor(
+    private http: HttpClient,
+    private elementMeasurementService: ElementMeasurementsService
+    ) {
     Chart.register(Annotation)
   }
 
-  ngOnInit(): void {
-    // WILL NEED MODAL
-    }
+  // WILL NEED MODAL
+  ngOnInit() {
+    // Replace '1' with the user ID you want to fetch data for
+    this.elementMeasurementService.getElementMeasurements(1).subscribe(
+      (measurements) => {
+        this.processMeasurements(measurements);
+      },
+      (error) => {
+        console.error('Error fetching element measurements:', error);
+      }
+    );
+  }
+
+  processMeasurements(measurements: CreateElementMeasurement[]) {
+    const salinityData: number[] = [];
+    const calciumData: number[] = [];
+    const alkilinityData: number[] = [];
+    const magnesiumData: number[] = [];
+
+    measurements.forEach((measurement) => {
+      if (measurement.reef_water_element_id === 1) {
+        salinityData.push(measurement.qt);
+      } else if (measurement.reef_water_element_id === 2) {
+        calciumData.push(measurement.qt);
+      } else if (measurement.reef_water_element_id === 3) {
+        alkilinityData.push(measurement.qt);
+      } else if (measurement.reef_water_element_id === 4) {
+        magnesiumData.push(measurement.qt);
+      }
+    });
+
+    this.lineChartData[0].data = salinityData;
+    this.lineChartData[1].data = calciumData;
+    this.lineChartData[1].data = alkilinityData;
+    this.lineChartData[1].data = magnesiumData;
+  }
 
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
       {
-        data: [ 35, 36, 35, 37, 36, 35, 37 ],
+        data: [],
         label: 'Salinity',
         // yAxisID: 'y2',
         borderColor: 'rgba(148,159,177,1)',
@@ -33,7 +74,7 @@ export class ChartsBigFourComponent implements OnInit {
 
       },
       {
-        data: [ 420, 390, 440, 400, 410, 420, 400 ],
+        data: [],
         label: 'Calcium',
 
         borderColor: 'rgba(77,83,96,1)',
@@ -44,7 +85,7 @@ export class ChartsBigFourComponent implements OnInit {
 
       },
       {
-        data: [ 8.6, 9.1, 8.8, 10, 9.7, 8.9, 10.1 ],
+        data: [],
         label: 'Alkilinity',
         // yAxisID: 'y2',
         borderColor: 'red',
@@ -55,14 +96,14 @@ export class ChartsBigFourComponent implements OnInit {
 
       },
       {
-        data: [ 1350, 1400, 1380, 1360, 1400, 1350, 1390 ], // An array of numerical data points for the chart
-        label: 'Magnesium',                                 // Label for this dataset, used in tooltips and the legend
-        yAxisID: 'y1',                                      // Associates this dataset with a specific Y-axis in the chart
-        borderColor: 'blue',                                // Color of the line that connects data points in the chart
-        pointBackgroundColor: 'rgba(148,159,177,1)',        // Background color of the data points; in this case, a solid grayish-blue color
-        pointBorderColor: '#fff',                           // Border color of the data points; in this case, white
-        pointHoverBackgroundColor: '#fff',                  // Background color of data points when hovered over; in this case, white
-        pointHoverBorderColor: 'rgba(148,159,177,0.8)',     // Border color of data points when hovered over; in this case, a semi-transparent grayish-blue color
+        data: [],                                       // An array of numerical data points for the chart
+        label: 'Magnesium',                             // Label for this dataset, used in tooltips and the legend
+        yAxisID: 'y1',                                  // Associates this dataset with a specific Y-axis in the chart
+        borderColor: 'blue',                            // Color of the line that connects data points in the chart
+        pointBackgroundColor: 'rgba(148,159,177,1)',    // Background color of the data points; in this case, a solid grayish-blue color
+        pointBorderColor: '#fff',                       // Border color of the data points; in this case, white
+        pointHoverBackgroundColor: '#fff',              // Background color of data points when hovered over; in this case, white
+        pointHoverBorderColor: 'rgba(148,159,177,0.8)', // Border color of data points when hovered over; in this case, a semi-transparent grayish-blue color
       },
     ],
     labels: [ 'January', 'February', 'March', 'April', 'May', 'June', 'July' ]

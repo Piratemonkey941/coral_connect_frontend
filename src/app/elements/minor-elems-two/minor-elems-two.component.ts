@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild, Input, Output } from '@angular/core';
 import { VolumeService } from 'src/app/shared/volume.service';
 import { BreakpointService } from '../../shared/breakpoint.service';
-
+import { ElementMeasurementSenderService } from '../../shared/element-measurement-sender.service';
 declare var window: any;
 
 @Component({
@@ -20,7 +20,8 @@ export class MinorElemsTwoComponent implements OnInit {
   @Input() volume: number
   constructor(
     public volumeService: VolumeService,
-    private breakpointService: BreakpointService
+    private breakpointService: BreakpointService,
+    private elementMeasurementSenderService: ElementMeasurementSenderService,
     ) { }
 
 
@@ -80,6 +81,11 @@ onAddIron(){
       this.ironStart = 'Retest parameter'
     }
   }
+
+  sendIronMeasurement(iron: number) {
+    this.elementMeasurementSenderService.sendMeasurement(iron, 16);
+  }
+
             // ==================================================== Lithium ====================================================
 lithiumStart: string = 'Instead of becoming fireworks, Im going to make your corals glow!'
 lithium: number
@@ -126,6 +132,10 @@ onAddLithium(){
       }
     }
 
+    sendLithiumMeasurement(lithium: number) {
+      this.elementMeasurementSenderService.sendMeasurement(lithium, 17);
+    }
+
         // ==================================================== Manganese ====================================================
 manganeseStart: string = 'Instead of becoming fireworks, Im going to make your corals glow!'
 manganese: number
@@ -157,6 +167,11 @@ onAddManganese(){
         this.manganeseStart = 'Retest parameter'
       }
     }
+
+    sendManganeseMeasurement(manganese: number) {
+      this.elementMeasurementSenderService.sendMeasurement(manganese, 18);
+    }
+
         // ==================================================== Molybdenum ====================================================
 
         molybdenumStart: string = 'Instead of becoming fireworks, Im going to make your corals glow!';
@@ -206,51 +221,56 @@ onAddManganese(){
             this.molybdenumStart = `${range.message}, adjust ${this.molybdenumAdjustmentDiv} per day for ${range.divisor || 1} days.`;  // Set the molybdenum start message based on the range and the calculated adjustment.
         }
 
+  sendMolybdenumMeasurement(molybdenum: number) {
+    this.elementMeasurementSenderService.sendMeasurement(molybdenum, 19);
+  }
 
+  // ==================================================== Nickle ====================================================
 
+  nickelStart = 'Instead of becoming fireworks, Im going to make your corals glow!';
+  nickel: number;
+  nickelAdjustment: number;
+  nickelAdjustmentTotal: number;
+  nickelDays: number;
+  nickelQuantityDivisor: number;
 
+  onAddNickel() {
+    if (this.nickel >= 2) {
+      this.nickelDays = 1;
+    } else if (this.nickel >= 1.5) {
+      this.nickelDays = 2;
+    } else if (this.nickel >= 1) {
+      this.nickelDays = 3;
+    } else if (this.nickel >= 0.5) {
+      this.nickelDays = 4;
+    } else {
+      this.nickelDays = 5;
+    }
 
-        // ==================================================== Nickle ====================================================
+    this.nickelQuantityDivisor = (2.5 - this.nickel) * 10;
+    this.nickelAdjustmentTotal = 0.003785 * this.volumeService.volume * this.nickelQuantityDivisor;
+    this.nickelAdjustment = Number((this.nickelAdjustmentTotal / this.nickelDays).toFixed(2));
 
-        nickelStart = 'Instead of becoming fireworks, Im going to make your corals glow!';
-        nickel: number;
-        nickelAdjustment: number;
-        nickelAdjustmentTotal: number;
-        nickelDays: number;
-        nickelQuantityDivisor: number;
+    if (this.nickel == 2.5) {
+      this.nickelStart = 'Ideal for most reefs';
+    } else if (this.nickel === 0 || (this.nickel <= 0.5 && this.nickel >= 0)) {
+      const msg = `Nickel ${this.nickel === 0 ? 'Depleted' : 'depleted or very low'}, adjust ${this.nickelAdjustment}ml per day for ${this.nickelDays} days.`;
+      this.nickelStart = msg;
+    } else if (this.nickel <= 2.4 && this.nickel >= 0.6) {
+      this.nickelStart = `Nickel below target level, adjust ${this.nickelAdjustment}ml per day for ${this.nickelDays} days.`;
+    } else if (this.nickel <= 5 && this.nickel >= 2.6) {
+      this.nickelStart = 'Nickel acceptable, slightly elevated';
+    } else if (this.nickel <= 10 && this.nickel >= 5.1) {
+      this.nickelStart = 'Nickel elevated above target level, allow level to settle down and watch ICP';
+    } else if (this.nickel <= 50 && this.nickel >= 10.1) {
+      this.nickelStart = 'Nickel level critical! Find source of pollution Preform several small water changes. 20% water change to reduce level apx 10%';
+    } else {
+      this.nickelStart = 'Retest parameter';
+    }
+  }
 
-        onAddNickel() {
-          if (this.nickel >= 2) {
-            this.nickelDays = 1;
-          } else if (this.nickel >= 1.5) {
-            this.nickelDays = 2;
-          } else if (this.nickel >= 1) {
-            this.nickelDays = 3;
-          } else if (this.nickel >= 0.5) {
-            this.nickelDays = 4;
-          } else {
-            this.nickelDays = 5;
-          }
+  sendNickelMeasurement(nickel: number) {
+    this.elementMeasurementSenderService.sendMeasurement(nickel, 20);
+  }
 
-          this.nickelQuantityDivisor = (2.5 - this.nickel) * 10;
-          this.nickelAdjustmentTotal = 0.003785 * this.volumeService.volume * this.nickelQuantityDivisor;
-          this.nickelAdjustment = Number((this.nickelAdjustmentTotal / this.nickelDays).toFixed(2));
-
-          if (this.nickel == 2.5) {
-            this.nickelStart = 'Ideal for most reefs';
-          } else if (this.nickel === 0 || (this.nickel <= 0.5 && this.nickel >= 0)) {
-            const msg = `Nickel ${this.nickel === 0 ? 'Depleted' : 'depleted or very low'}, adjust ${this.nickelAdjustment}ml per day for ${this.nickelDays} days.`;
-            this.nickelStart = msg;
-          } else if (this.nickel <= 2.4 && this.nickel >= 0.6) {
-            this.nickelStart = `Nickel below target level, adjust ${this.nickelAdjustment}ml per day for ${this.nickelDays} days.`;
-          } else if (this.nickel <= 5 && this.nickel >= 2.6) {
-            this.nickelStart = 'Nickel acceptable, slightly elevated';
-          } else if (this.nickel <= 10 && this.nickel >= 5.1) {
-            this.nickelStart = 'Nickel elevated above target level, allow level to settle down and watch ICP';
-          } else if (this.nickel <= 50 && this.nickel >= 10.1) {
-            this.nickelStart = 'Nickel level critical! Find source of pollution Preform several small water changes. 20% water change to reduce level apx 10%';
-          } else {
-            this.nickelStart = 'Retest parameter';
-          }
-        }
-      }
+}
