@@ -2,10 +2,11 @@ import { Component, ElementRef, OnInit, ViewChild, Input, Output } from '@angula
 import { ElementCalculatorService } from '../../shared/element-calculator.service';
 import { VolumeService } from '../../shared/volume.service';
 import { AuthService } from '../../shared/auth.service'; // Import the authentication service
+import { UserService } from 'src/app/shared/user.service'; // Import the authentication service
 // import { MaterialModule } from '../../materials/materials.module'
 import { ElementMeasurement, User, CreateElementMeasurement  } from '../../model';
 import { ElementMeasurementsService } from '../../shared/element-measurements.service';
-import { MatCardModule } from '@angular/material/card';
+
 // import { MatButtonModule } from '@angular/material/button';
 declare var window: any;
 
@@ -23,7 +24,9 @@ export class BigFourComponent implements OnInit {
   constructor(
     public volumeService: VolumeService,
     private elementMeasurementsService: ElementMeasurementsService,
-    private authService: AuthService
+    // private bigFourService: BigFourService,
+    private authService: AuthService,
+    private userService: UserService,
     ) { }
 
 
@@ -41,24 +44,14 @@ export class BigFourComponent implements OnInit {
       this.formModal.hide();
     }
 
-    sendAlkilinityMeasurement(alkilinity: number): void {
-      if (this.authService.isLoggedIn()) { // Check if the user is signed in
-        const elementMeasurement: CreateElementMeasurement = {
-          qt: alkilinity,
-          reef_water_element_id: 2,
-          user_id: this.authService.getCurrentUserId() // Get the current user ID from the authentication service
-        };
-        this.elementMeasurementsService.createElementMeasurement(elementMeasurement);
-      }
-    }
-
-
 //SALINITY
 
   salinityStart: string = 'The cure for anything is salt water: sweat, tears or the sea.'
   salinity: number
 
   onAddSalinity(){
+
+    console.log('onAddSalinity called');
 
     let salinity = this.salinityStart
 
@@ -82,7 +75,39 @@ export class BigFourComponent implements OnInit {
 
       this.salinityStart = 'Retest parameter'
     }
+
+    this.sendSalinityMeasurement(this.salinity);
   }
+
+  sendSalinityMeasurement(salinity: number) {
+    const loggedIn = this.authService.isLoggedIn();
+    const currentUser = this.userService.currentUserSubject.value;
+    const token = this.authService.getToken();
+    console.log('Is logged in:', loggedIn, 'User:', currentUser, 'Token:', token);
+
+    if (loggedIn) {
+      console.log('User is logged in, sending salinity measurement');
+      const userId = this.authService.getCurrentUserId();
+
+      const newMeasurement: CreateElementMeasurement = {
+        qt: salinity,
+        reef_water_element_id: 1, // Assuming "1" is the ID for salinity in your system
+        user_id: userId,
+      };
+
+      this.elementMeasurementsService.createElementMeasurement(newMeasurement).subscribe(
+        (response) => {
+          console.log('Salinity measurement saved:', response);
+        },
+        (error) => {
+          console.error('Error saving salinity measurement:', error);
+        }
+      );
+    } else {
+      console.warn('User is not logged in, not sending salinity measurement');
+    }
+  }
+
 
   //ALKILINITY
   alkilinity: number
@@ -126,6 +151,37 @@ export class BigFourComponent implements OnInit {
     }
   }
 
+  sendAlkilinityMeasurement(alkilinity: number) {
+    const loggedIn = this.authService.isLoggedIn();
+    const currentUser = this.userService.currentUserSubject.value;
+    const token = this.authService.getToken();
+    console.log('Is logged in:', loggedIn, 'User:', currentUser, 'Token:', token);
+
+    if (loggedIn) {
+      console.log('User is logged in, sending calcium measurement');
+      const userId = this.authService.getCurrentUserId();
+
+      const newMeasurement: CreateElementMeasurement = {
+        qt: alkilinity,
+        reef_water_element_id: 3, // Assuming "2" is the ID for calcium in your system
+        user_id: userId,
+      };
+
+      this.elementMeasurementsService.createElementMeasurement(newMeasurement).subscribe(
+        (response) => {
+          console.log('alkilinity measurement saved:', response);
+        },
+        (error) => {
+          console.error('Error saving alkilinity measurement:', error);
+        }
+      );
+    } else {
+      console.warn('User is not logged in, not sending alkilinity measurement');
+    }
+  }
+
+
+
   //Calcium
 
   calciumStart: string = 'A broken bone can heal, so can the Reef'
@@ -166,6 +222,36 @@ export class BigFourComponent implements OnInit {
       this.calciumStart = 'Retest parameter'
     }
   }
+
+  sendCalciumMeasurement(calcium: number) {
+    const loggedIn = this.authService.isLoggedIn();
+    const currentUser = this.userService.currentUserSubject.value;
+    const token = this.authService.getToken();
+    console.log('Is logged in:', loggedIn, 'User:', currentUser, 'Token:', token);
+
+    if (loggedIn) {
+      console.log('User is logged in, sending calcium measurement');
+      const userId = this.authService.getCurrentUserId();
+
+      const newMeasurement: CreateElementMeasurement = {
+        qt: calcium,
+        reef_water_element_id: 2, //  ID for calcium in system
+        user_id: userId,
+      };
+
+      this.elementMeasurementsService.createElementMeasurement(newMeasurement).subscribe(
+        (response) => {
+          console.log('Calcium measurement saved:', response);
+        },
+        (error) => {
+          console.error('Error saving calcium measurement:', error);
+        }
+      );
+    } else {
+      console.warn('User is not logged in, not sending calcium measurement');
+    }
+  }
+
   //Magnesium
 
   magnesiumStart: string = 'Instead of becoming fireworks, Im going to make your corals glow!'

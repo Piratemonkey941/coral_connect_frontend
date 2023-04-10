@@ -34,21 +34,30 @@ signup(user: any) {                                       // This function sends
 }
 
 // This function sends a POST request to authenticate the user with the credentials provided in the user object
+
 login(user: any) {
   // Send the HTTP request to the server to authenticate the user
   // Apply the 'map' operator to modify the server's response before returning it
   return this.http.post(this.baseUrl + 'login', user).pipe(map((response: any) => {
     // Set the current user in the application's authentication service
-    this.currentUserSubject.next(response.user);
-    this.userService.setCurrentUser(response.user);
+    console.log('Login response:', response);
+
+    this.currentUserSubject.next(response.payload.user);
+    console.log('User set in AuthService (currentUserSubject):', this.currentUserSubject.value);
+
+    this.userService.setCurrentUser(response.payload.user);
+    console.log('User set in AuthService (userService):', this.userService.currentUserSubject.value);
+
     // Return the modified server's response
     return response;
   }));
 }
 
+
 // This function stores the token object in the browser's local storage
 setToken(token: any) {
   localStorage.setItem('token', JSON.stringify(token));
+  console.log('Token set:', token);
 }
 
 // This function automatically logs in the user if a valid token is stored in local storage
@@ -95,6 +104,7 @@ const token = this.getToken();                // Get the token from local storag
       console.error('Logout failed:', error);   // Optionally, handle the error here, such as showing an error message to the user.
     });
   }
+  console.log('User logged out');
 }
 
 getToken() {
@@ -107,11 +117,20 @@ getToken() {
   }
 }
 
-  isLoggedIn(): boolean {
-    return !!this.currentUserValue;             // Returns true if there's a user object, false otherwise
-  }
+isLoggedIn(): boolean {
+  const token = this.getToken();
+  console.log('Is logged in:', this.currentUserValue !== null && token !== null, 'User:', this.currentUserValue, 'Token:', token);
+  return this.currentUserValue !== null && token !== null;
+}
 
-  getCurrentUserId(): number | null {
-    return this.currentUserValue ? this.currentUserValue.id : null; // Returns the user ID if there's a user object, null otherwise
+
+getCurrentUserId(): number {
+  const currentUser = this.userService.currentUserSubject.value;
+  console.log('getCurrentUserId - currentUser:', currentUser);
+  if (currentUser && currentUser.id) {
+    return currentUser.id;
   }
+  return null;
+}
+
 }

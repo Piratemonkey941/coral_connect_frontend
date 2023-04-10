@@ -1,7 +1,9 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Chart, ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-
+import { User } from '../models/user.model';
+import { UserService } from '../shared/user.service';
+import { AuthService } from '.././shared/auth.service';
 import { default as Annotation } from 'chartjs-plugin-annotation';
 
 @Component({
@@ -11,13 +13,28 @@ import { default as Annotation } from 'chartjs-plugin-annotation';
 })
 export class GraphsComponent implements OnInit {
   private newLabel? = 'New label';
+  currentUser: User;
 
-  constructor() {
-    Chart.register(Annotation)
-  }
+
+  constructor
+    (
+      private userService: UserService,
+      private authService: AuthService,
+    )
+    {
+      Chart.register(Annotation)
+    }
 
   ngOnInit(): void {
+    this.userService.currentUserSubject.subscribe((user: User) => {
+      console.log(user);
+      this.currentUser = user;
+    })
     // WILL NEED MODAL
+    }
+
+    logout() {
+      this.authService.logout();
     }
 
   public lineChartData: ChartConfiguration['data'] = {
