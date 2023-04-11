@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Product } from '.././models/product.modal';
 
 const STORE_BASE_URL = 'https://fakestoreapi.com';
-
+// const STORE_BASE_URL = 'http://localhost:3000';
 @Injectable({
   providedIn: 'root'
 })
