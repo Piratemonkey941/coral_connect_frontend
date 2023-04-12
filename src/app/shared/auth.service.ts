@@ -42,6 +42,9 @@ login(user: any) {
     // Set the current user in the application's authentication service
     console.log('Login response:', response);
 
+    // Store the token in the localStorage
+    this.setToken(response.payload.token); // Add this line to store the token
+
     this.currentUserSubject.next(response.payload.user);
     console.log('User set in AuthService (currentUserSubject):', this.currentUserSubject.value);
 
@@ -52,6 +55,7 @@ login(user: any) {
     return response;
   }));
 }
+
 
 
 // This function stores the token object in the browser's local storage
@@ -111,11 +115,14 @@ getToken() {
   const token = localStorage.getItem('token');  // Get the token string from local storage
 
   if (token != null) {
-    return JSON.parse(token);                   // If a token string exists, parse it from a stringified JSON object and return it
+    const parsedToken = JSON.parse(token);
+    console.log('Retrieved token:', parsedToken); // Log the retrieved token
+    return parsedToken;                           // If a token string exists, parse it from a stringified JSON object and return it
   } else {
-    return null;                                // If no token string exists, return null
+    return null;                                  // If no token string exists, return null
   }
 }
+
 
 isLoggedIn(): boolean {
   const token = this.getToken();

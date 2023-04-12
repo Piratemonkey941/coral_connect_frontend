@@ -14,7 +14,7 @@ import { LandingComponent } from './Elements/landing/landing.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { GraphsComponent } from './graphs/graphs.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from './auth/login/login.component';
@@ -32,6 +32,7 @@ import { ChartsMinorElemsTwoComponent } from './graphs/charts-minor-elems-two/ch
 import { ChartsMinorElemsThreeComponent } from './graphs/charts-minor-elems-three/charts-minor-elems-three.component';
 import { ChartsBigFourComponent } from './graphs/charts-big-four/charts-big-four.component';
 import { ApiTesterComponent } from './api-tester/api-tester.component';
+import { AuthInterceptor } from './shared/auth.interceptor';
 
 
 
@@ -73,10 +74,14 @@ import { ApiTesterComponent } from './api-tester/api-tester.component';
     MatDialogModule,
     FlexLayoutModule,
     HttpClientModule,
-    NgChartsModule
+    NgChartsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-// export class MinorElemsOneModule { }
+
