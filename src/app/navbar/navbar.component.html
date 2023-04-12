@@ -45,7 +45,7 @@
 
         <mat-divider></mat-divider>
 
-        <a mat-menu-item routerLink="/signup">Sign Up</a>
+        <a mat-menu-item routerLink="/signup" *ngIf="!currentUser">Sign Up</a>
         <a mat-menu-item routerLink="/login" *ngIf="!currentUser">Login</a>
         <a mat-menu-item (click)="logout()" *ngIf="currentUser">Log Out</a>
         <!-- <a mat-menu-item href="#">Articles</a> -->

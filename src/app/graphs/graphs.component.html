@@ -1,10 +1,15 @@
 <div *ngIf="currentUser" >
 
   <app-charts-big-four> </app-charts-big-four>
+  <mat-divider></mat-divider>
   <app-charts-major-elems></app-charts-major-elems>
+  <mat-divider></mat-divider>
   <app-charts-minor-elems-one></app-charts-minor-elems-one>
+  <mat-divider></mat-divider>
   <app-charts-minor-elems-two></app-charts-minor-elems-two>
+  <mat-divider></mat-divider>
   <app-charts-minor-elems-three></app-charts-minor-elems-three>
+  <mat-divider></mat-divider>
 </div>
 
 <div *ngIf="!currentUser" class="h-screen w-screen flex flex-col justify-center items-center">

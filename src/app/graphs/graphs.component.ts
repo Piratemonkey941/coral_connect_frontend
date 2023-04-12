@@ -5,6 +5,11 @@ import { User } from '../models/user.model';
 import { UserService } from '../shared/user.service';
 import { AuthService } from '.././shared/auth.service';
 import { default as Annotation } from 'chartjs-plugin-annotation';
+import { HttpClient } from '@angular/common/http';
+import { catchError, map } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { CreateElementMeasurement  } from '.././models/create-element-measurement.model'; // Make sure this path is correct
+import { ElementMeasurementsService } from '.././shared/element-measurements.service';
 
 @Component({
   selector: 'app-graphs',
@@ -20,18 +25,25 @@ export class GraphsComponent implements OnInit {
     (
       private userService: UserService,
       private authService: AuthService,
+      private http: HttpClient,
+      private elementMeasurementService: ElementMeasurementsService
     )
     {
       Chart.register(Annotation)
     }
 
   ngOnInit(): void {
-    this.userService.currentUserSubject.subscribe((user: User) => {
-      console.log(user);
-      this.currentUser = user;
-    })
-    // WILL NEED MODAL
-    }
+    // Replace '1' with the user ID you want to fetch data for
+    this.elementMeasurementService.getElementMeasurements(1).subscribe(
+      (measurements) => {
+        this.processMeasurements(measurements);
+      },
+      (error) => {
+        console.error('Error fetching element measurements:', error);
+      }
+    );
+  }
+  // WILL NEED MODAL
 
     logout() {
       this.authService.logout();
@@ -40,40 +52,34 @@ export class GraphsComponent implements OnInit {
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
       {
-        data: [ 35, 36, 35, 37, 36, 35, 37 ],
+        data: [],
         label: 'Salinity',
-        // yAxisID: 'y2',
         borderColor: 'rgba(148,159,177,1)',
         pointBackgroundColor: 'rgba(148,159,177,1)',
         pointBorderColor: '#fff',
         pointHoverBackgroundColor: '#fff',
         pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-
       },
       {
-        data: [ 420, 390, 440, 400, 410, 420, 400 ],
+        data: [],
         label: 'Calcium',
-
         borderColor: 'rgba(77,83,96,1)',
         pointBackgroundColor: 'rgba(77,83,96,1)',
         pointBorderColor: '#fff',
         pointHoverBackgroundColor: '#fff',
         pointHoverBorderColor: 'rgba(77,83,96,1)',
-
       },
       {
-        data: [ 8.6, 9.1, 8.8, 10, 9.7, 8.9, 10.1 ],
+        data: [],
         label: 'Alkilinity',
-        // yAxisID: 'y2',
         borderColor: 'red',
         pointBackgroundColor: 'rgba(148,159,177,1)',
         pointBorderColor: '#fff',
         pointHoverBackgroundColor: '#fff',
         pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-
       },
       {
-        data: [ 1350, 1400, 1380, 1360, 1400, 1350, 1390 ], // An array of numerical data points for the chart
+        data: [ ], // An array of numerical data points for the chart
         label: 'Magnesium',                                 // Label for this dataset, used in tooltips and the legend
         yAxisID: 'y1',                                      // Associates this dataset with a specific Y-axis in the chart
         borderColor: 'blue',                                // Color of the line that connects data points in the chart
@@ -85,6 +91,31 @@ export class GraphsComponent implements OnInit {
     ],
     labels: [ 'January', 'February', 'March', 'April', 'May', 'June', 'July' ]
   };
+
+  processMeasurements(measurements: CreateElementMeasurement[]) {
+    const salinityData: number[] = [];
+    const calciumData: number[] = [];
+    const alkilinityData: number[] = [];
+    const magnesiumData: number[] = [];
+
+    measurements.forEach((measurement) => {
+      if (measurement.reef_water_element_id === 1) {
+        salinityData.push(measurement.qt);
+      } else if (measurement.reef_water_element_id === 2) {
+        calciumData.push(measurement.qt);
+      } else if (measurement.reef_water_element_id === 3) {
+        alkilinityData.push(measurement.qt);
+      } else if (measurement.reef_water_element_id === 4) {
+        magnesiumData.push(measurement.qt);
+      }
+    });
+
+    this.lineChartData.datasets[0].data = salinityData;
+    this.lineChartData.datasets[1].data = calciumData;
+    this.lineChartData.datasets[2].data = alkilinityData;
+    this.lineChartData.datasets[3].data = magnesiumData;
+
+  }
 
   public lineChartOptions: ChartConfiguration['options'] = {
     responsive: true,

@@ -20,7 +20,18 @@ export class ElementMeasurementsService {
     const url = userId
       ? `${this.apiUrl}/api/v1/users/${userId}/element_measurements`
       : `${this.apiUrl}/api/v1/element_measurements`;
-    return this.http.get<ElementMeasurement[]>(url);
+
+    // Get the authentication token
+    const authToken = this.authService.getToken();
+
+    // Add the token to the request headers
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authToken.value}`
+      })
+    };
+    return this.http.get<ElementMeasurement[]>(url, httpOptions);
   }
 
   // Get a specific element measurement

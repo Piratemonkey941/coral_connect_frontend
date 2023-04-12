@@ -7,15 +7,20 @@ import { LandingComponent } from './Elements/landing/landing.component';
 import { CcSystemComponent } from './main/cc-system/cc-system.component';
 import { HomeComponent } from './shop/componants/home.component';
 import { CartComponent } from './shop/componants/cart/cart.component';
+// import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
 
   { path: 'landing', component: LandingComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent },
-  { path: 'graphs', component: GraphsComponent },
-  { path: 'system', component: CcSystemComponent },
 
+  { path: 'system', component: CcSystemComponent },
+  {
+    path: 'graphs',
+    component: GraphsComponent,
+    // canActivate: [AuthGuard]
+  },
 
   { path: 'store', component: HomeComponent },
   { path: 'cart', component: CartComponent },

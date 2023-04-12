@@ -108,8 +108,7 @@ export class ChartsBigFourComponent implements OnInit {
     ],
     labels: [ 'January', 'February', 'March', 'April', 'May', 'June', 'July' ]
   };
-
-  public lineChartOptions: ChartConfiguration['options'] = {
+ public lineChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     maintainAspectRatio: true, // You can set this to true if you want to maintain the aspect ratio while resizing
     elements: {
