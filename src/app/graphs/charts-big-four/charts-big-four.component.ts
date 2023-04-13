@@ -5,7 +5,7 @@ import { default as Annotation } from 'chartjs-plugin-annotation';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { CreateElementMeasurement  } from '../../model';
+import { CreateElementMeasurement, ElementMeasurement } from '../../model';
 import { ElementMeasurementsService } from '../../shared/element-measurements.service';
 
 @Component({
@@ -25,9 +25,8 @@ export class ChartsBigFourComponent implements OnInit {
 
   // WILL NEED MODAL
   ngOnInit() {
-    // Replace '1' with the user ID you want to fetch data for
-    this.elementMeasurementService.getElementMeasurements(1).subscribe(
-      (measurements) => {
+    this.elementMeasurementService.getElementMeasurements().subscribe(
+      (measurements: ElementMeasurement[]) => {
         this.processMeasurements(measurements);
       },
       (error) => {
@@ -36,29 +35,44 @@ export class ChartsBigFourComponent implements OnInit {
     );
   }
 
-  processMeasurements(measurements: CreateElementMeasurement[]) {
-    const salinityData: number[] = [];
-    const calciumData: number[] = [];
-    const alkilinityData: number[] = [];
-    const magnesiumData: number[] = [];
+  @ViewChild(BaseChartDirective, { static: false }) chart?: BaseChartDirective;
 
-    measurements.forEach((measurement) => {
-      if (measurement.reef_water_element_id === 1) {
-        salinityData.push(measurement.qt);
-      } else if (measurement.reef_water_element_id === 2) {
-        calciumData.push(measurement.qt);
-      } else if (measurement.reef_water_element_id === 3) {
-        alkilinityData.push(measurement.qt);
-      } else if (measurement.reef_water_element_id === 4) {
-        magnesiumData.push(measurement.qt);
-      }
-    });
+ processMeasurements(measurements: ElementMeasurement[]) {
+  const salinityData: number[] = [];
+  const calciumData: number[] = [];
+  const alkilinityData: number[] = [];
+  const magnesiumData: number[] = [];
+  const labels: string[] = [];
 
-    this.lineChartData[0].data = salinityData;
-    this.lineChartData[1].data = calciumData;
-    this.lineChartData[1].data = alkilinityData;
-    this.lineChartData[1].data = magnesiumData;
+  measurements.forEach((measurement, index) => {
+    if (measurement.reef_water_element_id === 1) {
+      salinityData.push(measurement.qt);
+    } else if (measurement.reef_water_element_id === 2) {
+      calciumData.push(measurement.qt);
+    } else if (measurement.reef_water_element_id === 3) {
+      alkilinityData.push(measurement.qt);
+    } else if (measurement.reef_water_element_id === 4) {
+      magnesiumData.push(measurement.qt);
+    }
+
+    // Assuming the measurements are sorted by date
+    labels.push(`Day ${index + 1}`);
+  });
+
+  this.lineChartData.labels = labels;
+  this.lineChartData.datasets[0].data = salinityData;
+  this.lineChartData.datasets[1].data = calciumData;
+  this.lineChartData.datasets[2].data = alkilinityData;
+  this.lineChartData.datasets[3].data = magnesiumData;
+
+  // Update the chart after updating the datasets and labels
+  if (this.chart && this.chart.chart) {
+    this.chart.chart.update();
   }
+}
+
+
+
 
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
@@ -106,8 +120,10 @@ export class ChartsBigFourComponent implements OnInit {
         pointHoverBorderColor: 'rgba(148,159,177,0.8)', // Border color of data points when hovered over; in this case, a semi-transparent grayish-blue color
       },
     ],
-    labels: [ 'January', 'February', 'March', 'April', 'May', 'June', 'July' ]
+    labels: []
   };
+
+  // 'January', 'February', 'March', 'April', 'May', 'June', 'July'
  public lineChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     maintainAspectRatio: true, // You can set this to true if you want to maintain the aspect ratio while resizing
@@ -169,7 +185,7 @@ export class ChartsBigFourComponent implements OnInit {
 
   public lineChartType: ChartType = 'line';
 
-  @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
+  // @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
   // private static generateNumber(i: number): number {
   //   return Math.floor((Math.random() * (i < 2 ? 100 : 1000)) + 1);
