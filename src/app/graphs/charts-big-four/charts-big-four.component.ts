@@ -65,10 +65,8 @@ export class ChartsBigFourComponent implements OnInit {
   this.lineChartData.datasets[2].data = alkilinityData;
   this.lineChartData.datasets[3].data = magnesiumData;
 
-  // Update the chart after updating the datasets and labels
-  if (this.chart && this.chart.chart) {
-    this.chart.chart.update();
-  }
+   // Update the chart with the new data
+   this.chart?.update();
 }
 
 
