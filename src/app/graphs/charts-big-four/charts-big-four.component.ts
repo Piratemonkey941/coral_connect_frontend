@@ -56,7 +56,7 @@ export class ChartsBigFourComponent implements OnInit {
     }
 
     // Assuming the measurements are sorted by date
-    labels.push(`Day ${index + 1}`);
+    labels.push(measurement.created_at.toString());
   });
 
   this.lineChartData.labels = labels;
