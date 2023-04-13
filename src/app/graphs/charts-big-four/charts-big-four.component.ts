@@ -3,22 +3,26 @@ import { Chart, ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective,  } from 'ng2-charts';
 import { default as Annotation } from 'chartjs-plugin-annotation';
 import { HttpClient } from '@angular/common/http';
-import { catchError, map } from 'rxjs/operators';
-import { throwError } from 'rxjs';
-import { CreateElementMeasurement, ElementMeasurement } from '../../model';
+// import { catchError, map } from 'rxjs/operators';
+// import { throwError } from 'rxjs';
+// import {  CreateElementMeasurement, } from '../../model';
+import {  ElementMeasurement } from '../../model';
 import { ElementMeasurementsService } from '../../shared/element-measurements.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-charts-big-four',
   templateUrl: './charts-big-four.component.html',
-  styleUrls: ['./charts-big-four.component.scss']
+  styleUrls: ['./charts-big-four.component.scss'],
+  providers: [DatePipe]
 })
 export class ChartsBigFourComponent implements OnInit {
   private newLabel? = 'New label';
 
   constructor(
     private http: HttpClient,
-    private elementMeasurementService: ElementMeasurementsService
+    private elementMeasurementService: ElementMeasurementsService,
+    private datePipe: DatePipe
     ) {
     Chart.register(Annotation)
   }
@@ -43,7 +47,7 @@ export class ChartsBigFourComponent implements OnInit {
   const alkilinityData: number[] = [];
   const magnesiumData: number[] = [];
   const labels: string[] = [];
-
+  
   measurements.forEach((measurement, index) => {
     if (measurement.reef_water_element_id === 1) {
       salinityData.push(measurement.qt);
@@ -56,7 +60,11 @@ export class ChartsBigFourComponent implements OnInit {
     }
 
     // Assuming the measurements are sorted by date
-    labels.push(measurement.created_at.toString());
+    const formattedDate = this.datePipe.transform(measurement.created_at, 'MMM dd h:mm a');
+    labels.push(formattedDate || measurement.created_at.toString());
+
+    // Assuming the measurements are sorted by date
+    // labels.push(measurement.created_at.toString());
   });
 
   this.lineChartData.labels = labels;
@@ -70,7 +78,7 @@ export class ChartsBigFourComponent implements OnInit {
 }
 
 
-
+// 2023-04-
 
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
