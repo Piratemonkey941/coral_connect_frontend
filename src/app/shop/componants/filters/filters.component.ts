@@ -9,18 +9,18 @@ import { StoreService } from '../../../shared/store.service';
 })
 export class FiltersComponent implements OnInit {
 
-  @Output() showCategory = new EventEmitter<string>()
-  // categories: string[] | undefined;
-  categoriesSubscription: Subscription | undefined;
-  categories: string[] = [
-    'B4 Elems',
-    'Major Elems',
-    'Minor Elems A-I',
-    'Minor Elems I-N',
-    'Minor Elems M-Z',
-    'Coral Fraging'
-  ];
+  // @Output() showCategory = new EventEmitter<string>()
+  // // categories: string[] | undefined;
+  // categoriesSubscription: Subscription | undefined;
+  // categories: string[] = [
+  //   'Reef Water Element',
+  //   'Reef Education',
+  //   'Reef Conservation',
 
+  // ];
+  @Output() showCategory = new EventEmitter<string>()
+  categoriesSubscription: Subscription | undefined;
+  categories: string[] = [];
 
   constructor(private storeService: StoreService) { }
 
@@ -35,7 +35,7 @@ export class FiltersComponent implements OnInit {
   onShowCategory(category: string): void {
     this.showCategory.emit(category)
   }
-  
+
   ngOnDestroy(): void {
     if (this.categoriesSubscription) {
       this.categoriesSubscription.unsubscribe();
