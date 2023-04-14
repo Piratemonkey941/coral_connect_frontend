@@ -37,7 +37,7 @@
       <mat-menu #resources="matMenu">
 
 
-        <a mat-menu-item routerLink="/graphs">Graphs</a>
+        <a mat-menu-item routerLink="/graphs" *ngIf="currentUser">Graphs</a>
 
 
         <a mat-menu-item routerLink="/system">CC-System</a>

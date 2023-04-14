@@ -2,27 +2,87 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Chart, ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { default as Annotation } from 'chartjs-plugin-annotation';
+import {  ElementMeasurement } from '../../model';
+import { ElementMeasurementsService } from '../../shared/element-measurements.service';
+import { DatePipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-charts-minor-elems-three',
   templateUrl: './charts-minor-elems-three.component.html',
-  styleUrls: ['./charts-minor-elems-three.component.scss']
+  styleUrls: ['./charts-minor-elems-three.component.scss'],
+  providers: [DatePipe]
 })
 export class ChartsMinorElemsThreeComponent implements OnInit {
   private newLabel? = 'New label';
 
-  constructor() {
+
+  constructor(
+    private http: HttpClient,
+    private elementMeasurementService: ElementMeasurementsService,
+    private datePipe: DatePipe
+    ) {
     Chart.register(Annotation)
   }
 
-  ngOnInit(): void {
-    // WILL NEED MODAL
+  // WILL NEED MODAL
+  ngOnInit() {
+    this.elementMeasurementService.getElementMeasurements().subscribe(
+      (measurements: ElementMeasurement[]) => {
+        this.processMeasurements(measurements);
+      },
+      (error) => {
+        console.error('Error fetching element measurements:', error);
+      }
+    );
+  }
+
+  @ViewChild(BaseChartDirective, { static: false }) chart?: BaseChartDirective;
+
+ processMeasurements(measurements: ElementMeasurement[]) {
+  const rubidiumData: number[] = [];
+  const seleniumData: number[] = [];
+  const vanadiumData: number[] = [];
+  const tinData: number[] = [];
+  const zincData: number[] = [];
+  const labels: string[] = [];
+
+  measurements.forEach((measurement, index) => {
+    if (measurement.reef_water_element_id === 21) {
+      rubidiumData.push(measurement.qt);
+    } else if (measurement.reef_water_element_id === 22) {
+      seleniumData.push(measurement.qt);
+    } else if (measurement.reef_water_element_id === 23) {
+      vanadiumData.push(measurement.qt);
+    } else if (measurement.reef_water_element_id === 24) {
+      tinData.push(measurement.qt);
+    }else if (measurement.reef_water_element_id === 25) {
+      zincData.push(measurement.qt);
     }
+    // Assuming the measurements are sorted by date
+    const formattedDate = this.datePipe.transform(measurement.created_at, 'MMM dd h:mm a');
+    labels.push(formattedDate || measurement.created_at.toString());
+
+    // Assuming the measurements are sorted by date
+    // labels.push(measurement.created_at.toString());
+  });
+
+  this.lineChartData.labels = labels;
+  this.lineChartData.datasets[0].data = rubidiumData;
+  this.lineChartData.datasets[1].data = seleniumData;
+  this.lineChartData.datasets[2].data = vanadiumData;
+  this.lineChartData.datasets[3].data = tinData;
+  this.lineChartData.datasets[3].data = zincData;
+
+   // Update the chart with the new data
+   this.chart?.update();
+}
+
 
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
       {
-        data: [145, 257, 34, 221, 89, 173, 290],
+        data: [],
         label: 'Rubidium',
         // yAxisID: 'y2',
         borderColor: 'rgba(148,159,177,1)',
@@ -33,7 +93,7 @@ export class ChartsMinorElemsThreeComponent implements OnInit {
 
       },
       {
-        data: [0, 0, 0.12, 0.08, 0, 0.1, 0.05],
+        data: [],
         label: 'Selenium',
 
         borderColor: 'rgba(77,83,96,1)',
@@ -44,7 +104,7 @@ export class ChartsMinorElemsThreeComponent implements OnInit {
 
       },
       {
-        data: [1.4, 1.9, 0.5, 1.8, 1.1, 1.7, 2.2],
+        data: [],
         label: 'Vanadium',
         // yAxisID: 'y2',
         borderColor: 'red',
@@ -55,7 +115,7 @@ export class ChartsMinorElemsThreeComponent implements OnInit {
 
       },
       {
-        data: [0.2, 2.5, 12, 30, 0.8, 8.5, 18]        , // An array of numerical data points for the chart
+        data: []        , // An array of numerical data points for the chart
         label: 'Tin',                                 // Label for this dataset, used in tooltips and the legend
         yAxisID: 'y1',                                      // Associates this dataset with a specific Y-axis in the chart
         borderColor: 'blue',                                // Color of the line that connects data points in the chart
@@ -65,7 +125,7 @@ export class ChartsMinorElemsThreeComponent implements OnInit {
         pointHoverBorderColor: 'rgba(148,159,177,0.8)',     // Border color of data points when hovered over; in this case, a semi-transparent grayish-blue color
       },
       {
-        data: [0.05, 2.5, 4.2, 10.5, 18.9, 23.7, 3.8],
+        data: [],
         label: 'Zinc',
         // yAxisID: 'y2',
         borderColor: 'red',
@@ -76,7 +136,7 @@ export class ChartsMinorElemsThreeComponent implements OnInit {
 
       },
     ],
-    labels: [ 'January', 'February', 'March', 'April', 'May', 'June', 'July' ]
+    labels: [ ]
   };
 
   public lineChartOptions: ChartConfiguration['options'] = {
@@ -140,13 +200,6 @@ export class ChartsMinorElemsThreeComponent implements OnInit {
 
   public lineChartType: ChartType = 'line';
 
-  @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
-
-  // private static generateNumber(i: number): number {
-  //   return Math.floor((Math.random() * (i < 2 ? 100 : 1000)) + 1);
-  // }
-
-
   // events
   public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
     console.log(event, active);
@@ -156,13 +209,21 @@ export class ChartsMinorElemsThreeComponent implements OnInit {
     console.log(event, active);
   }
 
-//Hides acording to index value
-public hideOne(): void {
-  console.log('Datasets:', this.chart?.data.datasets);
-  const isHidden = this.chart?.isDatasetHidden(0);
-  console.log('isHidden:', isHidden);
-  this.chart?.hideDataset(0, !isHidden);
+  //Hides acording to index value
+  public hideOne(): void {
+    console.log('Datasets:', this.chart?.data.datasets);
+    const isHidden = this.chart?.isDatasetHidden(0);
+    console.log('isHidden:', isHidden);
+    this.chart?.hideDataset(0, !isHidden);
+  }
+
 }
 
 
-}
+  // @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
+
+  // private static generateNumber(i: number): number {
+  //   return Math.floor((Math.random() * (i < 2 ? 100 : 1000)) + 1);
+  // }
+
+

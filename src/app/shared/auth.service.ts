@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpBackend } from '@angular/common/http';
 import { UserService } from './user.service';
 import { Router } from '@angular/router';
 import { User } from '../models/user.model';
@@ -22,10 +22,16 @@ export class AuthService {
     private http: HttpClient,
     private userService: UserService,
     private route: Router,
+    private httpBackend: HttpBackend,
     )
     {
       this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
       this.currentUser = this.currentUserSubject.asObservable();
+
+      // Bypass interceptors for AuthService HttpClient instance
+      this.http = new HttpClient(this.httpBackend);
+
+      this.autoLogin();
     }
 
 
@@ -68,6 +74,8 @@ setToken(token: any) {
 autoLogin() {
   const token = this.getToken();      // Get the token from local storage
 
+  console.log('autoLogin() - Token:', token); // Add this line to check the token value
+
   if (token == null) {                // Check if a token exists
     this.route.navigate(['/login']);  // If no token exists, navigate to the login page
   } else {                            // If a token exists, send a GET request to the server to get the user object associated with the token
@@ -76,8 +84,11 @@ autoLogin() {
         Authorization: `Bearer ${token.value}`  // Set the 'Authorization' header to include the token value
       }
     }).subscribe((user: User) => {              // If the server returns a valid user object, set the current user in the application's authentication service
+        console.log('autoLogin() - User:', user); // Add this line to check the user object
         this.userService.setCurrentUser(user);
-        this.route.navigate(['/home']);         // Navigate to the home page
+        this.currentUserSubject.next(user); // Add this line to set currentUserSubject in AuthService
+        // this.route.navigate(['/landing']);         // Navigate to the home page
+
     }, (error) => {
       // If an error occurs (e.g. the token is invalid), handle the error here, such as navigating to the login page or showing an error message.
       console.error('Auto-login failed:', error);

@@ -3,12 +3,13 @@ import { Chart, ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective,  } from 'ng2-charts';
 import { default as Annotation } from 'chartjs-plugin-annotation';
 import { HttpClient } from '@angular/common/http';
-// import { catchError, map } from 'rxjs/operators';
-// import { throwError } from 'rxjs';
-// import {  CreateElementMeasurement, } from '../../model';
 import {  ElementMeasurement } from '../../model';
 import { ElementMeasurementsService } from '../../shared/element-measurements.service';
 import { DatePipe } from '@angular/common';
+
+// import { catchError, map } from 'rxjs/operators';
+// import { throwError } from 'rxjs';
+// import {  CreateElementMeasurement, } from '../../model';
 
 @Component({
   selector: 'app-charts-big-four',
@@ -47,7 +48,7 @@ export class ChartsBigFourComponent implements OnInit {
   const alkilinityData: number[] = [];
   const magnesiumData: number[] = [];
   const labels: string[] = [];
-  
+
   measurements.forEach((measurement, index) => {
     if (measurement.reef_water_element_id === 1) {
       salinityData.push(measurement.qt);
@@ -129,8 +130,7 @@ export class ChartsBigFourComponent implements OnInit {
     labels: []
   };
 
-  // 'January', 'February', 'March', 'April', 'May', 'June', 'July'
- public lineChartOptions: ChartConfiguration['options'] = {
+  public lineChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     maintainAspectRatio: true, // You can set this to true if you want to maintain the aspect ratio while resizing
     elements: {
@@ -191,11 +191,6 @@ export class ChartsBigFourComponent implements OnInit {
 
   public lineChartType: ChartType = 'line';
 
-  // @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
-
-  // private static generateNumber(i: number): number {
-  //   return Math.floor((Math.random() * (i < 2 ? 100 : 1000)) + 1);
-  // }
 
 
   // events
@@ -216,5 +211,11 @@ export class ChartsBigFourComponent implements OnInit {
     console.log(this.chart)
   }
 
-
 }
+
+
+ // @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
+
+  // private static generateNumber(i: number): number {
+  //   return Math.floor((Math.random() * (i < 2 ? 100 : 1000)) + 1);
+  // }

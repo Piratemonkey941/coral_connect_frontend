@@ -2,27 +2,90 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Chart, ChartConfiguration, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { default as Annotation } from 'chartjs-plugin-annotation';
+import {  ElementMeasurement } from '../../model';
+import { ElementMeasurementsService } from '../../shared/element-measurements.service';
+import { DatePipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-charts-minor-elems-one',
   templateUrl: './charts-minor-elems-one.component.html',
-  styleUrls: ['./charts-minor-elems-one.component.scss']
+  styleUrls: ['./charts-minor-elems-one.component.scss'],
+  providers: [DatePipe]
 })
 export class ChartsMinorElemsOneComponent implements OnInit {
   private newLabel? = 'New label';
 
-  constructor() {
+
+  constructor(
+    private http: HttpClient,
+    private elementMeasurementService: ElementMeasurementsService,
+    private datePipe: DatePipe
+    ) {
     Chart.register(Annotation)
   }
 
-  ngOnInit(): void {
-    // WILL NEED MODAL
+  // WILL NEED MODAL
+  ngOnInit() {
+    this.elementMeasurementService.getElementMeasurements().subscribe(
+      (measurements: ElementMeasurement[]) => {
+        this.processMeasurements(measurements);
+      },
+      (error) => {
+        console.error('Error fetching element measurements:', error);
+      }
+    );
+  }
+
+  @ViewChild(BaseChartDirective, { static: false }) chart?: BaseChartDirective;
+
+ processMeasurements(measurements: ElementMeasurement[]) {
+  const bariumData: number[] = [];
+  const chromiumData: number[] = [];
+  const cobaltData: number[] = [];
+  const copperData: number[] = [];
+  const fluorideData: number[] = [];
+  const iodineData: number[] = [];
+  const labels: string[] = [];
+
+  measurements.forEach((measurement, index) => {
+    if (measurement.reef_water_element_id === 10) {
+      bariumData.push(measurement.qt);
+    } else if (measurement.reef_water_element_id === 11) {
+      chromiumData.push(measurement.qt);
+    } else if (measurement.reef_water_element_id === 12) {
+      cobaltData.push(measurement.qt);
+    } else if (measurement.reef_water_element_id === 13) {
+      copperData.push(measurement.qt);
+    }else if (measurement.reef_water_element_id === 14) {
+      fluorideData.push(measurement.qt);
+    }else if (measurement.reef_water_element_id === 15) {
+      iodineData.push(measurement.qt);
     }
 
+    // Assuming the measurements are sorted by date
+    const formattedDate = this.datePipe.transform(measurement.created_at, 'MMM dd h:mm a');
+    labels.push(formattedDate || measurement.created_at.toString());
+
+    // Assuming the measurements are sorted by date
+    // labels.push(measurement.created_at.toString());
+  });
+
+  this.lineChartData.labels = labels;
+  this.lineChartData.datasets[0].data = bariumData;
+  this.lineChartData.datasets[1].data = chromiumData;
+  this.lineChartData.datasets[2].data = cobaltData;
+  this.lineChartData.datasets[3].data = copperData;
+  this.lineChartData.datasets[4].data = fluorideData;
+  this.lineChartData.datasets[5].data = iodineData;
+
+   // Update the chart with the new data
+   this.chart?.update();
+}
   public lineChartData: ChartConfiguration['data'] = {
     datasets: [
       {
-        data: [ 10.8, 6.5, 2.2, 12.7, 8.9, 7.1, 13.9 ],
+        data: [],
         label: 'Barium',
         // yAxisID: 'y2',
         borderColor: 'rgba(148,159,177,1)',
@@ -33,7 +96,7 @@ export class ChartsMinorElemsOneComponent implements OnInit {
 
       },
       {
-        data: [ 0.3, 1.9, 4.4, 1.2, 2.8, 0.8, 3.6 ],
+        data: [],
         label: 'Chromium',
 
         borderColor: 'rgba(77,83,96,1)',
@@ -44,7 +107,7 @@ export class ChartsMinorElemsOneComponent implements OnInit {
 
       },
       {
-        data: [ 0.07, 1.8, 3.2, 2.2, 0.5, 4.6, 0.1 ],
+        data: [],
         label: 'Cobalt',
         // yAxisID: 'y2',
         borderColor: 'red',
@@ -55,7 +118,7 @@ export class ChartsMinorElemsOneComponent implements OnInit {
 
       },
       {
-        data: [ 0.4, 7.2, 2.1, 9.8, 1.5, 4.6, 0.9 ], // An array of numerical data points for the chart
+        data: [], // An array of numerical data points for the chart
         label: 'Copper',                                 // Label for this dataset, used in tooltips and the legend
         yAxisID: 'y1',                                      // Associates this dataset with a specific Y-axis in the chart
         borderColor: 'blue',                                // Color of the line that connects data points in the chart
@@ -65,7 +128,7 @@ export class ChartsMinorElemsOneComponent implements OnInit {
         pointHoverBorderColor: 'rgba(148,159,177,0.8)',     // Border color of data points when hovered over; in this case, a semi-transparent grayish-blue color
       },
       {
-        data: [ 2.1, 1.2, 0.4, 1.9, 1.1, 0.8, 1.5 ],
+        data: [],
         label: 'Fluoride',
 
         borderColor: 'rgba(77,83,96,1)',
@@ -77,7 +140,7 @@ export class ChartsMinorElemsOneComponent implements OnInit {
 
       },
       {
-        data: [ 80, 40, 15, 65, 90, 75, 30 ],
+        data: [],
         label: 'Iodine',
         // yAxisID: 'y2',
         borderColor: 'red',
@@ -88,7 +151,7 @@ export class ChartsMinorElemsOneComponent implements OnInit {
         hidden: false
       },
     ],
-    labels: [ 'January', 'February', 'March', 'April', 'May', 'June', 'July' ]
+    labels: []
   };
 
   public lineChartOptions: ChartConfiguration['options'] = {
@@ -152,13 +215,6 @@ export class ChartsMinorElemsOneComponent implements OnInit {
 
   public lineChartType: ChartType = 'line';
 
-  @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
-
-  // private static generateNumber(i: number): number {
-  //   return Math.floor((Math.random() * (i < 2 ? 100 : 1000)) + 1);
-  // }
-
-
   // events
   public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
     console.log(event, active);
@@ -168,13 +224,22 @@ export class ChartsMinorElemsOneComponent implements OnInit {
     console.log(event, active);
   }
 
-//Hides acording to index value
-public hideOne(): void {
-  console.log('Datasets:', this.chart?.data.datasets);
-  const isHidden = this.chart?.isDatasetHidden(5);
-  console.log('isHidden:', isHidden);
-  this.chart?.hideDataset(5, !isHidden);
-}
+  //Hides acording to index value
+  public hideOne(): void {
+    console.log('Datasets:', this.chart?.data.datasets);
+    const isHidden = this.chart?.isDatasetHidden(5);
+    console.log('isHidden:', isHidden);
+    this.chart?.hideDataset(5, !isHidden);
+  }
 
 
 }
+
+
+  // @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
+
+  // private static generateNumber(i: number): number {
+  //   return Math.floor((Math.random() * (i < 2 ? 100 : 1000)) + 1);
+  // }
+
+

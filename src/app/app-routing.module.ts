@@ -14,10 +14,8 @@ const routes: Routes = [
   { path: 'landing', component: LandingComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent },
-
   { path: 'system', component: CcSystemComponent },
-  {
-    path: 'graphs',
+  {    path: 'graphs',
     component: GraphsComponent,
     // canActivate: [AuthGuard]
   },
