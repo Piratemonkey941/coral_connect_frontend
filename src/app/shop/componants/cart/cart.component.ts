@@ -16,66 +16,80 @@ export class CartComponent implements OnInit {
   cart: Cart = { items: []
   };
 
-dataSource: Array<CartItem> = []
-displayedColumns: Array<string> = [
-    'product',
-    'name',
-    'price',
-    'quantity',
-    'total',
-    'action'
-]
-cartSubscription: Subscription | undefined;
-
-constructor(private cartService: CartService, private http: HttpClient) {}
-
-ngOnInit(): void {
-  this.cartSubscription = this.cartService.cart.subscribe((_cart: Cart) => {
-    this.cart = _cart;
-    this.dataSource = _cart.items;
-  });
-}
-
-onResize(event: any): void {
-  this.windowWidth = event.target.innerWidth;
-}
-
-getTotal(items: CartItem[]): number {
-  return this.cartService.getTotal(items);
-}
-
-onAddQuantity(item: CartItem): void {
-  this.cartService.addToCart(item);
-}
-
-onRemoveFromCart(item: CartItem): void {
-  this.cartService.removeFromCart(item);
-}
-
-onRemoveQuantity(item: CartItem): void {
-  this.cartService.removeQuantity(item);
-}
-
-onClearCart(): void {
-  this.cartService.clearCart();
-}
-
-onCheckout(): void {
-  // this.http
-  //   .post('http://localhost:4242/checkout', {
-  //     items: this.cart.items,
-  //   })
-  //   .subscribe(async (res: any) => {
-  //     let stripe = await loadStripe('your token');
-  //     stripe?.redirectToCheckout({
-  //       sessionId: res.id,
-  //     });
-  //   });
-}
-
-ngOnDestroy() {
-  if (this.cartSubscription) {
-    this.cartSubscription.unsubscribe();
+  get screenWidth(): number {
+    return this.windowWidth;
   }
-}
+
+  dataSource: Array<CartItem> = []
+  displayedColumns: Array<string> = [
+      'product',
+      'name',
+      'price',
+      'quantity',
+      'total',
+      'action'
+  ]
+  cartSubscription: Subscription | undefined;
+
+  constructor(private cartService: CartService, private http: HttpClient) {}
+
+  ngOnInit(): void {
+    this.cartSubscription = this.cartService.cart.subscribe((_cart: Cart) => {
+      this.cart = _cart;
+      this.dataSource = _cart.items;
+    });
+
+    window.addEventListener('resize', this.onResize.bind(this));
+  }
+
+  ngOnDestroy(): void {
+    if (this.cartSubscription) {
+      this.cartSubscription.unsubscribe();
+    }
+
+    window.removeEventListener('resize', this.onResize.bind(this));
+  }
+
+  onResize(): void {
+    this.windowWidth = window.innerWidth;
+  }
+
+  getTotal(items: CartItem[]): number {
+    return this.cartService.getTotal(items);
+  }
+
+  onAddQuantity(item: CartItem): void {
+    this.cartService.addToCart(item);
+  }
+
+  onRemoveFromCart(item: CartItem): void {
+    this.cartService.removeFromCart(item);
+  }
+
+  onRemoveQuantity(item: CartItem): void {
+    this.cartService.removeQuantity(item);
+  }
+
+  onClearCart(): void {
+    this.cartService.clearCart();
+  }
+
+  onCheckout(): void {
+    // this.http
+    //   .post('http://localhost:4242/checkout', {
+    //     items: this.cart.items,
+    //   })
+    //   .subscribe(async (res: any) => {
+    //     let stripe = await loadStripe('your token');
+    //     stripe?.redirectToCheckout({
+    //       sessionId: res.id,
+    //     });
+    //   });
+  }
+
+  // ngOnDestroy() {
+  //   if (this.cartSubscription) {
+  //     this.cartSubscription.unsubscribe();
+  //   }
+  // }
 }

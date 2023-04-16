@@ -1,7 +1,9 @@
 
-<app-header (window:resize)="onResize($event)"></app-header>
+<app-header (window:resize)="onResize()"></app-header>
 <mat-card *ngIf="cart.items.length" class="max-w-7xl mx-auto">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-full">
+
+    <!-- ======== Row 1 ========= -->
 
     <ng-container matColumnDef="product">
       <th mat-header-cell *matHeaderCellDef>Product</th>
@@ -13,6 +15,8 @@
       </td>
     </ng-container>
 
+    <!-- ======== Row 2 ========= -->
+
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef>Name</th>
       <td mat-cell *matCellDef="let element">
@@ -21,11 +25,15 @@
       <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
+    <!-- ======== Row 3 ========= -->
+
     <ng-container matColumnDef="price">
       <th mat-header-cell *matHeaderCellDef>Price</th>
       <td mat-cell *matCellDef="let element">{{ element.price | currency }}</td>
       <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
+
+    <!-- ======== Row 4 Quantity========= -->
 
     <ng-container matColumnDef="quantity">
       <th mat-header-cell *matHeaderCellDef>Quantity</th>
@@ -52,6 +60,8 @@
       </td>
       <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
+
+ <!-- ======== Row 5 Total ========= -->
 
     <ng-container matColumnDef="total">
       <th mat-header-cell *matHeaderCellDef>Total</th>
@@ -86,8 +96,10 @@
       </td>
     </ng-container>
 
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef>
+    <!-- BELOW ARE LARGE SCREEN BUTTONS -->
+
+    <ng-container matColumnDef="action" >
+      <th mat-header-cell *matHeaderCellDef >
         <button
           *ngIf="windowWidth > 740"
           (click)="onClearCart()"
