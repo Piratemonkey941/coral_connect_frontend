@@ -4,7 +4,7 @@
 class="min-h-full max-w-7xl mx-auto border-x bg-white"
 >
   <mat-drawer mode="side" opened class="p-6 bg-slate-100">
-    <app-filters (showCategory)="onShowCategory($event)"></app-filters>
+    <app-filters (showCategory)="onShowCategory($event)" [categories]="categories"></app-filters>
   </mat-drawer>
 
   <mat-drawer-content class="p-6 ">
@@ -12,7 +12,9 @@ class="min-h-full max-w-7xl mx-auto border-x bg-white"
         (columnsCountChange)="onColumnsCountChange($event)"
         (itemsCountChange)="onItemsCountChange($event)"
         (sortChange)="onSortChange($event)"
+        (showCategory)="onShowCategory($event)"
         class="text-slate-900"
+        [categories]="categories"
       >
           </app-products-header>
           <mat-grid-list
@@ -22,7 +24,7 @@ class="min-h-full max-w-7xl mx-auto border-x bg-white"
             [rowHeight]="rowHeight"
           >
 
-          <mat-grid-tile *ngFor="let product of products">
+          <mat-grid-tile *ngFor="let product of filteredProducts">
             <app-product-box
               (addToCart)="onAddToCart($event)"
               [product]="product"

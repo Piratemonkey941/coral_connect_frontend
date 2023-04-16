@@ -4,102 +4,30 @@
     <span class="spacer"></span>
 
     <ng-container *ngIf="!isSmallScreen">
-      <a mat-button routerLink="#secondPage">Base Elems</a>
-      <a mat-button routerLink="#thirdPage">Major Elems</a>
-      <a mat-button routerLink="#fourthPage">Minor Elems</a>
-      <a mat-button routerLink="#fourthPage">Minor Elems</a>
-      <a mat-button routerLink="#fourthPage">Minor Elems</a>
+      <a mat-button routerLink="/graphs" *ngIf="currentUser">Graphs</a>
       <a mat-button routerLink="/store">Store</a>
+      <a mat-button routerLink="/system">CC-System</a>
+      <a mat-button routerLink="/signup" *ngIf="!currentUser">Sign Up</a>
+      <a mat-button routerLink="/login" *ngIf="!currentUser">Login</a>
+      <a mat-button (click)="logout()" *ngIf="currentUser">Log Out</a>
     </ng-container>
 
-    <nav *ngIf="isSmallScreen">
-      <button mat-icon-button [matMenuTriggerFor]="mainMenu">
+    <nav class="resources_padding" *ngIf="isSmallScreen">
+      <button mat-icon-button [matMenuTriggerFor]="resources">
         Menu
         <mat-icon>menu</mat-icon>
       </button>
-      <mat-menu #mainMenu="matMenu">
-        <a mat-menu-item routerLink="#secondPage">Base Elems</a>
-        <a mat-menu-item routerLink="#thirdPage">Major Elems</a>
-        <a mat-menu-item routerLink="#fourthPage">Minor Elems</a>
-        <a mat-menu-item routerLink="#fourthPage">Minor Elems</a>
-        <a mat-menu-item routerLink="#fourthPage">Minor Elems</a>
-        <a mat-menu-item routerLink="/store">Store</a>
-      </mat-menu>
-    </nav>
-
-    <span class="spacer"></span>
-
-    <nav class="resources_padding">
-      <button mat-icon-button [matMenuTriggerFor]="resources">
-        Resources
-        <mat-icon>arrow_drop_down</mat-icon>
-      </button>
       <mat-menu #resources="matMenu">
-
-
         <a mat-menu-item routerLink="/graphs" *ngIf="currentUser">Graphs</a>
-
-
+        <a mat-menu-item routerLink="/store">Store</a>
         <a mat-menu-item routerLink="/system">CC-System</a>
-        <a mat-menu-item href="#">Additional FAQ</a>
-
         <mat-divider></mat-divider>
-
         <a mat-menu-item routerLink="/signup" *ngIf="!currentUser">Sign Up</a>
         <a mat-menu-item routerLink="/login" *ngIf="!currentUser">Login</a>
         <a mat-menu-item (click)="logout()" *ngIf="currentUser">Log Out</a>
-        <!-- <a mat-menu-item href="#">Articles</a> -->
-        <!-- <a mat-menu-item href="#">Forum</a> -->
       </mat-menu>
     </nav>
   </mat-toolbar-row>
 </mat-toolbar>
 
 
-<!-- <mat-toolbar color="primary" class="mat-elevation-z4">
-  <mat-toolbar-row>
-    <span><a class="mat-button" routerLink="#firstPage">Reef Moonshiner's</a></span>
-
-    <span class="spacer"></span>
-
-
-    <a mat-button routerLink="#secondPage">Base Elems</a>
-    <a mat-button routerLink="#thirdPage">Major Elems</a>
-    <a mat-button routerLink="#fourthPage">Minor Elems</a>
-    <a mat-button routerLink="#fourthPage">Minor Elems</a>
-    <a mat-button routerLink="#fourthPage">Minor Elems</a>
-    <a mat-button routerLink="#fifthPage">System</a>
-
-
-
-
-    <span class="spacer"></span>
-
-    <nav class="resources_padding">
-      <button mat-icon-button [matMenuTriggerFor]="resources">
-        Resources
-        <mat-icon>arrow_drop_down</mat-icon>
-      </button>
-      <mat-menu #resources="matMenu">
-        <a mat-menu-item href="#">Articles</a>
-        <a mat-menu-item href="#">Handbook</a>
-        <a mat-menu-item href="#">Additional FAQ</a>
-        <mat-divider></mat-divider>
-        <a mat-menu-item href="#">Forum</a>
-      </mat-menu>
-    </nav>
-  </mat-toolbar-row>
-</mat-toolbar>
- -->
-<!-- <nav>
-  <button mat-icon-button [matMenuTriggerFor]="menu">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <a mat-menu-item routerLink="#secondPage">Base Elems</a>
-    <a mat-menu-item routerLink="#thirdPage">Major Elems</a>
-    <a mat-menu-item routerLink="#fourthPage">Minor Elems</a>
-    <a mat-menu-item routerLink="#fifthPage">System</a>
-  </mat-menu>
-</nav>
- -->

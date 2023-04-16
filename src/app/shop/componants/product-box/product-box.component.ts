@@ -29,5 +29,13 @@ export class ProductBoxComponent implements OnInit {
   onAddToCart(): void {
       this.addToCart.emit(this.product);
   }
+  
+  truncatedDescription(description: string, maxWords: number): string {
+    const words = description.split(' ');
+    if (words.length > maxWords) {
+      return words.slice(0, maxWords).join(' ') + '...';
+    }
+    return description;
+  }
 
 }

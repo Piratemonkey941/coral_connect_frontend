@@ -1,16 +1,16 @@
-<mat-expansion-panel *ngIf="categories">
+<mat-expansion-panel *ngIf="showFilters && categories">
   <mat-expansion-panel-header>
-      <mat-panel-title>CATAGORIES</mat-panel-title>
+    <mat-panel-title>CATAGORIES</mat-panel-title>
   </mat-expansion-panel-header>
   <mat-selection-list [multiple]="false">
-      <mat-list-option *ngFor="let category of categories" [value]="category">
-          <button
-            mat-raised-button
-            color="primary"
-            (click)="onShowCategory(category)"
-          >
-            {{ category }}
-          </button>
-      </mat-list-option>
+    <mat-list-option *ngFor="let category of categories" [value]="category">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onShowCategory(category)"
+      >
+        {{ category }}
+      </button>
+    </mat-list-option>
   </mat-selection-list>
 </mat-expansion-panel>

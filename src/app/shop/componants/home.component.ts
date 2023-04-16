@@ -4,6 +4,9 @@ import { CartService } from '../../shared/cart.service';
 import { StoreService } from '../../shared/store.service';
 import { Subscription } from 'rxjs';
 
+
+import { CategoryServiceService } from './../../shared/category-service.service'; // Import the CategoryServiceService
+
 const ROWS_HEIGHT: { [id: number]: number } = { 1: 400, 3: 335, 4: 350 };
 
 @Component({
@@ -12,9 +15,13 @@ const ROWS_HEIGHT: { [id: number]: number } = { 1: 400, 3: 335, 4: 350 };
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  categories: string[] = [];
+  categoriesSubscription: Subscription | undefined;
+  products: Product[] = [];
+  filteredProducts: Product[] = [];
   cols = 3;
   rowHeight: number = ROWS_HEIGHT[this.cols];
-  products: Array<Product> | undefined;
+  // products: Array<Product> | undefined;
   count = '12';
   sort = 'desc';
   category: string | undefined;
@@ -26,7 +33,22 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getProducts();
+    this.storeService.getAllProducts().subscribe((products: Product[]) => {
+      this.products = products;
+      // Initialize the filteredProducts with all products
+      this.filteredProducts = products;
+    });
+  }
+
+
+  ngOnDestroy(): void {
+    if (this.productsSubscription) {
+      this.productsSubscription.unsubscribe();
+    }
+
+    // if (this.categoriesSubscription) {
+    //   this.categoriesSubscription.unsubscribe();
+    // }
   }
 
   onColumnsCountChange(colsNum: number): void {
@@ -41,12 +63,19 @@ export class HomeComponent implements OnInit {
 
   onSortChange(newSort: string): void {
     this.sort = newSort;
-    this.getProducts();
+    this.applySorting(newSort);
   }
 
-  onShowCategory(newCategory: string): void {
-    this.category = newCategory;
-    this.getProducts();
+  onShowCategory(category: string): void {
+    this.filteredProducts = category === 'All' ? this.products : this.products.filter(product => product.category === category);
+  }
+
+  applySorting(sort: string): void {
+    if (sort === 'asc') {
+      this.filteredProducts.sort((a, b) => a.title.localeCompare(b.title));
+    } else {
+      this.filteredProducts.sort((a, b) => b.title.localeCompare(a.title));
+    }
   }
 
   getProducts(): void {
@@ -71,9 +100,5 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  ngOnDestroy(): void {
-    if (this.productsSubscription) {
-      this.productsSubscription.unsubscribe();
-    }
-  }
+
 }

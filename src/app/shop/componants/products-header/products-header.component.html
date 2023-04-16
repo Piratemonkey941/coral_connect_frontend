@@ -11,31 +11,46 @@
       </mat-menu>
     </div>
     <div class="flex items-center">
-        <div>
-          <button mat-button [matMenuTriggerFor]="menu" class="text-slate-900">
-              Show {{ itemsShowCount }}
-              <mat-icon>expand_more</mat-icon>
+      <div *ngIf="!showColumnButtons">
+        <!-- Add the categories dropdown here -->
+        <button mat-button [matMenuTriggerFor]="categoriesMenu" class="text-slate-900">
+          Categories
+          <mat-icon>expand_more</mat-icon>
+        </button>
+        <mat-menu #categoriesMenu="matMenu">
+          <ng-container *ngFor="let category of categories">
+            <button mat-menu-item (click)="onShowCategory(category)">{{ category }}</button>
+          </ng-container>
+        </mat-menu>
+      </div>
+      
+      <!-- Future implement -->
+      <!-- <div>
+        <button mat-button [matMenuTriggerFor]="menu" class="text-slate-900">
+          Show {{ itemsShowCount }}
+          <mat-icon>expand_more</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button (click)="onItemsUpdated(12)" mat-menu-item>12</button>
+          <button (click)="onItemsUpdated(24)" mat-menu-item>24</button>
+          <button (click)="onItemsUpdated(36)" mat-menu-item>36</button>
+        </mat-menu>
+      </div> -->
+
+        <ng-container *ngIf="showColumnButtons">
+          <button (click)="onColumnsUpdated(1)">
+            <mat-icon class="text-slate-900">view_list</mat-icon>
           </button>
-          <mat-menu #menu="matMenu">
-              <button (click)="onItemsUpdated(12)" mat-menu-item>12</button>
-              <button (click)="onItemsUpdated(24)" mat-menu-item>24</button>
-              <button (click)="onItemsUpdated(36)" mat-menu-item>36</button>
-          </mat-menu>
-        </div>
-
-
-      <button (click)="onColumnsUpdated(1)">
-        <mat-icon class="text-slate-900">view_list</mat-icon>
-      </button>
-      <button (click)="onColumnsUpdated(3)">
-        <mat-icon class="text-slate-900">view_module</mat-icon>
-      </button>
-      <button (click)="onColumnsUpdated(4)">
-        <mat-icon class="text-slate-900">view_comfy</mat-icon>
-      </button>
+          <button (click)="onColumnsUpdated(3)">
+            <mat-icon class="text-slate-900">view_module</mat-icon>
+          </button>
+          <button (click)="onColumnsUpdated(4)">
+            <mat-icon class="text-slate-900">view_comfy</mat-icon>
+          </button>
+        </ng-container>
+      </div>
     </div>
-  </div>
-</mat-card>
+  </mat-card>
 
 
 <!-- class="text-slate-900" -->

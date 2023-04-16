@@ -1,34 +1,47 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, EventEmitter, OnInit, Output, Input, AfterViewInit } from '@angular/core';
+import { fromEvent, Subscription } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 import { StoreService } from '../../../shared/store.service';
+import { CategoryServiceService } from '../../../shared/category-service.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.scss']
 })
-export class FiltersComponent implements OnInit {
+export class FiltersComponent implements OnInit, AfterViewInit {
 
-  // @Output() showCategory = new EventEmitter<string>()
-  // // categories: string[] | undefined;
-  // categoriesSubscription: Subscription | undefined;
-  // categories: string[] = [
-  //   'Reef Water Element',
-  //   'Reef Education',
-  //   'Reef Conservation',
+  showFilters = true;
+  onDestroy$ = new Subject();
 
-  // ];
   @Output() showCategory = new EventEmitter<string>()
+  @Input() categories: string[] = [];
   categoriesSubscription: Subscription | undefined;
-  categories: string[] = [];
+  // categories: string[] = [];
 
-  constructor(private storeService: StoreService) { }
+  constructor(
+    private storeService: StoreService,
+    private categoryService: CategoryServiceService
+    ) { }
 
   ngOnInit(): void {
-    this.categoriesSubscription = this.storeService
-      .getAllCategories()
-      .subscribe((response: Array<string>) => {
-        this.categories = response;
+    this.categoriesSubscription = this.categoryService.categories$.subscribe((response: Array<string>) => {
+      this.categories = response;
+    });
+      // Set the initial value of showFilters based on the screen width
+    this.showFilters = window.innerWidth >= 920;
+  }
+
+  ngAfterViewInit(): void {
+    fromEvent(window, 'resize')
+      .pipe(
+        debounceTime(200),
+        takeUntil(this.onDestroy$)
+      )
+      .subscribe(() => {
+        // Update the breakpoint to 920px
+        this.showFilters = window.innerWidth >= 920;
       });
   }
 
@@ -37,9 +50,8 @@ export class FiltersComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    if (this.categoriesSubscription) {
-      this.categoriesSubscription.unsubscribe();
-    }
+    this.onDestroy$.next(1);
+    this.onDestroy$.complete();
   }
 
 }
