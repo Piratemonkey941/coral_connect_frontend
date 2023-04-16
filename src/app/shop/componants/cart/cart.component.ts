@@ -12,9 +12,9 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-
+  windowWidth: number = window.innerWidth;
   cart: Cart = { items: []
-};
+  };
 
 dataSource: Array<CartItem> = []
 displayedColumns: Array<string> = [
@@ -34,6 +34,10 @@ ngOnInit(): void {
     this.cart = _cart;
     this.dataSource = _cart.items;
   });
+}
+
+onResize(event: any): void {
+  this.windowWidth = event.target.innerWidth;
 }
 
 getTotal(items: CartItem[]): number {
