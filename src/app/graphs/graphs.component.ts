@@ -8,7 +8,7 @@ import { default as Annotation } from 'chartjs-plugin-annotation';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { CreateElementMeasurement  } from '.././models/create-element-measurement.model'; // Make sure this path is correct
+import { ElementMeasurement   } from '.././models/create-element-measurement.model'; // Make sure this path is correct
 import { ElementMeasurementsService } from '.././shared/element-measurements.service';
 import { Subscription } from 'rxjs';
 

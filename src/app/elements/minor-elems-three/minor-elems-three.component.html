@@ -1,4 +1,5 @@
 <mat-card-title class="minorothree-head">Minor Elements M-Z</mat-card-title>
+
 <div class="card-container">
   <div class="content">
     <div fxLayout="row wrap" >
@@ -81,6 +82,31 @@
         </mat-card-content>
         <mat-card-actions>
           <button mat-raised-button color="primary" (click)="onAddTin(); sendTinMeasurement(tin)">Submit</button>
+        </mat-card-actions>
+      </mat-card>
+
+      <!-- ==========  Vanadium ============-->
+
+      <mat-card class="mat-elevation-z4 card-margin">
+        <div class="mat-card-header">
+          <div class="chemImg">
+            <img src="../../../assets/CaCl.png" alt="">
+          </div>
+            <mat-card-title>Vanadium</mat-card-title>
+        </div>
+
+        <mat-card-subtitle>{{vanadiumStart}}</mat-card-subtitle>
+        <mat-card-content>
+          <div (click)="selectedElement = 'Tin'">
+            <i class="bi bi-three-dots-vertical btn text-white"></i>
+          </div>
+          <mat-form-field class="app-card-buttons" appearance="fill">
+            <mat-label>Vanadium in ppm</mat-label>
+            <input matInput placeholder="vanadium in ppm" [(ngModel)]="vanadium">
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="onAddVanadium(); sendVanadiumMeasurement(tin)">Submit</button>
         </mat-card-actions>
       </mat-card>
 

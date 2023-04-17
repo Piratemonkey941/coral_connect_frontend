@@ -3,7 +3,7 @@ import { Component, ElementRef, OnInit, ViewChild, Input, Output } from '@angula
 import { VolumeService } from '../../shared/volume.service';
 import { AuthService } from '../../shared/auth.service'; // Import the authentication service
 import { UserService } from 'src/app/shared/user.service'; // Import the authentication service
-import { CreateElementMeasurement  } from '../../model';
+import { ElementMeasurement   } from '../../model';
 import { ElementMeasurementsService } from '../../shared/element-measurements.service';
 import { ElementMeasurementSenderService } from '../../shared/element-measurement-sender.service';
 import { MatDialog } from '@angular/material/dialog';

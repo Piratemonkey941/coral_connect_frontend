@@ -72,7 +72,7 @@ export class ChartsMinorElemsThreeComponent implements OnInit {
   this.lineChartData.datasets[1].data = seleniumData;
   this.lineChartData.datasets[2].data = vanadiumData;
   this.lineChartData.datasets[3].data = tinData;
-  this.lineChartData.datasets[3].data = zincData;
+  this.lineChartData.datasets[4].data = zincData;
 
    // Update the chart with the new data
    this.chart?.update();

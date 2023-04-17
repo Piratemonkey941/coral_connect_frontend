@@ -34,6 +34,7 @@ import { ChartsBigFourComponent } from './graphs/charts-big-four/charts-big-four
 import { ApiTesterComponent } from './api-tester/api-tester.component';
 import { AuthInterceptor } from './shared/auth.interceptor';
 import { CalculatorDialogComponent } from './elements/calculator-dialog/calculator-dialog.component';
+import { ElementMeasurementsCrudComponent } from './graphs/element-measurement-rud/element-measurement-rud.component';
 
 
 
@@ -65,8 +66,7 @@ import { CalculatorDialogComponent } from './elements/calculator-dialog/calculat
     ChartsBigFourComponent,
     ApiTesterComponent,
     CalculatorDialogComponent,
-
-
+    ElementMeasurementsCrudComponent,
   ],
   imports: [
     BrowserModule,

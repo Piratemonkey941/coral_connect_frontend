@@ -73,7 +73,7 @@ export class ChartsMinorElemsTwoComponent implements OnInit {
   this.lineChartData.datasets[1].data = lithiumData;
   this.lineChartData.datasets[2].data = manganeseData;
   this.lineChartData.datasets[3].data = molybdenumData;
-  this.lineChartData.datasets[3].data = nickelData;
+  this.lineChartData.datasets[4].data = nickelData;
 
    // Update the chart with the new data
    this.chart?.update();

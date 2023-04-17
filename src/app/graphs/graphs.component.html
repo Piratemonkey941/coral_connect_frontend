@@ -1,4 +1,9 @@
+
 <div *ngIf="currentUser" >
+  <div class="flex justify-end">
+    <button class="mr-6" mat-raised-button color="primary" routerLink="/measurements">Correct/Delete Measurements</button>
+  </div>
+
 
   <app-charts-big-four> </app-charts-big-four>
   <mat-divider></mat-divider>
@@ -9,7 +14,11 @@
   <app-charts-minor-elems-two></app-charts-minor-elems-two>
   <mat-divider></mat-divider>
   <app-charts-minor-elems-three></app-charts-minor-elems-three>
+  <div class="flex justify-end">
+    <button class="mr-6" mat-raised-button color="primary" routerLink="/measurements">Correct/Delete Measurements</button>
+  </div>
   <mat-divider></mat-divider>
+
 </div>
 
 <!-- <div *ngIf="!currentUser" class="h-screen w-screen flex flex-col justify-center items-center">

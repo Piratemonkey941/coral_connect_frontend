@@ -36,13 +36,13 @@ export class MinorElemsOneComponent implements OnInit {
 
   // MODAL CODE
 
-    openModal(){
-      this.formModal.show();
-    }
+    // openModal(){
+    //   this.formModal.show();
+    // }
 
-    closeModal(){
-      this.formModal.hide();
-    }
+    // closeModal(){
+    //   this.formModal.hide();
+    // }
 
 // ==================================================== Barium ====================================================
  bariumStart: string = 'Barium, the master of coral skeletons, blending into aragonite and whispering tales of the deep!'

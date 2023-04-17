@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { UserService } from './user.service';
 import { ElementMeasurementsService } from './element-measurements.service';
-import { CreateElementMeasurement } from '../models/create-element-measurement.model';
 
 @Injectable({
   providedIn: 'root',
@@ -24,13 +23,13 @@ export class ElementMeasurementSenderService {
       console.log('User is logged in, sending measurement');
       const userId = this.authService.getCurrentUserId();
 
-      const newMeasurement: CreateElementMeasurement = {
+      const newMeasurement: ElementMeasurement = {
         qt: value,
         reef_water_element_id: reefWaterElementId,
         user_id: userId,
       };
 
-      this.elementMeasurementsService.createElementMeasurement(newMeasurement).subscribe(
+      this.elementMeasurementsService.elementMeasurement(newMeasurement).subscribe(
         (response) => {
           console.log('Measurement saved:', response);
         },

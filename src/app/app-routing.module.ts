@@ -5,6 +5,7 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { GraphsComponent } from './graphs/graphs.component';
 import { LandingComponent } from './Elements/landing/landing.component';
 import { CcSystemComponent } from './main/cc-system/cc-system.component';
+import { ElementMeasurementsCrudComponent } from './graphs/element-measurement-rud/element-measurement-rud.component';
 import { HomeComponent } from './shop/componants/home.component';
 import { CartComponent } from './shop/componants/cart/cart.component';
 // import { AuthGuard } from './auth.guard';
@@ -19,6 +20,7 @@ const routes: Routes = [
     component: GraphsComponent,
     // canActivate: [AuthGuard]
   },
+  { path: 'measurements', component: ElementMeasurementsCrudComponent },
 
   { path: 'store', component: HomeComponent },
   { path: 'cart', component: CartComponent },

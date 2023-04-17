@@ -22,7 +22,7 @@ export interface User {
   updated_at: Date;
 }
 
-export interface CreateElementMeasurement {
+export interface ElementMeasurement  {
   qt: number;
   reef_water_element_id: number;
   user_id: number;

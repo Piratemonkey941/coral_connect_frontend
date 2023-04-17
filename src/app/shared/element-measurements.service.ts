@@ -2,8 +2,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ElementMeasurement, User, CreateElementMeasurement } from '../model';
+import { ElementMeasurement, User,  } from '../model';
 import { AuthService } from './auth.service';
+import { UserService } from './user.service';
+import { throwError } from 'rxjs';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -13,6 +16,7 @@ export class ElementMeasurementsService {
   constructor(
     private http: HttpClient,
     private authService: AuthService,
+    private userService: UserService
     ) {}
 
   // List all element measurements or by user
@@ -41,31 +45,60 @@ export class ElementMeasurementsService {
   }
 
   // Create a new element measurement
-  createElementMeasurement(elementMeasurement: CreateElementMeasurement): Observable<ElementMeasurement> {
-    const userId = elementMeasurement.user_id
-    const url = `${this.apiUrl}/api/v1/users/${elementMeasurement.user_id}/element_measurements`;
 
-    // Get the authentication token (replace this with the correct method to get the token in your app)
-    const authToken = this.authService.getToken();
+// Create a new element measurement
+elementMeasurement(elementMeasurement: Omit<ElementMeasurement, "id" | "created_at" | "updated_at">): Observable<ElementMeasurement> {
 
-    // Add the token to the request headers
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${authToken.value}`
-      })
-    };
-
-    return this.http.post<ElementMeasurement>(url, { element_measurement: elementMeasurement }, httpOptions);
+const userId = this.userService.getCurrentUserId();
+  if (!userId) {
+    console.error('User ID not available');
+    return throwError('User ID not available');
   }
+  const url = `${this.apiUrl}/api/v1/users/${userId}/element_measurements`;
+
+  // Get the authentication token (replace this with the correct method to get the token in your app)
+  const authToken = this.authService.getToken();
+
+  // Add the token to the request headers
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${authToken.value}`
+    })
+  };
+
+  return this.http.post<ElementMeasurement>(url, { element_measurement: { ...elementMeasurement, user_id: userId } }, httpOptions);
+}
+
+
+  // elementMeasurement (elementMeasurement: ElementMeasurement ): Observable<ElementMeasurement> {
+  //   const userId = this.authService.getCurrentUserId();
+  //   if (userId) {
+  //   const url = `${this.apiUrl}/api/v1/users/${elementMeasurement.user_id}/element_measurements`;
+
+  //   // Get the authentication token (replace this with the correct method to get the token in your app)
+  //   const authToken = this.authService.getToken();
+
+  //   // Add the token to the request headers
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type': 'application/json',
+  //       'Authorization': `Bearer ${authToken.value}`
+  //     })
+  //   };
+
+  //   return this.http.post<ElementMeasurement>(url, { element_measurement: elementMeasurement }, httpOptions);
+  // }else {
+  //     console.error('User ID not available');
+  //   }
+  // }
 
 
   // Update an existing element measurement
-  updateElementMeasurement(userId: number, id: number, data: ElementMeasurement): Observable<ElementMeasurement> {
-
-    const url = `${this.apiUrl}/api/v1/users/${userId}/element_measurements/${id}`;
-    return this.http.put<ElementMeasurement>(url, data);
-  }
+ updateElementMeasurement(userId: number, id: number, data: ElementMeasurement ): Observable<ElementMeasurement > {
+  const url = `${this.apiUrl}/api/v1/users/${userId}/element_measurements/${id}`;
+  return this.http.put<ElementMeasurement >(url, data);
+}
 
   // Delete an element measurement
   deleteElementMeasurement(userId: number, id: number): Observable<void> {
