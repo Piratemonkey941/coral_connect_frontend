@@ -1,8 +1,71 @@
 <h2 mat-dialog-title>{{data.selectedElement}} Calculation</h2>
+
 <mat-dialog-content>
-  <!-- Add your calculation form or content here -->
+  <div *ngIf="calculatorForm">
+  <!-- Alkalinity calculator form -->
+    <ng-container *ngIf="data.selectedElement === 'Alkalinity'">
+    <form [formGroup]="calculatorForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <input matInput placeholder="Current" formControlName="current">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Desired" formControlName="desired">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Additive" formControlName="additive">
+          <mat-option value="1">Liquid Sodium Bicarb</mat-option>
+          <mat-option value="2">Liquid Soda Ash</mat-option>
+          <mat-option value="3">Kalkwasser</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <!-- <mat-form-field>
+        <input matInput placeholder="Volume" formControlName="volume">
+      </mat-form-field> -->
+    </form>
+  </ng-container>
+
+  <!-- Calcium calculator form -->
+
+  <ng-container *ngIf="data.selectedElement === 'Calcium'">
+    <form [formGroup]="calculatorForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <input matInput placeholder="Current" formControlName="current">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Desired" formControlName="desired">
+      </mat-form-field>
+
+    </form>
+  </ng-container>
+
+  <!-- Magnesium calculator form -->
+
+  <ng-container *ngIf="data.selectedElement === 'Magnesium'">
+    <form [formGroup]="calculatorForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <input matInput placeholder="Current" formControlName="current">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Desired" formControlName="desired">
+      </mat-form-field>
+            <mat-form-field>
+        <mat-select placeholder="Additive" formControlName="additive">
+          <mat-option value="1">Liquid Magnesium Chloride</mat-option>
+          <mat-option value="2">Dry Magnesium Chloride</mat-option>
+          <mat-option value="3">Dry Magnesium Sulfate</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </ng-container>
+</div>
 </mat-dialog-content>
+
+<div *ngIf="result" class="result">
+  <p>Calculated Result: Dose {{result}} ml by wieght</p>
+</div>
+
 <mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button color="primary">Calculate</button>
+  <button mat-button color="primary" *ngIf="calculatorForm" [disabled]="!calculatorForm.valid" (click)="onSubmit()">Calculate</button>
 </mat-dialog-actions>
+

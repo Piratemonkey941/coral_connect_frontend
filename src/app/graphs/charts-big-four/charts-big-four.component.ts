@@ -45,7 +45,7 @@ export class ChartsBigFourComponent implements OnInit {
  processMeasurements(measurements: ElementMeasurement[]) {
   const salinityData: number[] = [];
   const calciumData: number[] = [];
-  const alkilinityData: number[] = [];
+  const alkalinityData: number[] = [];
   const magnesiumData: number[] = [];
   const labels: string[] = [];
 
@@ -55,7 +55,7 @@ export class ChartsBigFourComponent implements OnInit {
     } else if (measurement.reef_water_element_id === 2) {
       calciumData.push(measurement.qt);
     } else if (measurement.reef_water_element_id === 3) {
-      alkilinityData.push(measurement.qt);
+      alkalinityData.push(measurement.qt);
     } else if (measurement.reef_water_element_id === 4) {
       magnesiumData.push(measurement.qt);
     }
@@ -71,7 +71,7 @@ export class ChartsBigFourComponent implements OnInit {
   this.lineChartData.labels = labels;
   this.lineChartData.datasets[0].data = salinityData;
   this.lineChartData.datasets[1].data = calciumData;
-  this.lineChartData.datasets[2].data = alkilinityData;
+  this.lineChartData.datasets[2].data = alkalinityData;
   this.lineChartData.datasets[3].data = magnesiumData;
 
    // Update the chart with the new data
@@ -107,7 +107,7 @@ export class ChartsBigFourComponent implements OnInit {
       },
       {
         data: [],
-        label: 'Alkilinity',
+        label: 'Alkalinity',
         // yAxisID: 'y2',
         borderColor: 'red',
         pointBackgroundColor: 'rgba(148,159,177,1)',

@@ -39,26 +39,11 @@ export class BigFourComponent implements OnInit {
 
 // MODAL CODE
 
-    // openModal(){
-    //   this.formModal.show();
-    // }
-
-    // closeModal(){
-    //   this.formModal.hide();
-    // }
-
-    openDialog(): void {
-      const dialogRef = this.dialog.open(CalculatorDialogComponent, {
-        data: {
-          selectedElement: this.selectedElement,
-          volume: this.volumeService.volume
-        }
-      });
-
-      dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed', result);
-      });
-    }
+openDialog(element: string): void {
+  const dialogRef = this.dialog.open(CalculatorDialogComponent, {
+    data: { selectedElement: element }
+  });
+}
 
 
 
@@ -148,50 +133,50 @@ export class BigFourComponent implements OnInit {
 
 
   // =============================== ALKILINITY ===============================
-  alkilinity: number
-  alkilinityStart: string = 'Acid, harmfull to the animals stored in the vessel '
+  alkalinity: number
+  alkalinityStart: string = 'Acid, harmfull to the animals stored in the vessel '
 
-  alkilinityAdjustment: any
+  alkalinityAdjustment: any
 
 
-  onAddAlkilinity(){ // for basic calculation on card
+  onAddAlkalinity(){ // for basic calculation on card
 
-    let alkilinity = this.alkilinityStart
+    let alkalinity = this.alkalinityStart
     //calculation for 0.1 dkh change per volume
-    this.alkilinityAdjustment = (0.1429 * this.volumeService.volume).toFixed(2) // for sodium bicarbonate lower/nuetural ph
+    this.alkalinityAdjustment = (0.1429 * this.volumeService.volume).toFixed(2) // for sodium bicarbonate lower/nuetural ph
 
-    console.log(this.alkilinityAdjustment)
+    console.log(this.alkalinityAdjustment)
 
-    if (this.alkilinity <= 8.5 && this.alkilinity >= 7.9){
-        this.alkilinityStart = 'Ideal alkilinity for most reefs'
+    if (this.alkalinity <= 8.5 && this.alkalinity >= 7.9){
+        this.alkalinityStart = 'Ideal alkalinity for most reefs'
       }
-    else if ( this.alkilinity <= 7.2 && this.alkilinity >= 6.6 ){
+    else if ( this.alkalinity <= 7.2 && this.alkalinity >= 6.6 ){
 
-      this.alkilinityStart = `Alkilinity low, adjust slowly. ${this.alkilinityAdjustment}ml will increase dkh by 0.1 `
+      this.alkalinityStart = `Alkalinity low, adjust slowly. ${this.alkalinityAdjustment}ml will increase dkh by 0.1 `
       }
-    else if ( this.alkilinity <= 6.5 && this.alkilinity >= 5 ){
+    else if ( this.alkalinity <= 6.5 && this.alkalinity >= 5 ){
 
-      this.alkilinityStart = `Alkilinity extremely low, adjust slowly. ${this.alkilinityAdjustment}ml will increase dkh by 0.1 `
+      this.alkalinityStart = `Alkalinity extremely low, adjust slowly. ${this.alkalinityAdjustment}ml will increase dkh by 0.1 `
       }
-    else if ( this.alkilinity <= 7.8 && this.alkilinity >= 7.3 ){
-      this.alkilinityStart = 'Alk slightly low usually only used in Ultra low nutrient system (ULNS)'
+    else if ( this.alkalinity <= 7.8 && this.alkalinity >= 7.3 ){
+      this.alkalinityStart = 'Alk slightly low usually only used in Ultra low nutrient system (ULNS)'
       }
-    else if ( this.alkilinity <= 11.9  && this.alkilinity >= 8.6){
+    else if ( this.alkalinity <= 11.9  && this.alkalinity >= 8.6){
 
-      this.alkilinityStart = 'Alk slightly higher, not usually recommended at very low nutrient levels and may wash out coral color '
+      this.alkalinityStart = 'Alk slightly higher, not usually recommended at very low nutrient levels and may wash out coral color '
      }
-    else if ( this.alkilinity <= 14  && this.alkilinity >= 12 ){
+    else if ( this.alkalinity <= 14  && this.alkalinity >= 12 ){
 
-      this.alkilinityStart = 'Alk slightly higher, not usually recommended at very low nutrient levels and may wash out coral color or cause bleaching '
+      this.alkalinityStart = 'Alk slightly higher, not usually recommended at very low nutrient levels and may wash out coral color or cause bleaching '
       }
     else {
-      this.alkilinityStart = 'Retest parameter'
+      this.alkalinityStart = 'Retest parameter'
     }
   }
 
-  sendAlkilinityMeasurement(alkilinity: number) {
-    console.log('sendAlkilinityMeasurement called with:', alkilinity);
-    this.elementMeasurementSenderService.sendMeasurement(alkilinity, 3);
+  sendAlkalinityMeasurement(alkalinity: number) {
+    console.log('sendAlkalinityMeasurement called with:', alkalinity);
+    this.elementMeasurementSenderService.sendMeasurement(alkalinity, 3);
   }
 
 
