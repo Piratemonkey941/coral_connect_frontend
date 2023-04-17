@@ -70,6 +70,17 @@ export class HomeComponent implements OnInit {
     this.filteredProducts = category === 'All' ? this.products : this.products.filter(product => product.category === category);
   }
 
+  // onShowCategory(categories: string[] | string): void {
+  //   if (Array.isArray(categories)) {
+  //     // Handle multiple categories
+  //     this.loadProductsForMultipleCategories(categories);
+  //   } else {
+  //     // Handle single category
+  //     this.loadProductsForSingleCategory(categories);
+  //   }
+  // }
+
+
   applySorting(sort: string): void {
     if (sort === 'asc') {
       this.filteredProducts.sort((a, b) => a.title.localeCompare(b.title));

@@ -18,12 +18,13 @@ export class StoreService {
     category?: string
   ): Observable<Array<Product>> {
     let queryParams = `?sort=${sort}&limit=${limit}`;
-    if (category) {
+    if (category && category !== '') {
       queryParams += `&category=${encodeURIComponent(category)}`;
     }
 
     return this.httpClient.get<Array<Product>>(`${STORE_BASE_URL}/products${queryParams}`);
   }
+
 
   getAllCategories(): Observable<Array<string>> {
     return this.httpClient.get<Array<string>>(

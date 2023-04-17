@@ -3,6 +3,13 @@
     <mat-panel-title>CATAGORIES</mat-panel-title>
   </mat-expansion-panel-header>
   <mat-selection-list [multiple]="false">
+    <!-- <mat-list-option
+      mat-raised-button
+      color="primary"
+      (click)="onShowCategory(true)"
+    >
+      All Categories
+    </mat-list-option> -->
     <mat-list-option *ngFor="let category of categories" [value]="category">
       <button
         mat-raised-button

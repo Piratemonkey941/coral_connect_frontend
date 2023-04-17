@@ -48,6 +48,14 @@ export class FiltersComponent implements OnInit, AfterViewInit {
   onShowCategory(category: string): void {
     this.showCategory.emit(category)
   }
+  // onShowCategory(allCategories: boolean): void {
+  //   if (allCategories) {
+  //     this.showCategory.emit(this.categories);
+  //   } else {
+  //     this.showCategory.emit('');
+  //   }
+  // }
+
 
   ngOnDestroy(): void {
     this.onDestroy$.next(1);
