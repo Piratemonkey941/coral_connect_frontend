@@ -1,12 +1,14 @@
 import { Component, ElementRef, OnInit, ViewChild, Input, Output } from '@angular/core';
-import { ElementCalculatorService } from '../../shared/element-calculator.service';
+// import { ElementCalculatorService } from '../../shared/element-calculator.service';
 import { VolumeService } from '../../shared/volume.service';
 import { AuthService } from '../../shared/auth.service'; // Import the authentication service
 import { UserService } from 'src/app/shared/user.service'; // Import the authentication service
 import { CreateElementMeasurement  } from '../../model';
 import { ElementMeasurementsService } from '../../shared/element-measurements.service';
 import { ElementMeasurementSenderService } from '../../shared/element-measurement-sender.service';
-
+import { MatDialog } from '@angular/material/dialog';
+import { CalculatorDialogComponent } from '../calculator-dialog/calculator-dialog.component';
+// import {MAT_DIALOG_DATA} from '@angular/material';
 // import { MatButtonModule } from '@angular/material/button';
 declare var window: any;
 
@@ -23,10 +25,11 @@ export class BigFourComponent implements OnInit {
 
   constructor(
     public volumeService: VolumeService,
-    private elementMeasurementsService: ElementMeasurementsService,
-    private authService: AuthService,
-    private userService: UserService,
+    // private elementMeasurementsService: ElementMeasurementsService,
+    // private authService: AuthService,
+    // private userService: UserService,
     private elementMeasurementSenderService: ElementMeasurementSenderService,
+    public dialog: MatDialog
     ) { }
 
 
@@ -36,13 +39,28 @@ export class BigFourComponent implements OnInit {
 
 // MODAL CODE
 
-    openModal(){
-      this.formModal.show();
+    // openModal(){
+    //   this.formModal.show();
+    // }
+
+    // closeModal(){
+    //   this.formModal.hide();
+    // }
+
+    openDialog(): void {
+      const dialogRef = this.dialog.open(CalculatorDialogComponent, {
+        data: {
+          selectedElement: this.selectedElement,
+          volume: this.volumeService.volume
+        }
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed', result);
+      });
     }
 
-    closeModal(){
-      this.formModal.hide();
-    }
+
 
 //SALINITY
 

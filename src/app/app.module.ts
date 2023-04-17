@@ -33,6 +33,7 @@ import { ChartsMinorElemsThreeComponent } from './graphs/charts-minor-elems-thre
 import { ChartsBigFourComponent } from './graphs/charts-big-four/charts-big-four.component';
 import { ApiTesterComponent } from './api-tester/api-tester.component';
 import { AuthInterceptor } from './shared/auth.interceptor';
+import { CalculatorDialogComponent } from './elements/calculator-dialog/calculator-dialog.component';
 
 
 
@@ -63,6 +64,7 @@ import { AuthInterceptor } from './shared/auth.interceptor';
     ChartsMinorElemsThreeComponent,
     ChartsBigFourComponent,
     ApiTesterComponent,
+    CalculatorDialogComponent,
 
 
   ],

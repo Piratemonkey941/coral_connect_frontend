@@ -78,14 +78,14 @@
             <img  src="../../../assets/sodium bicarb.png" alt="">
           </div>
           <mat-card-title>Alkilinity</mat-card-title>
+            <button (click)="selectedElement = 'Alkilinity'; openDialog()" >
+            <mat-icon>calculate</mat-icon>
+          </button>
         </div>
 
         <mat-card-subtitle>{{alkilinityStart}}</mat-card-subtitle>
         <mat-card-content>
-          <div (click)="selectedElement = 'Alkilinity'" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <i class="bi bi-three-dots-vertical btn text-white"></i>
-          </div>
-          <mat-form-field class="app-card-buttons" appearance="fill">
+            <mat-form-field class="app-card-buttons" appearance="fill">
             <input matInput type="text" placeholder="Alkilinity in DKH" [(ngModel)]="alkilinity">
           </mat-form-field>
         </mat-card-content>
@@ -98,20 +98,20 @@
 
       <!-- =====================CALCIUM =================== -->
 
-
       <mat-card class="mat-elevation-z4 card-margin">
-      <div class="mat-card-header">
+      <div class="mat-card-header ">
         <div class="chemImg">
           <img  src="../../../assets/CaCl.png" alt="">
         </div>
         <mat-card-title>Calcium</mat-card-title>
+        <button class="flex" (click)="selectedElement = 'Calcium'; openDialog()" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <mat-icon class="flex justify-end">calculate</mat-icon>
+        </button>
       </div>
 
         <mat-card-subtitle>{{calciumStart}}</mat-card-subtitle>
         <mat-card-content>
-          <div (click)="selectedElement = 'Calcium'" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <i class="bi bi-three-dots-vertical btn text-white"></i>
-          </div>
+
           <mat-form-field class="app-card-buttons" appearance="fill">
             <input matInput type="text" placeholder="Calcium in ppm" [(ngModel)]="calcium">
           </mat-form-field>
@@ -121,9 +121,7 @@
         </mat-card-actions>
       </mat-card>
 
-
       <!-- =====================MAGNESIUM =================== -->
-
 
       <mat-card class="mat-elevation-z4 card-margin">
       <div class="mat-card-header">
@@ -131,14 +129,15 @@
           <img  src="../../../assets/MgCl.png" alt="">
         </div>
         <mat-card-title>Magnesium</mat-card-title>
+        <button (click)="selectedElement = 'Magnesium'; openDialog()" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <mat-icon>calculate</mat-icon>
+        </button>
       </div>
 
 
         <mat-card-subtitle>{{magnesiumStart}}</mat-card-subtitle>
         <mat-card-content>
-          <div (click)="selectedElement = 'Magnesium'" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            <i class="bi bi-three-dots-vertical btn text-white"></i>
-          </div>
+
           <mat-form-field class="app-card-buttons" appearance="fill">
             <input matInput type="text" placeholder="Magnesium in ppm" [(ngModel)]="magnesium">
           </mat-form-field>
