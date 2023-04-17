@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { UserService } from './user.service';
 import { ElementMeasurementsService } from './element-measurements.service';
+import { ElementMeasurement } from '../models/create-element-measurement.model';
 
 @Injectable({
   providedIn: 'root',
