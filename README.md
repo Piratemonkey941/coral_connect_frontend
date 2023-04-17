@@ -25,3 +25,12 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+install course
+a version is going to be 2.8.5
+
+the next one is Express and the version is going to be 4.18.1
+the last one is stripe and the version is 10.7.0
+
+

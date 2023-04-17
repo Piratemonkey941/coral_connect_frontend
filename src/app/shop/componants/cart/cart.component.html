@@ -138,6 +138,9 @@
     <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
   </table>
 </mat-card>
+
+<!-- ===========IF CART IS EMPTY ============== -->
+
 <mat-card *ngIf="!cart.items.length" class="mx-auto my-3 max-w-7xl">
   <p>
     Your cart is empty.

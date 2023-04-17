@@ -4,7 +4,7 @@ import { CartService } from '../../../shared/cart.service';
 import { HttpClient } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 
-// import { loadStripe } from '@stripe/stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 @Component({
   selector: 'app-cart',
@@ -75,17 +75,17 @@ export class CartComponent implements OnInit {
   }
 
   onCheckout(): void {
-    // this.http
-    //   .post('http://localhost:4242/checkout', {
-    //     items: this.cart.items,
-    //   })
-    //   .subscribe(async (res: any) => {
-    //     let stripe = await loadStripe('your token');
-    //     stripe?.redirectToCheckout({
-    //       sessionId: res.id,
-    //     });
-    //   });
+    this.http .post('http://localhost:4242/checkout', {
+        items: this.cart.items,
+      }).subscribe(async (res: any) => {
+        let stripe = await loadStripe('pk_test_51LuemBBuyZCYZ5t40dobSfe9oAh0oA5m9g2KYb3VtgdKfEbnMGRFmOWyDf31T1dhMwLDJcko8YEZ7jINalV8hBkz00aLyro2yY');
+        stripe?.redirectToCheckout({
+          sessionId: res.id,
+        });
+      });
   }
+
+
 
   // ngOnDestroy() {
   //   if (this.cartSubscription) {
