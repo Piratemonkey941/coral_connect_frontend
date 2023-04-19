@@ -7,6 +7,8 @@
       <a mat-button routerLink="/graphs" *ngIf="currentUser">Graphs</a>
       <a mat-button routerLink="/store">Store</a>
       <a mat-button routerLink="/system">CC-System</a>
+      <a mat-button routerLink="/user">User Page</a>
+
       <a mat-button routerLink="/signup" *ngIf="!currentUser">Sign Up</a>
       <a mat-button routerLink="/login" *ngIf="!currentUser">Login</a>
       <a mat-button (click)="logout()" *ngIf="currentUser">Log Out</a>
@@ -21,6 +23,7 @@
         <a mat-menu-item routerLink="/graphs" *ngIf="currentUser">Graphs</a>
         <a mat-menu-item routerLink="/store">Store</a>
         <a mat-menu-item routerLink="/system">CC-System</a>
+        <a mat-button routerLink="/user">User Page</a>
         <mat-divider></mat-divider>
         <a mat-menu-item routerLink="/signup" *ngIf="!currentUser">Sign Up</a>
         <a mat-menu-item routerLink="/login" *ngIf="!currentUser">Login</a>

@@ -3,7 +3,7 @@ import { HttpClient, HttpBackend } from '@angular/common/http';
 import { UserService } from './user.service';
 import { Router } from '@angular/router';
 import { User } from '../models/user.model';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -142,13 +142,33 @@ isLoggedIn(): boolean {
 }
 
 
-getCurrentUserId(): number {
-  const currentUser = this.userService.currentUserSubject.value;
-  console.log('getCurrentUserId - currentUser:', currentUser);
-  if (currentUser && currentUser.id) {
-    return currentUser.id;
+  getCurrentUserId(): number {
+    const currentUser = this.userService.currentUserSubject.value;
+    console.log('getCurrentUserId - currentUser:', currentUser);
+    if (currentUser && currentUser.id) {
+      return currentUser.id;
+    }
+    return null;
   }
-  return null;
-}
+
+  deleteAccount() {
+    const token = this.getToken();
+    const userId = this.getCurrentUserId();
+
+    if (token && userId) {
+      this.http.delete(`${this.baseUrl}${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token.value}`
+        }
+      }).subscribe((res: any) => {
+        if (res.success) {
+          this.logout();
+          console.log('Account deleted successfully');
+        }
+      }, (error) => {
+        console.error('Account deletion failed:', error);
+      });
+    }
+  }
 
 }

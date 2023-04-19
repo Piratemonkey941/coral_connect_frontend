@@ -36,6 +36,7 @@ import { AuthInterceptor } from './shared/auth.interceptor';
 import { CalculatorDialogComponent } from './elements/calculator-dialog/calculator-dialog.component';
 import { ElementMeasurementsCrudComponent } from './graphs/element-measurement-rud/element-measurement-rud.component';
 import { UpdateMeasurementDialogComponent } from './graphs/update-measurement-dialog/update-measurement-dialog.component';
+import { UserPageComponent } from './auth/user-page/user-page.component';
 
 
 
@@ -69,6 +70,7 @@ import { UpdateMeasurementDialogComponent } from './graphs/update-measurement-di
     CalculatorDialogComponent,
     ElementMeasurementsCrudComponent,
     UpdateMeasurementDialogComponent,
+    UserPageComponent,
   ],
   imports: [
     BrowserModule,

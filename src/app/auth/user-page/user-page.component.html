@@ -1,0 +1,16 @@
+<div class="user-page min-h-screen flex flex-col items-center justify-center">
+  <h2 class="mb-4">User Profile</h2>
+
+  <!-- Display user information -->
+  <div *ngIf="currentUser" class="mb-4">
+    <p>Name: {{currentUser.first_name}} {{currentUser.last_name}}</p>
+    <p>Email: {{currentUser.email}}</p>
+    <p>Phone: {{currentUser.phone}}</p>
+  </div>
+
+  <!-- Update and delete buttons -->
+  <div class="flex justify-center space-x-4">
+    <button mat-raised-button color="primary" (click)="onUpdateAccount()">Update Account</button>
+    <button mat-raised-button color="warn" (click)="onDeleteAccount()" class="delete-account">Delete Account</button>
+  </div>
+</div>

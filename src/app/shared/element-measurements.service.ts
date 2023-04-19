@@ -70,6 +70,23 @@ elementMeasurement(elementMeasurement: Omit<ElementMeasurement, "id" | "created_
   return this.http.post<ElementMeasurement>(url, { element_measurement: { ...elementMeasurement, user_id: userId } }, httpOptions);
 }
 
+updateElementMeasurement(userId: number, id: number, measurementData: ElementMeasurement): Observable<ElementMeasurement> {
+  const updateData = {
+    qt: measurementData.qt,
+    reef_water_element_id: measurementData.reef_water_element_id,
+    user_id: measurementData.user_id,
+  };
+
+  return this.http.put<ElementMeasurement>(`${this.apiUrl}/api/v1/users/${userId}/element_measurements/${id}`, {element_measurement: updateData});
+}
+
+  // Delete an element measurement
+  deleteElementMeasurement(userId: number, id: number): Observable<void> {
+    const url = `${this.apiUrl}/api/v1/users/${userId}/element_measurements/${id}`;
+    return this.http.delete<void>(url);
+  }
+}
+
 
   // elementMeasurement (elementMeasurement: ElementMeasurement ): Observable<ElementMeasurement> {
   //   const userId = this.authService.getCurrentUserId();
@@ -99,21 +116,3 @@ elementMeasurement(elementMeasurement: Omit<ElementMeasurement, "id" | "created_
 //   const url = `${this.apiUrl}/api/v1/users/${userId}/element_measurements/${id}`;
 //   return this.http.put<ElementMeasurement >(url, data);
 // }
-
-updateElementMeasurement(userId: number, id: number, measurementData: ElementMeasurement): Observable<ElementMeasurement> {
-  const updateData = {
-    qt: measurementData.qt,
-    reef_water_element_id: measurementData.reef_water_element_id,
-    user_id: measurementData.user_id,
-  };
-
-  return this.http.put<ElementMeasurement>(`${this.apiUrl}/api/v1/users/${userId}/element_measurements/${id}`, {element_measurement: updateData});
-}
-
-  // Delete an element measurement
-  deleteElementMeasurement(userId: number, id: number): Observable<void> {
-    const url = `${this.apiUrl}/api/v1/users/${userId}/element_measurements/${id}`;
-    return this.http.delete<void>(url);
-  }
-}
-

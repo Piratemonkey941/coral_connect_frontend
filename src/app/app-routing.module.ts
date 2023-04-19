@@ -8,7 +8,8 @@ import { CcSystemComponent } from './main/cc-system/cc-system.component';
 import { ElementMeasurementsCrudComponent } from './graphs/element-measurement-rud/element-measurement-rud.component';
 import { HomeComponent } from './shop/componants/home.component';
 import { CartComponent } from './shop/componants/cart/cart.component';
-// import { AuthGuard } from './auth.guard';
+import { UserPageComponent } from './auth/user-page/user-page.component';
+import { AuthGuardService } from './shared/auth.guard';
 
 const routes: Routes = [
 
@@ -20,6 +21,7 @@ const routes: Routes = [
     component: GraphsComponent,
     // canActivate: [AuthGuard]
   },
+  { path: 'user', component: UserPageComponent, canActivate: [AuthGuardService] },
   { path: 'measurements', component: ElementMeasurementsCrudComponent },
 
   { path: 'store', component: HomeComponent },
