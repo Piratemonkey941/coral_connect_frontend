@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { ViewChild } from '@angular/core';
 import { ElementMeasurementsService } from '../../shared/element-measurements.service';
 import { ElementMeasurement  } from 'src/app/model';
 import { MatDialog } from '@angular/material/dialog';
@@ -10,24 +13,31 @@ import { UpdateMeasurementDialogComponent } from '../update-measurement-dialog/u
   styleUrls: ['./element-measurement-rud.component.scss']
 })
 export class ElementMeasurementsCrudComponent implements OnInit {
-  elementMeasurements: ElementMeasurement [] = [];
+  elementMeasurements = new MatTableDataSource<ElementMeasurement>();
   selectedElementMeasurement: ElementMeasurement  | null = null;
   displayedColumns: string[] = ['id', 'qt', 'reef_water_element_id', 'actions'];
 
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   constructor(
     private elementMeasurementsService: ElementMeasurementsService,
     private dialog: MatDialog
-    ) {}
+  ) {}
 
   ngOnInit(): void {
     this.loadElementMeasurements();
+    this.elementMeasurements.sort = this.sort;
   }
 
   loadElementMeasurements(): void {
     this.elementMeasurementsService.getElementMeasurements().subscribe((measurements) => {
-      this.elementMeasurements = measurements;
+      this.elementMeasurements.data = measurements;
     });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.elementMeasurements.filter = filterValue.trim().toLowerCase();
   }
 
   onSelect(elementMeasurement: ElementMeasurement): void {
@@ -43,26 +53,24 @@ export class ElementMeasurementsCrudComponent implements OnInit {
     });
   }
 
-
   onCreate(elementMeasurement: ElementMeasurement ): void {
     this.elementMeasurementsService.elementMeasurement (elementMeasurement).subscribe((newMeasurement) => {
-      this.elementMeasurements.push(newMeasurement);
+      this.elementMeasurements.data = [...this.elementMeasurements.data, newMeasurement];
     });
   }
-
-  // src/app/element-measurements-crud/element-measurements-crud.component.ts
 
   onUpdate(elementMeasurement: ElementMeasurement ): void {
     this.elementMeasurementsService.updateElementMeasurement(elementMeasurement.user_id, elementMeasurement.id, elementMeasurement).subscribe((updatedMeasurement) => {
-      const index = this.elementMeasurements.findIndex((measurement) => measurement.id === updatedMeasurement.id);
-      this.elementMeasurements[index] = updatedMeasurement;
-    });
-  }
+      const index = this.elementMeasurements.data.findIndex((measurement) => measurement.id === updatedMeasurement.id);
+      const updatedData = [...this.elementMeasurements.data];
+      updatedData[index] = updatedMeasurement;
+      this.elementMeasurements.data = updatedData;
+      });
+      }
 
-
-  onDelete(elementMeasurement: ElementMeasurement ): void {
-    this.elementMeasurementsService.deleteElementMeasurement(elementMeasurement.user_id, elementMeasurement.id).subscribe(() => {
-      this.elementMeasurements = this.elementMeasurements.filter((measurement) => measurement.id !== elementMeasurement.id);
-    });
-  }
-}
+      onDelete(elementMeasurement: ElementMeasurement ): void {
+      this.elementMeasurementsService.deleteElementMeasurement(elementMeasurement.user_id, elementMeasurement.id).subscribe(() => {
+      this.elementMeasurements.data = this.elementMeasurements.data.filter((measurement) => measurement.id !== elementMeasurement.id);
+      });
+      }
+      }

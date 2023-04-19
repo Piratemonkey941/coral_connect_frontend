@@ -1,24 +1,29 @@
-<!-- src/app/element-measurement-rud/element-measurement-rud.component.html -->
-<!-- src/app/element-measurement-rud/element-measurement-rud.component.html -->
+<!--
+Now, update the HTML template to add the `matSort` directive to the table and the `mat-sort-header` attribute to the table headers. Also, add an input field for filtering:
 
+```html -->
 <div class="flex justify-center items-center min-h-screen">
   <div class="w-full max-w-5xl mx-auto">
     <div class="element-measurement-table-container">
-      <table mat-table [dataSource]="elementMeasurements" class="mat-elevation-z8 w-full">
-            <!-- Qt Column -->
+      <!-- <mat-form-field class="w-full">
+        <mat-label>Filter</mat-label>
+        <input matInput (input)="applyFilter($event)" placeholder="Filter">
+      </mat-form-field> -->
+      <table mat-table [dataSource]="elementMeasurements" matSort class="mat-elevation-z8 w-full">
+        <!-- Qt Column -->
         <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef> Measurement ID </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Measurement ID </th>
           <td mat-cell *matCellDef="let elementMeasurement"> {{elementMeasurement.id}} </td>
         </ng-container>
-        
+
         <ng-container matColumnDef="qt">
-          <th mat-header-cell *matHeaderCellDef> Quantity </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </th>
           <td mat-cell *matCellDef="let elementMeasurement"> {{elementMeasurement.qt}} </td>
         </ng-container>
 
         <!-- Reef Water Element ID Column -->
         <ng-container matColumnDef="reef_water_element_id">
-          <th mat-header-cell *matHeaderCellDef> Reef Water Element ID </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Reef Water Element ID </th>
           <td mat-cell *matCellDef="let elementMeasurement"> {{elementMeasurement.reef_water_element_id}} </td>
         </ng-container>
 
@@ -37,5 +42,4 @@
     </div>
   </div>
 </div>
-
 
