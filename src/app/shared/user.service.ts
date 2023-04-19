@@ -10,7 +10,9 @@ export class UserService {
 
   currentUserSubject = new BehaviorSubject<User>(null);
 
-  constructor() { }
+  constructor() {
+    this.currentUserSubject.subscribe(user => console.log('Current user changed:', user));
+  }
 
   setCurrentUser(user: User) {
     console.log('Before setting current user:', this.currentUserSubject.value);

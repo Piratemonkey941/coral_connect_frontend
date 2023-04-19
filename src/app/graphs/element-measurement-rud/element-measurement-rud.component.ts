@@ -37,12 +37,12 @@ export class ElementMeasurementsCrudComponent implements OnInit {
 
   // src/app/element-measurements-crud/element-measurements-crud.component.ts
 
-onUpdate(elementMeasurement: ElementMeasurement ): void {
-  this.elementMeasurementsService.updateElementMeasurement(elementMeasurement.user_id, elementMeasurement.reef_water_element_id, elementMeasurement).subscribe((updatedMeasurement) => {
-    const index = this.elementMeasurements.findIndex((measurement) => measurement.reef_water_element_id === updatedMeasurement.reef_water_element_id);
-    this.elementMeasurements[index] = updatedMeasurement;
-  });
-}
+  onUpdate(elementMeasurement: ElementMeasurement ): void {
+    this.elementMeasurementsService.updateElementMeasurement(elementMeasurement.user_id, elementMeasurement.id, elementMeasurement).subscribe((updatedMeasurement) => {
+      const index = this.elementMeasurements.findIndex((measurement) => measurement.id === updatedMeasurement.id);
+      this.elementMeasurements[index] = updatedMeasurement;
+    });
+  }
 
 
   onDelete(elementMeasurement: ElementMeasurement ): void {

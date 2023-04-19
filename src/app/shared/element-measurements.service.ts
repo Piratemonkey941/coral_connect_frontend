@@ -49,7 +49,7 @@ export class ElementMeasurementsService {
 // Create a new element measurement
 elementMeasurement(elementMeasurement: Omit<ElementMeasurement, "id" | "created_at" | "updated_at">): Observable<ElementMeasurement> {
 
-const userId = this.userService.getCurrentUserId();
+  const userId = this.userService.getCurrentUserId(); // Change this line
   if (!userId) {
     console.error('User ID not available');
     return throwError('User ID not available');

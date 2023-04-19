@@ -1,15 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild, Input, Output } from '@angular/core';
-// import { ElementCalculatorService } from '../../shared/element-calculator.service';
 import { VolumeService } from '../../shared/volume.service';
-import { AuthService } from '../../shared/auth.service'; // Import the authentication service
-import { UserService } from 'src/app/shared/user.service'; // Import the authentication service
-import { ElementMeasurement   } from '../../model';
-import { ElementMeasurementsService } from '../../shared/element-measurements.service';
 import { ElementMeasurementSenderService } from '../../shared/element-measurement-sender.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CalculatorDialogComponent } from '../calculator-dialog/calculator-dialog.component';
-// import {MAT_DIALOG_DATA} from '@angular/material';
-// import { MatButtonModule } from '@angular/material/button';
+
 declare var window: any;
 
 @Component({
@@ -25,17 +19,13 @@ export class BigFourComponent implements OnInit {
 
   constructor(
     public volumeService: VolumeService,
-    // private elementMeasurementsService: ElementMeasurementsService,
-    // private authService: AuthService,
-    // private userService: UserService,
     private elementMeasurementSenderService: ElementMeasurementSenderService,
     public dialog: MatDialog
     ) { }
 
 
   ngOnInit(): void {
-  // WILL NEED MODAL
-  }
+   }
 
 // MODAL CODE
 
@@ -224,3 +214,15 @@ openDialog(element: string): void {
   }
 
 }
+
+    // private elementMeasurementsService: ElementMeasurementsService,
+    // private authService: AuthService,
+    // private userService: UserService,
+
+// import { ElementCalculatorService } from '../../shared/element-calculator.service';
+// import { AuthService } from '../../shared/auth.service'; // Import the authentication service
+// import { UserService } from 'src/app/shared/user.service'; // Import the authentication service
+// import { ElementMeasurement   } from '../../model';
+// import { ElementMeasurementsService } from '../../shared/element-measurements.service';
+// import {MAT_DIALOG_DATA} from '@angular/material';
+// import { MatButtonModule } from '@angular/material/button';
