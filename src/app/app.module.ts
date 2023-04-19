@@ -35,6 +35,7 @@ import { ApiTesterComponent } from './api-tester/api-tester.component';
 import { AuthInterceptor } from './shared/auth.interceptor';
 import { CalculatorDialogComponent } from './elements/calculator-dialog/calculator-dialog.component';
 import { ElementMeasurementsCrudComponent } from './graphs/element-measurement-rud/element-measurement-rud.component';
+import { UpdateMeasurementDialogComponent } from './graphs/update-measurement-dialog/update-measurement-dialog.component';
 
 
 
@@ -67,6 +68,7 @@ import { ElementMeasurementsCrudComponent } from './graphs/element-measurement-r
     ApiTesterComponent,
     CalculatorDialogComponent,
     ElementMeasurementsCrudComponent,
+    UpdateMeasurementDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,7 +85,10 @@ import { ElementMeasurementsCrudComponent } from './graphs/element-measurement-r
 
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    UpdateMeasurementDialogComponent,
+  ],
 })
 export class AppModule { }
 

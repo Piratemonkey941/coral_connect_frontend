@@ -95,9 +95,19 @@ elementMeasurement(elementMeasurement: Omit<ElementMeasurement, "id" | "created_
 
 
   // Update an existing element measurement
- updateElementMeasurement(userId: number, id: number, data: ElementMeasurement ): Observable<ElementMeasurement > {
-  const url = `${this.apiUrl}/api/v1/users/${userId}/element_measurements/${id}`;
-  return this.http.put<ElementMeasurement >(url, data);
+//  updateElementMeasurement(userId: number, id: number, data: ElementMeasurement ): Observable<ElementMeasurement > {
+//   const url = `${this.apiUrl}/api/v1/users/${userId}/element_measurements/${id}`;
+//   return this.http.put<ElementMeasurement >(url, data);
+// }
+
+updateElementMeasurement(userId: number, id: number, measurementData: ElementMeasurement): Observable<ElementMeasurement> {
+  const updateData = {
+    qt: measurementData.qt,
+    reef_water_element_id: measurementData.reef_water_element_id,
+    user_id: measurementData.user_id,
+  };
+
+  return this.http.put<ElementMeasurement>(`${this.apiUrl}/api/v1/users/${userId}/element_measurements/${id}`, {element_measurement: updateData});
 }
 
   // Delete an element measurement

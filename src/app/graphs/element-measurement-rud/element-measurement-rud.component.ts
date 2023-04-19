@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ElementMeasurementsService } from '../../shared/element-measurements.service';
 import { ElementMeasurement  } from 'src/app/model';
+import { MatDialog } from '@angular/material/dialog';
+import { UpdateMeasurementDialogComponent } from '../update-measurement-dialog/update-measurement-dialog.component';
 
 @Component({
   selector: 'app-element-measurement-rud',
@@ -13,7 +15,10 @@ export class ElementMeasurementsCrudComponent implements OnInit {
   displayedColumns: string[] = ['id', 'qt', 'reef_water_element_id', 'actions'];
 
 
-  constructor(private elementMeasurementsService: ElementMeasurementsService) {}
+  constructor(
+    private elementMeasurementsService: ElementMeasurementsService,
+    private dialog: MatDialog
+    ) {}
 
   ngOnInit(): void {
     this.loadElementMeasurements();
@@ -25,9 +30,19 @@ export class ElementMeasurementsCrudComponent implements OnInit {
     });
   }
 
-  onSelect(elementMeasurement: ElementMeasurement ): void {
-    this.selectedElementMeasurement = elementMeasurement;
+  onSelect(elementMeasurement: ElementMeasurement): void {
+    const dialogRef = this.dialog.open(UpdateMeasurementDialogComponent, {
+      data: elementMeasurement
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const updatedMeasurement = { ...elementMeasurement, ...result };
+        this.onUpdate(updatedMeasurement);
+      }
+    });
   }
+
 
   onCreate(elementMeasurement: ElementMeasurement ): void {
     this.elementMeasurementsService.elementMeasurement (elementMeasurement).subscribe((newMeasurement) => {
