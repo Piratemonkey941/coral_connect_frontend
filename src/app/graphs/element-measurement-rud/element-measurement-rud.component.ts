@@ -10,7 +10,7 @@ import { ElementMeasurement  } from 'src/app/model';
 export class ElementMeasurementsCrudComponent implements OnInit {
   elementMeasurements: ElementMeasurement [] = [];
   selectedElementMeasurement: ElementMeasurement  | null = null;
-  displayedColumns: string[] = ['qt', 'reef_water_element_id', 'actions'];
+  displayedColumns: string[] = ['id', 'qt', 'reef_water_element_id', 'actions'];
 
 
   constructor(private elementMeasurementsService: ElementMeasurementsService) {}
@@ -46,8 +46,8 @@ onUpdate(elementMeasurement: ElementMeasurement ): void {
 
 
   onDelete(elementMeasurement: ElementMeasurement ): void {
-    this.elementMeasurementsService.deleteElementMeasurement(elementMeasurement.user_id, elementMeasurement.reef_water_element_id).subscribe(() => {
-      this.elementMeasurements = this.elementMeasurements.filter((measurement) => measurement.reef_water_element_id !== elementMeasurement.reef_water_element_id);
+    this.elementMeasurementsService.deleteElementMeasurement(elementMeasurement.user_id, elementMeasurement.id).subscribe(() => {
+      this.elementMeasurements = this.elementMeasurements.filter((measurement) => measurement.id !== elementMeasurement.id);
     });
   }
 }

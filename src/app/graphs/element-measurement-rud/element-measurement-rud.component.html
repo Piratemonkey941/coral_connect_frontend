@@ -6,6 +6,11 @@
     <div class="element-measurement-table-container">
       <table mat-table [dataSource]="elementMeasurements" class="mat-elevation-z8 w-full">
             <!-- Qt Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> Measurement ID </th>
+          <td mat-cell *matCellDef="let elementMeasurement"> {{elementMeasurement.id}} </td>
+        </ng-container>
+        
         <ng-container matColumnDef="qt">
           <th mat-header-cell *matHeaderCellDef> Quantity </th>
           <td mat-cell *matCellDef="let elementMeasurement"> {{elementMeasurement.qt}} </td>
