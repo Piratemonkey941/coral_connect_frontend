@@ -38,6 +38,7 @@ import { ElementMeasurementsCrudComponent } from './graphs/element-measurement-r
 import { UpdateMeasurementDialogComponent } from './graphs/update-measurement-dialog/update-measurement-dialog.component';
 import { UserPageComponent } from './auth/user-page/user-page.component';
 import { UpdateDialogComponent } from './auth/update-dialog/update-dialog.component';
+import { TestComponent } from './graphs/test/test.component';
 
 
 
@@ -73,6 +74,7 @@ import { UpdateDialogComponent } from './auth/update-dialog/update-dialog.compon
     UpdateMeasurementDialogComponent,
     UserPageComponent,
     UpdateDialogComponent,
+    TestComponent,
   ],
   imports: [
     BrowserModule,

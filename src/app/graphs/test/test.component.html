@@ -1,0 +1,23 @@
+<!-- <div style="display: block;">
+
+  <canvas
+  baseChart
+  class="chart"
+  [data]="lineChartData"
+  [options]="lineChartOptions"
+  [type]="lineChartType"
+  (chartClick)="chartClicked($event)"
+  style="width: 800px; height: 400px;"
+  ></canvas>
+</div> -->
+<div style="display: block;">
+  <canvas
+    baseChart
+    [datasets]="lineChartData.datasets"
+    [labels]="lineChartData.labels"
+    [options]="lineChartOptions"
+    [type]="lineChartType"
+    (chartHover)="chartHovered($event)"
+    (chartClick)="chartClicked($event)"
+  ></canvas>
+</div>

@@ -47,6 +47,7 @@
  */
 import 'zone.js';  // Included with Angular CLI.
 
+import 'chartjs-adapter-date-fns';
 
 /***************************************************************************************************
  * APPLICATION IMPORTS
