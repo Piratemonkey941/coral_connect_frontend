@@ -45,7 +45,7 @@ export class MinorElemsOneComponent implements OnInit {
     // }
 
 // ==================================================== Barium ====================================================
- bariumStart: string = 'Barium, the master of coral skeletons, blending into aragonite and whispering tales of the deep!'
+ bariumStart: string = 'Barium, bar none, a heavy element!'
  barium: number
  bariumAdjustment: any
  bariumAdjustmentTotal: number
@@ -105,7 +105,7 @@ onAddBarium(){
 
   // parseFloat(().toFixed(2));
     // ==================================================== Chromium ====================================================
-chromiumStart: string = 'Chromium, call me the ultimate makeover artist, turning ordinary corals into glamorous divas!'
+chromiumStart: string = 'Chromium, a chromrade in arms!'
 chromium: number
 chromiumNano: number
 chomiumRegular: number
@@ -145,7 +145,7 @@ onAddChromium(){
   }
 
     // ==================================================== Cobalt ====================================================
-    cobaltStart: string = "Cobalt the vibrant virtuoso, jazzing up corals with my show-stopping shades of blue!"
+    cobaltStart: string = "Cobalt, not your average metal, it's co-bold!"
     cobalt: number
     cobaltNano: number
     cobaltRegular: number
@@ -185,7 +185,7 @@ onAddChromium(){
       }
 
     // ==================================================== Copper ====================================================
-copperStart: string = "Copper the life of the party, until I overdo it and become the third wheel that just won't leave!"
+copperStart: string = "Copper, the con-duct of electrifying stories"
 copper: number
 
 
@@ -215,7 +215,7 @@ onAddCopper(){
     }
 
     // ==================================================== fluoride ====================================================
-fluorideStart: string = "Fluoride, coral's undercover dentist, keeping their skeletons strong beneath the waves!"
+fluorideStart: string = "Fluoride, it's the tooth, the whole tooth, and nothing but the tooth!"
 fluoride: number
 fluorideAdjustmentTotal: number
 fluorideDays: number
@@ -261,7 +261,7 @@ onAddFluoride(){
     }
 
     // ==================================================== Iodine ====================================================
-iodineStart: string = 'Iodine the secret agent, keeping harmful oxidization at bay to maintain a healthy alliance!'
+iodineStart: string = "Iodine, it's got an iodentity of its own"
 iodine: number
 iodineAdjustment: any
 iodineAdjustmentTotal: number

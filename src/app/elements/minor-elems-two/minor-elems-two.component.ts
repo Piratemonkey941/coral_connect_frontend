@@ -46,7 +46,7 @@ export class MinorElemsTwoComponent implements OnInit {
 
     // ==================================================== Iron ====================================================
 
-ironStart: string = 'Instead of becoming fireworks, Im going to make your corals glow!'
+ironStart: string = 'Iron, always leaves me feeling ferrous!'
 iron: number
 ironNano: number
 ironRegular: number
@@ -87,7 +87,7 @@ onAddIron(){
   }
 
             // ==================================================== Lithium ====================================================
-lithiumStart: string = 'Instead of becoming fireworks, Im going to make your corals glow!'
+lithiumStart: string = 'Lithium, the life of the battery party!'
 lithium: number
 lithiumAdjustment: any
 lithiumAdjustmentTotal: number
@@ -137,7 +137,7 @@ onAddLithium(){
     }
 
         // ==================================================== Manganese ====================================================
-manganeseStart: string = 'Instead of becoming fireworks, Im going to make your corals glow!'
+manganeseStart: string = 'Manganese, because I manganaged to find it!'
 manganese: number
 manganeseNano: number
 manganeseRegular: number
@@ -174,7 +174,7 @@ onAddManganese(){
 
         // ==================================================== Molybdenum ====================================================
 
-        molybdenumStart: string = 'Instead of becoming fireworks, Im going to make your corals glow!';
+        molybdenumStart: string = 'Molybdenum, the moly-stery element';
         molybdenum: number;
         molybdenumAdjustmentTotal: number;
         molybdenumAdjustmentDiv: any;
@@ -227,7 +227,7 @@ onAddManganese(){
 
   // ==================================================== Nickle ====================================================
 
-  nickelStart = 'Instead of becoming fireworks, Im going to make your corals glow!';
+  nickelStart = "Nickle, a metal that won't leave you nickeled and dimed!";
   nickel: number;
   nickelAdjustment: number;
   nickelAdjustmentTotal: number;

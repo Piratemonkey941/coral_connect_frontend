@@ -124,7 +124,7 @@ openDialog(element: string): void {
 
   // =============================== ALKILINITY ===============================
   alkalinity: number
-  alkalinityStart: string = 'Acid, harmfull to the animals stored in the vessel '
+  alkalinityStart: string = 'Alkalinity, keeping things pH-neutralized!'
 
   alkalinityAdjustment: any
 
@@ -173,7 +173,7 @@ openDialog(element: string): void {
 
   // =============================== Magnesium ===============================
 
-  magnesiumStart: string = 'Instead of becoming fireworks, Im going to make your corals glow!'
+  magnesiumStart: string = "Magnesium, it's a magne-tic personality!"
   magnesium: number
   magnesiumAdjustment: any
 

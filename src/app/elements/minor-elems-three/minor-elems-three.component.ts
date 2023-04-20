@@ -46,7 +46,7 @@ export class MinorElemsThreeComponent implements OnInit {
     }
 
   // ==================================================== Rubidium ====================================================
-  rubidiumStart: string = "Rubidium, the colorful coral's mysterious guest, always invited, but never quite understood!"
+  rubidiumStart: string = "Rubidium, rubi-dub-dub, an element in the tub!"
   rubidium: number
   rubidiumAdjustment: any
   rubidiumAdjustmentTotal: number
@@ -112,7 +112,7 @@ export class MinorElemsThreeComponent implements OnInit {
       }
 
   // ==================================================== Selenium ====================================================
-  seleniumStart: string = 'They say laughter is the best medicine, but for corals, a dash of selenium does the trick!'
+  seleniumStart: string = 'Selenium, no need to sel-ect anything else!'
   selenium: number
   seleniumAdjustment: any
   seleniumAdjustmentNano: any
@@ -136,7 +136,7 @@ export class MinorElemsThreeComponent implements OnInit {
 
 // element has additional instructions for modal
 // ==================================================== Vanadium ====================================================
-  vanadiumStart: string = "Strengthening steel and fortifying coral skeletons, just another day in my element!"
+  vanadiumStart: string = "Vanadium, a vana-tastic elemental find"
   vanadium: number
 
   vanadiumDropsToMilliliters: number
@@ -233,7 +233,7 @@ readonly MODERATE_ZINC_LEVEL = 3;
 readonly IDEAL_ZINC_LEVEL = 5;
 
 // Initialize zincStart, zinc, zincAdjustment, and zincDays properties
-zincStart: string = 'Captain Sn, superhero of the mineral world, fighting off infections and saving the day.';
+zincStart: string = 'Zinc, a zincredible addition to the list!';
 zinc: number;
 zincAdjustment: any;
 zincDays: number;

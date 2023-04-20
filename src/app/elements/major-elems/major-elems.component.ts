@@ -69,7 +69,7 @@ this.boronAdjustment = parseFloat((this.boronAdjustmentTotal / this.boronDays).t
 
 
   if (this.boron == 6){
-      this.boronStart = 'Ideal Boron for most reefs'
+      this.boronStart = "I got some boron, but it's bor-ing me to tears"
   }
 //low start  9.46ml at 100 g for 0.1 ppm increase
 // 94.64ml per day for 1 ppm recovery
@@ -103,7 +103,7 @@ sendBoronMeasurement(boron: number) {
 // ==================================================== BROMIDE ====================================================!
 
 bromide: number
-bromideStart: string = 'Are you a metal or not?!'
+bromideStart: string = 'Some bromide, which is a bromantic gesture!'
 
 bromideAdjustment: number
 bromideAdjustmentTotal: number
@@ -153,7 +153,7 @@ bromideQuantityDivisor: number
 
   // ==================================================== POTASSIUM ====================================================!
 
-  potassiumStart: string = 'Instead of becoming fireworks, Im going to make your corals glow!'
+  potassiumStart: string = "Potassium, but don't go bananas!"
   potassium: number
   potassiumAdjustment: any
   potassiumAdjustmentTotal: number
@@ -208,7 +208,7 @@ bromideQuantityDivisor: number
       }
 
 // ==================================================== STRONTIUM ==================================================== !
-strontiumStart: string = 'Instead of becoming fireworks, Im going to make your corals glow!'
+strontiumStart: string = "Strontium, it's got that atomic glow!"
 strontium: number
 strontiumAdjustment: any
 strontiumAdjustmentTotal: number
@@ -263,7 +263,7 @@ onAddStrontium(){
 
 // ==================================================== SULFATE ====================================================!
 
-sulfateStart: string = 'Instead of becoming fireworks, Im going to make your corals glow!'
+sulfateStart: string = 'Sulfate, the "sulf-ice" of the earth'
 sulfate: number
 
 onAddSulfate(){
