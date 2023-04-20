@@ -19,7 +19,7 @@ export class VolumeService {
 
     this.volumeStart = `Your Reef is ${volume} gallons`
 
-    console.log(this.volume)
+    // console.log(this.volume)
     return volume
   }
 }

@@ -36,11 +36,11 @@ export class UpdateDialogComponent {
       const updateData = this.updateForm.value;
       this.authservice.updateAccount(this.data.id, updateData).subscribe(
         (response) => {
-          console.log('Account updated successfully', response)
+          // console.log('Account updated successfully', response)
           this.dialogRef.close({success: true});
         },
           (error) => {
-            console.error('account update FAILED:', error);
+            // console.error('account update FAILED:', error);
             this.dialogRef.close({ success: false})
           }
       );

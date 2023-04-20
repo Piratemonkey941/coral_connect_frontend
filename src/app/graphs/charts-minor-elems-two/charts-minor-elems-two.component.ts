@@ -32,7 +32,7 @@ export class ChartsMinorElemsTwoComponent implements OnInit {
         this.processMeasurements(measurements);
       },
       (error) => {
-        console.error('Error fetching element measurements:', error);
+        // console.error('Error fetching element measurements:', error);
       }
     );
   }
@@ -204,11 +204,11 @@ export class ChartsMinorElemsTwoComponent implements OnInit {
 
    // events
   public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    console.log(event, active);
+    // console.log(event, active);
   }
 
   public chartHovered({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    console.log(event, active);
+    // console.log(event, active);
   }
 
 //Hides acording to index value

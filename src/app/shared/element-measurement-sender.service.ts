@@ -18,10 +18,10 @@ export class ElementMeasurementSenderService {
     const loggedIn = this.authService.isLoggedIn();
     const currentUser = this.userService.currentUserSubject.value;
     const token = this.authService.getToken();
-    console.log('Is logged in:', loggedIn, 'User:', currentUser, 'Token:', token);
+    // console.log('Is logged in:', loggedIn, 'User:', currentUser, 'Token:', token);
 
     if (loggedIn) {
-      console.log('User is logged in, sending measurement');
+      // console.log('User is logged in, sending measurement');
       const userId = this.authService.getCurrentUserId();
 
       const newMeasurement: ElementMeasurement = {
@@ -32,14 +32,14 @@ export class ElementMeasurementSenderService {
 
       this.elementMeasurementsService.elementMeasurement(newMeasurement).subscribe(
         (response) => {
-          console.log('Measurement saved:', response);
+          // console.log('Measurement saved:', response);
         },
         (error) => {
-          console.error('Error saving measurement:', error);
+          // console.error('Error saving measurement:', error);
         }
       );
     } else {
-      console.warn('User is not logged in, not sending measurement');
+      // console.warn('User is not logged in, not sending measurement');
     }
   }
 }

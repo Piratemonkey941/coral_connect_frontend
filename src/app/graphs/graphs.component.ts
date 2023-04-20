@@ -37,7 +37,7 @@ export class GraphsComponent implements OnInit {
     ngOnInit(): void {
       this.authService.currentUser.subscribe(user => {
         this.currentUser = user;
-        console.log('Current user:', this.currentUser); // Add this line
+        // console.log('Current user:', this.currentUser); // Add this line
       });
     }
   // WILL NEED MODAL

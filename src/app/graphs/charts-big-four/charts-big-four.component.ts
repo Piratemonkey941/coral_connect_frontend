@@ -35,7 +35,7 @@ export class ChartsBigFourComponent implements OnInit {
         this.processMeasurements(measurements);
       },
       (error) => {
-        console.error('Error fetching element measurements:', error);
+        // console.error('Error fetching element measurements:', error);
       }
     );
   }
@@ -195,20 +195,20 @@ export class ChartsBigFourComponent implements OnInit {
 
   // events
   public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    console.log(event, active);
+    // console.log(event, active);
   }
 
   public chartHovered({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    console.log(event, active);
+    // console.log(event, active);
   }
 
 //Hides acording to index value
   public hideOne(): void {
-    console.log(this.chart)
+    // console.log(this.chart)
     const isHidden = this.chart?.isDatasetHidden(1);
     this.chart?.hideDataset(1, !isHidden);
     this.chart?.hideDataset(3, !isHidden);
-    console.log(this.chart)
+    // console.log(this.chart)
   }
 
 }

@@ -90,13 +90,13 @@ export class HomeComponent implements OnInit {
   }
 
   getProducts(): void {
-    console.log('Count:', this.count);
-    console.log('Sort:', this.sort);
-    console.log('Category:', this.category);
+    // console.log('Count:', this.count);
+    // console.log('Sort:', this.sort);
+    // console.log('Category:', this.category);
     this.productsSubscription = this.storeService
       .getAllProducts(this.count, this.sort, this.category)
       .subscribe((_products) => {
-        console.log('Products:', _products);
+        // console.log('Products:', _products);
         this.products = _products;
       });
   }

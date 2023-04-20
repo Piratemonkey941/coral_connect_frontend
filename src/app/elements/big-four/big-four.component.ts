@@ -44,7 +44,7 @@ openDialog(element: string): void {
 
   onAddSalinity(){
 
-    console.log('onAddSalinity called');
+    // console.log('onAddSalinity called');
 
     let salinity = this.salinityStart
 
@@ -135,7 +135,7 @@ openDialog(element: string): void {
     //calculation for 0.1 dkh change per volume
     this.alkalinityAdjustment = (0.1429 * this.volumeService.volume).toFixed(2) // for sodium bicarbonate lower/nuetural ph
 
-    console.log(this.alkalinityAdjustment)
+    // console.log(this.alkalinityAdjustment)
 
     if (this.alkalinity <= 8.5 && this.alkalinity >= 7.9){
         this.alkalinityStart = 'Ideal alkalinity for most reefs'
@@ -165,7 +165,7 @@ openDialog(element: string): void {
   }
 
   sendAlkalinityMeasurement(alkalinity: number) {
-    console.log('sendAlkalinityMeasurement called with:', alkalinity);
+    // console.log('sendAlkalinityMeasurement called with:', alkalinity);
     this.elementMeasurementSenderService.sendMeasurement(alkalinity, 3);
   }
 

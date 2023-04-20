@@ -37,7 +37,7 @@ export class UserPageComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('Updated user information:', result);
+        // console.log('Updated user information:', result);
         // Implement the logic to update user information using authService
       }
     });

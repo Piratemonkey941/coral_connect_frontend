@@ -21,7 +21,7 @@ export class CartService {
       localStorage.setItem('cart', JSON.stringify(cart));
     });
   }
-  
+
   addToCart(item: CartItem):void {
     const items = [...this.cart.value.items];                             // Create a copy of the current items array in the cart
     const itemInCart = items.find((_item) => _item.id === item.id);       // Check if the item is already in the cart
@@ -36,7 +36,7 @@ export class CartService {
 
     this._snackBar.open('1 item added to cart.', 'Ok', {duration:3000});  // Show a snack bar notification that 1 item was added to the cart
 
-    console.log(this.cart.value);                                         // Log the current value of the cart to the console
+    // console.log(this.cart.value);                                         // Log the current value of the cart to the // console
   }
 
   removeFromCart(item: CartItem, updateCart = true): CartItem[] {

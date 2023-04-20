@@ -51,7 +51,7 @@ elementMeasurement(elementMeasurement: Omit<ElementMeasurement, "id" | "created_
 
   const userId = this.userService.getCurrentUserId(); // Change this line
   if (!userId) {
-    console.error('User ID not available');
+    // console.error('User ID not available');
     return throwError('User ID not available');
   }
   const url = `${this.apiUrl}/api/v1/users/${userId}/element_measurements`;
@@ -106,7 +106,7 @@ updateElementMeasurement(userId: number, id: number, measurementData: ElementMea
 
   //   return this.http.post<ElementMeasurement>(url, { element_measurement: elementMeasurement }, httpOptions);
   // }else {
-  //     console.error('User ID not available');
+  //     // console.error('User ID not available');
   //   }
   // }
 

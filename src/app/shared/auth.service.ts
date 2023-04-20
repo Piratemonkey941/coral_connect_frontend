@@ -45,16 +45,16 @@ login(user: any) {
   // Apply the 'map' operator to modify the server's response before returning it
   return this.http.post(this.baseUrl + 'login', user).pipe(map((response: any) => {
     // Set the current user in the application's authentication service
-    console.log('Login response:', response);
+    // console.log('Login response:', response);
 
     // Store the token in the localStorage
     this.setToken(response.payload.token); // Add this line to store the token
 
     this.currentUserSubject.next(response.payload.user);
-    console.log('User set in AuthService (currentUserSubject):', this.currentUserSubject.value);
+    // console.log('User set in AuthService (currentUserSubject):', this.currentUserSubject.value);
 
     this.userService.setCurrentUser(response.payload.user);
-    console.log('User set in AuthService (userService):', this.userService.currentUserSubject.value);
+    // console.log('User set in AuthService (userService):', this.userService.currentUserSubject.value);
 
     // Return the modified server's response
     return response;
@@ -66,14 +66,14 @@ login(user: any) {
 // This function stores the token object in the browser's local storage
 setToken(token: any) {
   localStorage.setItem('token', JSON.stringify(token));
-  console.log('Token set:', token);
+  // console.log('Token set:', token);
 }
 
 // This function automatically logs in the user if a valid token is stored in local storage
 autoLogin() {
   const token = this.getToken();                  // Get the token from local storage
 
-  console.log('autoLogin() - Token:', token);     // Add this line to check the token value
+  // console.log('autoLogin() - Token:', token);     // Add this line to check the token value
 
   if (token == null) {                            // Check if a token exists
     this.route.navigate(['/login']);              // If no token exists, navigate to the login page
@@ -83,14 +83,14 @@ autoLogin() {
         Authorization: `Bearer ${token.value}`    // Set the 'Authorization' header to include the token value
       }
     }).subscribe((user: User) => {                // If the server returns a valid user object, set the current user in the application's authentication service
-        console.log('autoLogin() - User:', user); // Add this line to check the user object
+        // console.log('autoLogin() - User:', user); // Add this line to check the user object
         this.userService.setCurrentUser(user);
         this.currentUserSubject.next(user);       // Add this line to set currentUserSubject in AuthService
         // this.route.navigate(['/landing']);         // Navigate to the home page
 
     }, (error) => {
       // If an error occurs (e.g. the token is invalid), handle the error here, such as navigating to the login page or showing an error message.
-      console.error('Auto-login failed:', error);
+      // console.error('Auto-login failed:', error);
       this.route.navigate(['/login']);
     });
   }
@@ -115,10 +115,10 @@ const token = this.getToken();                // Get the token from local storag
         this.route.navigate(['/login']);
       }
     }, (error) => {
-      console.error('Logout failed:', error);   // Optionally, handle the error here, such as showing an error message to the user.
+      // console.error('Logout failed:', error);   // Optionally, handle the error here, such as showing an error message to the user.
     });
   }
-  console.log('User logged out');
+  // console.log('User logged out');
 }
 
 updateAccount(id: number, updatedData: any): Observable<any> {
@@ -142,7 +142,7 @@ getToken() {
 
   if (token != null) {
     const parsedToken = JSON.parse(token);
-    console.log('Retrieved token:', parsedToken); // Log the retrieved token
+    // console.log('Retrieved token:', parsedToken); // Log the retrieved token
     return parsedToken;                           // If a token string exists, parse it from a stringified JSON object and return it
   } else {
     return null;                                  // If no token string exists, return null
@@ -152,14 +152,14 @@ getToken() {
 
 isLoggedIn(): boolean {
   const token = this.getToken();
-  console.log('Is logged in:', this.currentUserValue !== null && token !== null, 'User:', this.currentUserValue, 'Token:', token);
+  // console.log('Is logged in:', this.currentUserValue !== null && token !== null, 'User:', this.currentUserValue, 'Token:', token);
   return this.currentUserValue !== null && token !== null;
 }
 
 
   getCurrentUserId(): number {
     const currentUser = this.userService.currentUserSubject.value;
-    console.log('getCurrentUserId - currentUser:', currentUser);
+    // console.log('getCurrentUserId - currentUser:', currentUser);
     if (currentUser && currentUser.id) {
       return currentUser.id;
     }
@@ -178,10 +178,10 @@ isLoggedIn(): boolean {
       }).subscribe((res: any) => {
         if (res.success) {
           this.logout();
-          console.log('Account deleted successfully');
+          // console.log('Account deleted successfully');
         }
       }, (error) => {
-        console.error('Account deletion failed:', error);
+        // console.error('Account deletion failed:', error);
       });
     }
   }

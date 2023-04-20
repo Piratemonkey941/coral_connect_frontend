@@ -32,7 +32,7 @@ export class ChartsMinorElemsOneComponent implements OnInit {
         this.processMeasurements(measurements);
       },
       (error) => {
-        console.error('Error fetching element measurements:', error);
+        // console.error('Error fetching element measurements:', error);
       }
     );
   }
@@ -217,18 +217,18 @@ export class ChartsMinorElemsOneComponent implements OnInit {
 
   // events
   public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    console.log(event, active);
+    // console.log(event, active);
   }
 
   public chartHovered({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-    console.log(event, active);
+    // console.log(event, active);
   }
 
   //Hides acording to index value
   public hideOne(): void {
-    console.log('Datasets:', this.chart?.data.datasets);
+    // console.log('Datasets:', this.chart?.data.datasets);
     const isHidden = this.chart?.isDatasetHidden(5);
-    console.log('isHidden:', isHidden);
+    // console.log('isHidden:', isHidden);
     this.chart?.hideDataset(5, !isHidden);
   }
 

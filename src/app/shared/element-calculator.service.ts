@@ -38,7 +38,7 @@ export class ElementCalculatorService {
     {
       alkalinityAdjustment = (0.0714 * this.volumeService.volume) // for soda ash higher ph
        alkalinityResult = (alkalinityChange * alkalinityAdjustment).toFixed(2)
-      //  console.log('volume', this.volume)
+      //  // console.log('volume', this.volume)
       // return alkalinityResult
          alkalinityResultWithString =  " Dose " + alkalinityResult + " milliLiters "
 
@@ -110,7 +110,7 @@ magnesiumCalculator(
     {
       magnesiumAdjustment = (0.03156 * this.volumeService.volume) //  for dry magnesium cloride mix
        magnesiumResult = (magnesiumChange * magnesiumAdjustment).toFixed(2)
-      //  console.log('volume', this.volume)
+      //  // console.log('volume', this.volume)
       magnesiumResultWithString = magnesiumResult
 
        return magnesiumResultWithString
