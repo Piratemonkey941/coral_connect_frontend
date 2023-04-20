@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { NgZone } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdateDialogComponent } from '../update-dialog/update-dialog.component';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-page',
@@ -13,17 +15,33 @@ import { UpdateDialogComponent } from '../update-dialog/update-dialog.component'
 })
 export class UserPageComponent implements OnInit {
   currentUser: User;
+  private destroy$ = new Subject<void>();
 
   constructor(
     private authService: AuthService,
+    // private userService: UserService,
     private router: Router,
     private ngZone: NgZone,
     public dialog: MatDialog
     ) {
     this.currentUser = authService.currentUserValue;
+    // this.currentUser = userService.getCurrentUser();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.authService.currentUser
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(user => {
+        this.currentUser = user;
+        console.log('UserPageComponent - Current user:', this.currentUser);
+      });
+  }
+
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 
   onUpdateAccount() {
     this.openUpdateDialog();

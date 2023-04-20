@@ -1,5 +1,6 @@
 import { Component, OnInit, Renderer2, ViewChild, ElementRef  } from '@angular/core';
 import { MaterialModule } from './materials/materials.module'
+import { AuthService } from './shared/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -13,9 +14,13 @@ export class AppComponent {
 
   volume: number = 100
 
-  constructor(private renderer: Renderer2) {
-
-  }
+  constructor(
+    private renderer: Renderer2,
+    private authService: AuthService
+    )
+    {
+      this.authService.autoLogin();
+    }
 // authservice
   ngOnInit() {
   }
