@@ -40,7 +40,6 @@ signup(user: any) {                                       // This function sends
 }
 
 // This function sends a POST request to authenticate the user with the credentials provided in the user object
-
 login(user: any) {
   // Send the HTTP request to the server to authenticate the user
   // Apply the 'map' operator to modify the server's response before returning it
@@ -72,21 +71,21 @@ setToken(token: any) {
 
 // This function automatically logs in the user if a valid token is stored in local storage
 autoLogin() {
-  const token = this.getToken();      // Get the token from local storage
+  const token = this.getToken();                  // Get the token from local storage
 
-  console.log('autoLogin() - Token:', token); // Add this line to check the token value
+  console.log('autoLogin() - Token:', token);     // Add this line to check the token value
 
-  if (token == null) {                // Check if a token exists
-    this.route.navigate(['/login']);  // If no token exists, navigate to the login page
-  } else {                            // If a token exists, send a GET request to the server to get the user object associated with the token
+  if (token == null) {                            // Check if a token exists
+    this.route.navigate(['/login']);              // If no token exists, navigate to the login page
+  } else {                                        // If a token exists, send a GET request to the server to get the user object associated with the token
     this.http.get(this.baseUrl + 'me', {
       headers: {
-        Authorization: `Bearer ${token.value}`  // Set the 'Authorization' header to include the token value
+        Authorization: `Bearer ${token.value}`    // Set the 'Authorization' header to include the token value
       }
-    }).subscribe((user: User) => {              // If the server returns a valid user object, set the current user in the application's authentication service
+    }).subscribe((user: User) => {                // If the server returns a valid user object, set the current user in the application's authentication service
         console.log('autoLogin() - User:', user); // Add this line to check the user object
         this.userService.setCurrentUser(user);
-        this.currentUserSubject.next(user); // Add this line to set currentUserSubject in AuthService
+        this.currentUserSubject.next(user);       // Add this line to set currentUserSubject in AuthService
         // this.route.navigate(['/landing']);         // Navigate to the home page
 
     }, (error) => {
@@ -121,6 +120,22 @@ const token = this.getToken();                // Get the token from local storag
   }
   console.log('User logged out');
 }
+
+updateAccount(id: number, updatedData: any): Observable<any> {
+  const token = this.getToken();
+
+  if (token) {
+    return this.http.patch(`${this.baseUrl}${id}`, updatedData, {
+      headers: {
+        Authorization: `Bearer ${token.value}`
+      }
+    });
+  } else {
+    return throwError('No token found');
+  }
+}
+
+
 
 getToken() {
   const token = localStorage.getItem('token');  // Get the token string from local storage
